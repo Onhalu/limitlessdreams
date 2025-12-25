@@ -5,65 +5,130 @@
   <title>Limitless Dreams</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-    @keyframes heroFade {
-      0% {
-        opacity: 0;
-        transform: scale(0.92) translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-    .animate-hero {
-      animation: heroFade 1.2s ease-out forwards;
-    }
-  </style>
 </head>
 
-<body class="bg-white text-gray-900 dark:bg-black dark:text-white transition-colors duration-300">
+<body class="bg-white text-gray-900 antialiased">
 
   <!-- HERO -->
-  <section class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
+  <section class="relative">
+    <div class="max-w-6xl mx-auto px-6 py-32 text-center">
 
-    <!-- Logo -->
-    <img
-      src="/logo.png"
-      alt="Limitless Dreams"
-      class="animate-hero mb-12 h-auto max-h-[45vh] w-auto drop-shadow-xl"
-    />
+      <!-- LOGO -->
+      <div class="flex justify-center mb-14">
+        <img
+          src="/logo.png"
+          alt="Limitless Dreams"
+          class="mx-auto mb-10 h-auto max-h-[45vh] w-auto"
+        />
+      </div>
 
-    <!-- Claim -->
-    <p class="max-w-2xl text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-12 animate-hero"
-       style="animation-delay: 0.15s">
-      Vytváříme projekty na pomezí technologií, kreativity a podnikání.
-    </p>
+      <!-- SUBTEXT -->
+      <p class="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto mb-14 leading-relaxed">
+        Vytváříme projekty na pomezí technologií, kreativity a podnikání.
+      </p>
 
-    <!-- CTA -->
-    <div class="flex gap-6 animate-hero" style="animation-delay: 0.3s">
-      <a
-        href="#projekty"
-        class="px-8 py-4 rounded-xl bg-black text-white dark:bg-white dark:text-black
-               text-lg font-semibold shadow-lg hover:scale-[1.03] hover:shadow-xl
-               transition-all duration-300"
-      >
-        Naše projekty
-      </a>
+      <!-- CTA -->
+      <div class="flex justify-center gap-4">
+        <a
+          href="#projekty"
+          class="inline-flex items-center justify-center rounded-lg bg-gray-900 px-8 py-4 text-lg font-semibold text-white hover:bg-gray-800 transition"
+        >
+          Naše projekty
+        </a>
 
-      <a
-        href="#produkty"
-        class="px-8 py-4 rounded-xl text-lg font-semibold
-               text-gray-800 dark:text-gray-200
-               hover:text-black dark:hover:text-white
-               transition-colors duration-300"
-      >
-        Produkty
-      </a>
+        <a
+          href="#produkty"
+          class="inline-flex items-center justify-center rounded-lg px-8 py-4 text-lg font-semibold text-gray-900 hover:text-gray-600 transition"
+        >
+          Produkty
+        </a>
+      </div>
+
     </div>
-
   </section>
+
+  <!-- PROJEKTY -->
+  <section id="projekty" class="bg-gray-50 py-32">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <h2 class="text-4xl font-semibold mb-16 tracking-tight">
+        Projekty
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-16">
+
+        <div>
+          <h3 class="text-2xl font-medium mb-4">
+            Vyšlapni.cz
+          </h3>
+          <p class="text-gray-500 mb-6 leading-relaxed">
+            Turistické výzvy a motivační projekty pro veřejnost.
+          </p>
+          <a
+            href="https://vyslapni.cz"
+            target="_blank"
+            class="text-gray-900 font-medium hover:underline"
+          >
+            Přejít na web →
+          </a>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-medium mb-4">
+            Další projekt
+          </h3>
+          <p class="text-gray-500 mb-6 leading-relaxed">
+            Stručný popis projektu.
+          </p>
+          <a
+            href="#"
+            class="text-gray-900 font-medium hover:underline"
+          >
+            Přejít na web →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUKTY -->
+  <section id="produkty" class="py-32">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <h2 class="text-4xl font-semibold mb-16 tracking-tight">
+        Produkty
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-16">
+
+        <div>
+          <h3 class="text-2xl font-medium mb-4">
+            Digitální produkt
+          </h3>
+          <p class="text-gray-500 mb-6 leading-relaxed">
+            Krátký popis produktu.
+          </p>
+          <a
+            href="https://shopify-link"
+            target="_blank"
+            class="inline-flex items-center justify-center rounded-lg bg-gray-900 px-6 py-3 text-white font-semibold hover:bg-gray-800 transition"
+          >
+            Koupit na Shopify
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 py-16 flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
+      <span>© 2025 Limitless Dreams</span>
+      <span>IČO · info@email.cz</span>
+    </div>
+  </footer>
 
 </body>
 </html>
