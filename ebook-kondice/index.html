@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <title>E-book Kondice — Limitless Dreams</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- HERO -->
+  <section class="relative bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-6xl mx-auto px-6 py-24 text-center">
+
+      <div class="flex justify-center mb-8">
+        <img src="/logo.png" alt="E-book Kondice" class="h-auto max-h-40 w-auto" />
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-6">E-book "Kondice"</h1>
+      <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+        Praktický průvodce kondičním tréninkem pro zaneprázdněné a motivované. Návody, tréninkové plány a ukázky technik.
+      </p>
+
+      <div class="flex justify-center gap-4">
+        <button id="scrollToForm" class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white hover:bg-blue-500 transition">
+          Chci e-book
+        </button>
+        <a href="#ukazka" class="inline-flex items-center justify-center rounded-lg px-8 py-4 text-lg font-semibold text-gray-900 hover:text-gray-600 transition">
+          Ukázka
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- O KNIZE -->
+  <section id="o-knize" class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-semibold mb-4">O knize</h2>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            E-book "Kondice" přináší srozumitelný plán, jak efektivně zlepšit fyzickou kondici bez ztráty času. Obsahuje progresivní tréninkové jednotky, tipy na regeneraci a jídelníček pro podporu výkonu.
+          </p>
+          <p class="text-gray-500 leading-relaxed">
+            Autor: Petr Tréner — profesionální kouč se zkušenostmi s prací jak s amatéry, tak s výkonnostními sportovci. Styl je praktický, zaměřený na rychlé výsledky a udržitelné návyky.
+          </p>
+        </div>
+
+        <div class="flex justify-center">
+          <img src="/logo.png" alt="Obálka e-booku" class="w-64 h-auto rounded shadow" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- UKÁZKA -->
+  <section id="ukazka" class="bg-gray-50 py-20">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-semibold mb-8">Ukázka z knihy</h2>
+
+      <article class="prose prose-lg text-gray-700">
+        <h3>Tréninková jednotka — 20 minut HIIT</h3>
+        <p>
+          Zahřátí 5 minut (dynamické mobilizační cviky), poté 10 kol: 30s práce / 30s odpočinek. Cviky: burpees, výpady s výskokem, plank s přenosy, mountain climbers.
+        </p>
+        <p>
+          Tip: Měřte intenzitu podle percepční námahy RPE a postupně zvyšujte počet kol každý týden.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- TRAINER HERO -->
+  <section id="trenér" class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <img src="/logo.png" alt="Trenér" class="w-40 h-40 rounded-full object-cover shadow" />
+
+        <div>
+          <h3 class="text-2xl font-semibold">Petr Tréner</h3>
+          <p class="text-gray-600 mb-4">Osobní trenér a autor e-booku. Více než 10 let praxe ve fitness a kondičním tréninku.</p>
+          <p class="text-gray-500">Specializace: funkční trénink, kondice pro časově vytížené, regenerace, prevence zranění.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM / CTA TARGET -->
+  <section id="form-section" class="bg-white py-20 border-t">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-semibold mb-6">Získejte e-book</h2>
+
+      <p class="text-gray-600 mb-6">Vyplňte formulář a obdržíte e-book přímo na e-mail.</p>
+
+      <!-- FAPI FORM SCRIPT -->
+      <div class="prose">
+        <script type="text/javascript" src="https://form.fapi.cz/script.php?id=797a6615-41c0-4323-8ded-875a4f84d412"></script>
+      </div>
+
+      <p class="text-sm text-gray-500 mt-6">Po odeslání formuláře vám přijde odkaz ke stažení e-booku.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
+      <span>© 2025 Limitless Dreams</span>
+      <span>IČO · info@email.cz</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('scrollToForm').addEventListener('click', function () {
+      var el = document.getElementById('form-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+
+</body>
+</html>
