@@ -5,6 +5,19 @@
   <title>Gravírování na míru — Limitless Dreams</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const scrollButton = document.getElementById('scrollToForm');
+      if (scrollButton) {
+        scrollButton.addEventListener('click', function() {
+          const formSection = document.getElementById('form-section');
+          if (formSection) {
+            formSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+    });
+  </script>
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
@@ -228,9 +241,9 @@
         Máte zájem o personalizované gravírování? Vyplňte formulář nebo nás kontaktujte přímo.
       </p>
 
-      <!-- FAPI FORM SCRIPT (placeholder) -->
+      <!-- FAPI FORM SCRIPT -->
       <div class="prose max-w-full">
-        <script type="text/javascript" src="https://form.fapi.cz/script.php?id=797a6615-41c0-4323-8ded-875a4f84d412"></script>
+        <script type="text/javascript" src="https://form.fapi.cz/script.php?id=6c298706-7a62-4192-bf30-5958d5f6a844"></script>
       </div>
 
       <p class="text-sm text-gray-500 mt-8 text-center">
