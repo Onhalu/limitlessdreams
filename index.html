@@ -2,177 +2,242 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
-  <title>Limitless Dreams</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limitless Dreams — produkty a projekty</title>
+  <meta name="description" content="Limitless Dreams — kreativní studio. Projekty Vyslapni.cz a Vandery.app, produkty Crash Floor a e-book Kondice." />
+  <meta property="og:title" content="Limitless Dreams" />
+  <meta property="og:description" content="Projekty a produkty Limitless Dreams — Vyslapni.cz, Vandery.app, Crash Floor, e-book Kondice." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.limitlessdreams.cz/" />
+  <meta property="og:image" content="https://www.limitlessdreams.cz/hero-user-tight.jpg" />
+  <link rel="canonical" href="https://www.limitlessdreams.cz/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+          colors: {
+            sand: {
+              50: '#FAF8F2',
+              100: '#F3EFE5',
+              200: '#D8CDB8',
+              500: '#756653',
+              700: '#756653',
+              900: '#35483C',
+            },
+            sage: {
+              DEFAULT: '#9C9A7B',
+              soft: '#B5B39A',
+            }
+          },
+          boxShadow: {
+            card: '0 1px 2px rgba(28,25,23,0.04), 0 8px 24px rgba(28,25,23,0.06)',
+            'card-hover': '0 1px 2px rgba(28,25,23,0.04), 0 16px 40px rgba(28,25,23,0.10)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
 </head>
 
-<body class="bg-white text-gray-900 antialiased">
+<body class="bg-sand-50 text-[#35483C] antialiased font-sans">
 
-  <!-- HERO -->
-  <section class="relative">
-    <div class="max-w-6xl mx-auto px-6 py-32 text-center">
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 border-b border-sand-200/80 bg-white/90 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 font-semibold tracking-tight text-[#35483C]">
+        <img src="/logo-viateria.png" alt="" class="h-8 w-auto" width="32" height="32" />
+        <span>Limitless Dreams</span>
+      </a>
+      <nav class="hidden sm:flex items-center gap-8 text-sm font-medium text-sand-700">
+        <a href="#projekty" class="hover:text-[#35483C] transition">Projekty</a>
+        <a href="#produkty" class="hover:text-[#35483C] transition">Produkty</a>
+        <a href="#o-nas" class="hover:text-[#35483C] transition">O nás</a>
+        <a href="#kontakt" class="inline-flex items-center rounded-full bg-[#35483C] px-4 py-2 text-white hover:bg-neutral-950 transition">Kontakt</a>
+      </nav>
+    </div>
+  </header>
 
-      <!-- LOGO -->
-      <div class="flex justify-center mb-14">
-        <img
-          src="/logo.png"
-          alt="Limitless Dreams"
-          class="h-auto max-h-[45vh] w-auto"
-        />
-      </div>
+  <!-- FULL-BLEED HERO IMAGE (no text overlay) -->
+  <section class="relative w-full overflow-hidden bg-[#FAF8F2]" aria-label="Limitless Dreams">
+    <img
+      src="/hero-user-tight.jpg"
+      alt="Limitless Dreams"
+      class="block w-full h-auto"
+      width="1177"
+      height="1045"
+    />
+  </section>
 
-      <!-- CLAIM -->
-      <p class="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto mb-14 leading-relaxed">
-        Vytváříme projekty na pomezí technologií, kreativity a podnikání.
+  <!-- WELCOME COPY BELOW HERO -->
+  <section class="bg-sand-50 border-b border-sand-200">
+    <div class="max-w-6xl mx-auto px-6 py-14 md:py-20">
+      <p class="inline-flex items-center rounded-full border border-sage/40 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sand-700 mb-5">
+        Kreativní studio
       </p>
-
-      <!-- CTA -->
-      <div class="flex justify-center gap-4">
-        <a
-          href="#projekty"
-          class="inline-flex items-center justify-center rounded-lg bg-gray-900 px-8 py-4 text-lg font-semibold text-white hover:bg-gray-800 transition"
-        >
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] text-[#35483C] max-w-3xl mb-5">
+        Vítejte v Limitless Dreams
+      </h1>
+      <p class="text-lg md:text-xl text-sand-500 max-w-xl leading-relaxed mb-8">
+        Spojujeme technologie, obsah a podnikání do projektů a produktů, které lidi opravdu používají.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#projekty" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-7 py-3.5 text-base font-semibold text-white hover:bg-neutral-950 transition">
           Naše projekty
         </a>
-
-        <a
-          href="#produkty"
-          class="inline-flex items-center justify-center rounded-lg px-8 py-4 text-lg font-semibold text-gray-900 hover:text-gray-600 transition"
-        >
+        <a href="#produkty" class="inline-flex items-center justify-center rounded-full border border-sand-200 bg-white px-7 py-3.5 text-base font-semibold text-[#35483C] hover:border-sage hover:text-sage transition">
           Produkty
         </a>
       </div>
-
     </div>
   </section>
 
-  <!-- O NÁS -->
-  <section id="o-nas" class="py-32">
-    <div class="max-w-6xl mx-auto px-6">
-
-      <div class="max-w-3xl">
-        <h2 class="text-4xl font-semibold mb-8 tracking-tight">
-          O nás
-        </h2>
-
-        <p class="text-xl text-gray-700 mb-6 leading-relaxed">
-          Limitless Dreams je kreativní studio zaměřené na tvorbu projektů,
-          které propojují technologie, obsah a podnikání.
-        </p>
-
-        <p class="text-gray-500 leading-relaxed mb-6">
-          Vytváříme vlastní digitální produkty, experimentální projekty
-          i dlouhodobé platformy. Zajímá nás funkčnost, jednoduchost
-          a smysluplné využití technologií – bez zbytečného balastu.
-        </p>
-
-        <p class="text-gray-500 leading-relaxed">
-          Pracujeme iterativně, stavíme rychle a soustředíme se na projekty,
-          které mají potenciál dlouhodobě růst a přinášet hodnotu
-          jak uživatelům, tak autorům.
-        </p>
-      </div>
-
-    </div>
-  </section>
 
   <!-- PROJEKTY -->
-  <section id="projekty" class="bg-gray-50 py-32">
+  <section id="projekty" class="py-20 md:py-24 bg-white border-b border-sand-200">
     <div class="max-w-6xl mx-auto px-6">
-
-      <h2 class="text-4xl font-semibold mb-16 tracking-tight">
-        Projekty
-      </h2>
-
-      <div class="grid md:grid-cols-2 gap-16">
-
-        <div>
-          <h3 class="text-2xl font-medium mb-4">
-            Vyšlapni.cz
-          </h3>
-          <p class="text-gray-500 mb-6 leading-relaxed">
-            Turistické výzvy a motivační projekty pro veřejnost.
-          </p>
-          <a
-            href="https://vyslapni.cz"
-            target="_blank"
-            class="text-gray-900 font-medium hover:underline"
-          >
-            Přejít na web →
-          </a>
-        </div>
-
-        <div>
-          <h3 class="text-2xl font-medium mb-4">
-            Další projekt
-          </h3>
-          <p class="text-gray-500 mb-6 leading-relaxed">
-            Stručný popis projektu.
-          </p>
-          <a
-            href="#"
-            class="text-gray-900 font-medium hover:underline"
-          >
-            Přejít na web →
-          </a>
-        </div>
-
+      <div class="mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Projekty</h2>
+        <p class="text-sand-500 max-w-xl">Dlouhodobé platformy, které rostou s komunitou.</p>
       </div>
 
+      <div class="space-y-6">
+        <!-- Vyslapni: text left, visual right -->
+        <a href="https://vyslapni.cz" target="_blank" rel="noopener noreferrer" class="group block rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
+          <div class="grid lg:grid-cols-2 gap-0">
+            <div class="p-8 md:p-12 flex flex-col justify-center">
+              <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 group-hover:text-sand-700 transition">Vyslapni.cz</h3>
+              <p class="text-sand-500 leading-relaxed mb-8">
+                Gamifikované turistické výzvy, medaile a motivace vyrazit ven — pro jednotlivce i rodiny.
+              </p>
+              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white group-hover:bg-neutral-950 transition">
+                Přejít na web
+              </span>
+            </div>
+            <div class="relative min-h-[240px] bg-gradient-to-br from-sand-100 to-sand-200 flex items-center justify-center p-10">
+              <div class="text-center">
+                <p class="text-5xl md:text-6xl font-extrabold tracking-tight text-[#35483C] mb-3">Vyslapni</p>
+                <p class="text-sand-500">Turistické výzvy · medaile · venku</p>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Vandery: visual left, text right (same design) -->
+        <a href="https://vandery.app" target="_blank" rel="noopener noreferrer" class="group block rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
+          <div class="grid lg:grid-cols-2 gap-0">
+            <div class="relative min-h-[240px] bg-gradient-to-br from-sand-100 to-sand-200 flex items-center justify-center p-10 order-1">
+              <div class="text-center">
+                <p class="text-5xl md:text-6xl font-extrabold tracking-tight text-[#35483C] mb-3">Vandery</p>
+                <p class="text-sand-500">Turistická app · výlety · venku</p>
+              </div>
+            </div>
+            <div class="p-8 md:p-12 flex flex-col justify-center order-2">
+              <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 group-hover:text-sand-700 transition">Vandery.app</h3>
+              <p class="text-sand-500 leading-relaxed mb-8">
+                Turistická aplikace pro objevování míst a výlety — plánování, záznam a motivace vyrazit ven.
+              </p>
+              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white group-hover:bg-neutral-950 transition">
+                Přejít na web
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- PRODUKTY -->
-  <section id="produkty" class="py-32">
+  <section id="produkty" class="py-24 md:py-28">
     <div class="max-w-6xl mx-auto px-6">
-
-      <h2 class="text-4xl font-semibold mb-16 tracking-tight">
-        Produkty
-      </h2>
-
-      <div class="grid md:grid-cols-2 gap-16">
-
-        <div>
-          <h3 class="text-2xl font-medium mb-4">
-            Crash Floor — desková hra
-          </h3>
-          <p class="text-gray-500 mb-6 leading-relaxed">
-            Dynamická desková hra plná napětí a taktiky. Skvělá volba pro večery s přáteli.
-          </p>
-          <a
-            href="/crash-floor/"
-            class="inline-flex items-center justify-center rounded-lg bg-gray-900 px-6 py-3 text-white font-semibold hover:bg-gray-800 transition"
-          >
-            Více o hře
-          </a>
-        </div>
-
-        <div>
-          <h3 class="text-2xl font-medium mb-4">
-            E-book „Kondice"
-          </h3>
-          <p class="text-gray-500 mb-6 leading-relaxed">
-            Praktický průvodce kondičním tréninkem — rychlé plány a ukázky.
-          </p>
-          <a
-            href="/ebook-kondice/"
-            class="inline-flex items-center justify-center rounded-lg px-6 py-3 text-gray-900 font-semibold hover:text-gray-600 transition"
-          >
-            Více o e-booku →
-          </a>
-        </div>
-
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Produkty</h2>
+        <p class="text-sand-500 max-w-xl">Věci, které dávají smysl samy o sobě — s vlastní stránkou a objednávkou.</p>
       </div>
 
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="group flex flex-col rounded-3xl border border-sand-200 bg-white shadow-card hover:shadow-card-hover transition overflow-hidden">
+          <div class="h-44 bg-gradient-to-br from-sand-100 to-sand-50 flex items-center justify-center px-6">
+            <span class="text-sm font-semibold uppercase tracking-wider text-sand-700">Desková hra</span>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="text-xl font-bold mb-2">Crash Floor</h3>
+            <p class="text-sand-500 text-sm leading-relaxed mb-6 flex-1">
+              Dynamická taktická hra plná napětí. Ideální na večery s přáteli.
+            </p>
+            <a href="/crash-floor/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-neutral-950 transition">
+              Více o hře
+            </a>
+          </div>
+        </article>
+
+        <article class="group flex flex-col rounded-3xl border border-sand-200 bg-white shadow-card hover:shadow-card-hover transition overflow-hidden">
+          <div class="h-44 bg-gradient-to-br from-sand-100 to-sand-50 flex items-end justify-center pt-6 px-6 overflow-hidden">
+            <img src="/ebook-kondice/Cover.jpg" alt="Obálka e-booku Kondice" class="h-40 w-auto rounded-t-lg shadow-card object-cover" width="114" height="160" />
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="text-xl font-bold mb-2">E-book Kondice</h3>
+            <p class="text-sand-500 text-sm leading-relaxed mb-6 flex-1">
+              Praktický průvodce kondicí pro turistiku — technika, tempo, krátký trénink.
+            </p>
+            <a href="/ebook-kondice/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-neutral-950 transition">
+              Více o e-booku
+            </a>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-gray-100">
-    <div class="max-w-6xl mx-auto px-6 py-16 flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
-      <span>© 2025 Limitless Dreams</span>
-      <span>IČO · info@email.cz</span>
+  <!-- O NÁS -->
+  <section id="o-nas" class="py-24 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">O nás</h2>
+        <p class="text-lg text-sand-700 leading-relaxed mb-5">
+          Limitless Dreams je kreativní studio. Stavíme digitální produkty i dlouhodobé projekty jako <a href="https://vyslapni.cz" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vyslapni.cz</a> a <a href="https://vandery.app" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vandery.app</a>.
+        </p>
+        <p class="text-sand-500 leading-relaxed">
+          Zajímá nás funkčnost, jednoduchost a smysluplné využití technologií — bez zbytečného balastu.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="pb-24 md:pb-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="rounded-3xl bg-[#35483C] text-white p-8 md:p-12 shadow-card">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 class="text-3xl font-bold tracking-tight mb-3">Napište nám</h2>
+            <p class="text-white/80 leading-relaxed">
+              Spolupráce nebo poptávka produktu — ozveme se.
+            </p>
+          </div>
+          <div class="space-y-3 text-sm md:text-base">
+            <a href="mailto:ahoj@vyslapni.cz" class="inline-flex items-center justify-center gap-3 rounded-full bg-white px-6 py-3 font-semibold text-[#35483C] hover:bg-sand-100 transition">
+              <span>E-mail</span>
+              <span>ahoj@vyslapni.cz</span>
+            </a>
+            <p class="px-2 text-white/70">IČO 22512195</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-sand-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row justify-between gap-4 text-sm text-sand-500">
+      <span>© 2026 Limitless Dreams</span>
+      <span>IČO 22512195 · <a href="mailto:ahoj@vyslapni.cz" class="hover:text-[#35483C] transition">ahoj@vyslapni.cz</a></span>
     </div>
   </footer>
 
