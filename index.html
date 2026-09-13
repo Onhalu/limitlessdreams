@@ -44,6 +44,21 @@
   </script>
   <style>
     html { scroll-behavior: smooth; }
+    body.menu-open { overflow: hidden; }
+    #mobile-drawer {
+      transform: translateX(100%);
+      transition: transform 0.25s ease;
+    }
+    #mobile-drawer[data-open="true"] { transform: translateX(0); }
+    #mobile-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    #mobile-backdrop[data-open="true"] {
+      opacity: 1;
+      pointer-events: auto;
+    }
   </style>
 </head>
 
@@ -51,19 +66,56 @@
 
   <!-- NAV -->
   <header class="sticky top-0 z-40 border-b border-sand-200/80 bg-white/90 backdrop-blur">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3 font-semibold tracking-tight text-[#35483C]">
-        <img src="/logo-viateria.png" alt="" class="h-8 w-auto" width="32" height="32" />
-        <span>Limitless Dreams</span>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-3">
+      <a href="/" class="flex min-w-0 items-center gap-2 sm:gap-3 font-semibold tracking-tight text-[#35483C]">
+        <img src="/logo-viateria.png" alt="" class="h-8 w-auto shrink-0" width="32" height="32" />
+        <span class="truncate text-sm sm:text-base">Limitless Dreams</span>
       </a>
-      <nav class="hidden sm:flex items-center gap-8 text-sm font-medium text-sand-700">
-        <a href="#projekty" class="hover:text-[#35483C] transition">Projekty</a>
-        <a href="#produkty" class="hover:text-[#35483C] transition">Produkty</a>
-        <a href="#o-nas" class="hover:text-[#35483C] transition">O nás</a>
-        <a href="#kontakt" class="inline-flex items-center rounded-full bg-[#35483C] px-4 py-2 text-white hover:bg-neutral-950 transition">Kontakt</a>
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-sand-700" aria-label="Hlavní navigace">
+        <a href="#projekty" class="hover:text-[#35483C] transition" data-i18n="nav.projects">Projekty</a>
+        <a href="#produkty" class="hover:text-[#35483C] transition" data-i18n="nav.products">Produkty</a>
+        <a href="#o-nas" class="hover:text-[#35483C] transition" data-i18n="nav.about">O nás</a>
+        <div class="relative">
+          <label class="sr-only" for="lang-desktop" data-i18n="lang.label">Jazyk</label>
+          <select id="lang-desktop" class="lang-select appearance-none rounded-full border border-sand-200 bg-white px-3 py-2 pr-8 text-sm font-medium text-[#35483C] hover:border-sage focus:outline-none focus:ring-2 focus:ring-[#35483C]/40" aria-label="Language">
+            <option value="cs">CS</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <a href="#kontakt" class="inline-flex items-center rounded-full bg-[#35483C] px-4 py-2 text-white hover:bg-neutral-950 transition" data-i18n="nav.contact">Kontakt</a>
       </nav>
+      <button type="button" id="menu-toggle" class="md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sand-200 bg-white text-[#35483C] hover:border-sage transition" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Otevřít menu">
+        <svg id="icon-open" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
   </header>
+
+  <!-- Mobile scrollable drawer -->
+  <div id="mobile-backdrop" class="fixed inset-0 z-40 bg-[#35483C]/40 md:hidden" data-open="false" hidden></div>
+  <aside id="mobile-drawer" class="fixed inset-y-0 right-0 z-50 flex w-[min(100%,20rem)] flex-col bg-white shadow-card-hover md:hidden" data-open="false" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title" hidden>
+    <div class="flex h-14 shrink-0 items-center justify-between border-b border-sand-200 px-4">
+      <p id="mobile-menu-title" class="font-semibold text-[#35483C]" data-i18n="menu.title">Menu</p>
+      <button type="button" id="menu-close" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sand-200 text-[#35483C]" aria-label="Zavřít menu">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto overscroll-contain px-4 py-4" aria-label="Mobilní navigace">
+      <ul class="space-y-1">
+        <li><a href="#projekty" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100" data-i18n="nav.projects">Projekty</a></li>
+        <li><a href="#produkty" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100" data-i18n="nav.products">Produkty</a></li>
+        <li><a href="#o-nas" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100" data-i18n="nav.about">O nás</a></li>
+        <li><a href="#kontakt" class="mobile-nav-link mt-2 flex min-h-11 items-center justify-center rounded-full bg-[#35483C] px-4 text-base font-semibold text-white" data-i18n="nav.contact">Kontakt</a></li>
+      </ul>
+      <div class="mt-8 border-t border-sand-200 pt-6">
+        <p class="mb-3 px-1 text-xs font-semibold uppercase tracking-wider text-sand-500" data-i18n="lang.label">Jazyk</p>
+        <div class="grid grid-cols-2 gap-2" role="group" aria-label="Language">
+          <button type="button" class="lang-btn flex min-h-11 items-center justify-center rounded-full border border-sand-200 text-sm font-semibold text-[#35483C]" data-lang="cs" aria-pressed="true">Čeština</button>
+          <button type="button" class="lang-btn flex min-h-11 items-center justify-center rounded-full border border-sand-200 text-sm font-semibold text-[#35483C]" data-lang="en" aria-pressed="false">English</button>
+        </div>
+      </div>
+    </nav>
+  </aside>
 
   <!-- FULL-BLEED HERO IMAGE (no text overlay) -->
   <section class="relative w-full overflow-hidden bg-[#FAF8F2]" aria-label="Limitless Dreams">
@@ -79,20 +131,20 @@
   <!-- WELCOME COPY BELOW HERO -->
   <section class="bg-sand-50 border-b border-sand-200">
     <div class="max-w-6xl mx-auto px-6 py-14 md:py-20">
-      <p class="inline-flex items-center rounded-full border border-sage/40 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sand-700 mb-5">
+      <p class="inline-flex items-center rounded-full border border-sage/40 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sand-700 mb-5" data-i18n="badge.studio">
         Kreativní studio
       </p>
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] text-[#35483C] max-w-3xl mb-5">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] text-[#35483C] max-w-3xl mb-5" data-i18n="hero.title">
         Vítejte v Limitless Dreams
       </h1>
-      <p class="text-lg md:text-xl text-sand-500 max-w-xl leading-relaxed mb-8">
+      <p class="text-lg md:text-xl text-sand-500 max-w-xl leading-relaxed mb-8" data-i18n="hero.lead">
         Spojujeme technologie, obsah a podnikání do projektů a produktů, které lidi opravdu používají.
       </p>
       <div class="flex flex-wrap gap-3">
-        <a href="#projekty" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-7 py-3.5 text-base font-semibold text-white hover:bg-neutral-950 transition">
+        <a href="#projekty" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-7 py-3.5 text-base font-semibold text-white hover:bg-neutral-950 transition" data-i18n="hero.ctaProjects">
           Naše projekty
         </a>
-        <a href="#produkty" class="inline-flex items-center justify-center rounded-full border border-sand-200 bg-white px-7 py-3.5 text-base font-semibold text-[#35483C] hover:border-sage hover:text-sage transition">
+        <a href="#produkty" class="inline-flex items-center justify-center rounded-full border border-sand-200 bg-white px-7 py-3.5 text-base font-semibold text-[#35483C] hover:border-sage hover:text-sage transition" data-i18n="hero.ctaProducts">
           Produkty
         </a>
       </div>
@@ -104,8 +156,8 @@
   <section id="projekty" class="py-20 md:py-24 bg-white border-b border-sand-200">
     <div class="max-w-6xl mx-auto px-6">
       <div class="mb-10">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Projekty</h2>
-        <p class="text-sand-500 max-w-xl">Dlouhodobé platformy, které rostou s komunitou.</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3" data-i18n="projects.title">Projekty</h2>
+        <p class="text-sand-500 max-w-xl" data-i18n="projects.lead">Dlouhodobé platformy, které rostou s komunitou.</p>
       </div>
 
       <div class="space-y-6">
@@ -115,16 +167,16 @@
             <div class="p-8 md:p-12 flex flex-col justify-center">
               <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 group-hover:text-sand-700 transition">Vyslapni.cz</h3>
               <p class="text-sand-500 leading-relaxed mb-8">
-                Gamifikované turistické výzvy, medaile a motivace vyrazit ven — pro jednotlivce i rodiny.
+                <span data-i18n="projects.vyslapni.desc">Gamifikované turistické výzvy, medaile a motivace vyrazit ven — pro jednotlivce i rodiny.</span>
               </p>
-              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white group-hover:bg-neutral-950 transition">
+              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white group-hover:bg-neutral-950 transition" data-i18n="projects.cta">
                 Přejít na web
               </span>
             </div>
             <div class="relative min-h-[240px] bg-gradient-to-br from-sand-100 to-sand-200 flex items-center justify-center p-10">
               <div class="text-center">
                 <p class="text-5xl md:text-6xl font-extrabold tracking-tight text-[#35483C] mb-3">Vyslapni</p>
-                <p class="text-sand-500">Turistické výzvy · medaile · venku</p>
+                <p class="text-sand-500" data-i18n="projects.vyslapni.tag">Turistické výzvy · medaile · venku</p>
               </div>
             </div>
           </div>
@@ -136,15 +188,15 @@
             <div class="relative min-h-[240px] bg-gradient-to-br from-sand-100 to-sand-200 flex items-center justify-center p-10 order-1">
               <div class="text-center">
                 <p class="text-5xl md:text-6xl font-extrabold tracking-tight text-[#35483C] mb-3">Vandery</p>
-                <p class="text-sand-500">Turistická app · výlety · venku</p>
+                <p class="text-sand-500" data-i18n="projects.vandery.tag">Turistická app · výlety · venku</p>
               </div>
             </div>
             <div class="p-8 md:p-12 flex flex-col justify-center order-2">
               <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 group-hover:text-sand-700 transition">Vandery.app</h3>
               <p class="text-sand-500 leading-relaxed mb-8">
-                Turistická aplikace pro objevování míst a výlety — plánování, záznam a motivace vyrazit ven.
+                <span data-i18n="projects.vandery.desc">Turistická aplikace pro objevování míst a výlety — plánování, záznam a motivace vyrazit ven.</span>
               </p>
-              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white group-hover:bg-neutral-950 transition">
+              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white group-hover:bg-neutral-950 transition" data-i18n="projects.cta">
                 Přejít na web
               </span>
             </div>
@@ -158,21 +210,21 @@
   <section id="produkty" class="py-24 md:py-28">
     <div class="max-w-6xl mx-auto px-6">
       <div class="mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Produkty</h2>
-        <p class="text-sand-500 max-w-xl">Věci, které dávají smysl samy o sobě — s vlastní stránkou a objednávkou.</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3" data-i18n="products.title">Produkty</h2>
+        <p class="text-sand-500 max-w-xl" data-i18n="products.lead">Věci, které dávají smysl samy o sobě — s vlastní stránkou a objednávkou.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-6">
         <article class="group flex flex-col rounded-3xl border border-sand-200 bg-white shadow-card hover:shadow-card-hover transition overflow-hidden">
           <div class="h-44 bg-gradient-to-br from-sand-100 to-sand-50 flex items-center justify-center px-6">
-            <span class="text-sm font-semibold uppercase tracking-wider text-sand-700">Desková hra</span>
+            <span class="text-sm font-semibold uppercase tracking-wider text-sand-700" data-i18n="products.crash.badge">Desková hra</span>
           </div>
           <div class="flex flex-1 flex-col p-6">
             <h3 class="text-xl font-bold mb-2">Crash Floor</h3>
             <p class="text-sand-500 text-sm leading-relaxed mb-6 flex-1">
-              Dynamická taktická hra plná napětí. Ideální na večery s přáteli.
+              <span data-i18n="products.crash.desc">Dynamická taktická hra plná napětí. Ideální na večery s přáteli.</span>
             </p>
-            <a href="/crash-floor/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-neutral-950 transition">
+            <a href="/crash-floor/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-neutral-950 transition" data-i18n="products.crash.cta">
               Více o hře
             </a>
           </div>
@@ -180,14 +232,14 @@
 
         <article class="group flex flex-col rounded-3xl border border-sand-200 bg-white shadow-card hover:shadow-card-hover transition overflow-hidden">
           <div class="h-44 bg-gradient-to-br from-sand-100 to-sand-50 flex items-end justify-center pt-6 px-6 overflow-hidden">
-            <img src="/ebook-kondice/Cover.jpg" alt="Obálka e-booku Kondice" class="h-40 w-auto rounded-t-lg shadow-card object-cover" width="114" height="160" />
+            <img src="/ebook-kondice/Cover.jpg" alt="Obálka e-booku Kondice" data-i18n-alt="products.ebook.alt" class="h-40 w-auto rounded-t-lg shadow-card object-cover" width="114" height="160" />
           </div>
           <div class="flex flex-1 flex-col p-6">
-            <h3 class="text-xl font-bold mb-2">E-book Kondice</h3>
+            <h3 class="text-xl font-bold mb-2" data-i18n="products.ebook.title">E-book Kondice</h3>
             <p class="text-sand-500 text-sm leading-relaxed mb-6 flex-1">
-              Praktický průvodce kondicí pro turistiku — technika, tempo, krátký trénink.
+              <span data-i18n="products.ebook.desc">Praktický průvodce kondicí pro turistiku — technika, tempo, krátký trénink.</span>
             </p>
-            <a href="/ebook-kondice/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-neutral-950 transition">
+            <a href="/ebook-kondice/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-neutral-950 transition" data-i18n="products.ebook.cta">
               Více o e-booku
             </a>
           </div>
@@ -200,11 +252,11 @@
   <section id="o-nas" class="py-24 md:py-28">
     <div class="max-w-6xl mx-auto px-6">
       <div class="max-w-3xl">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">O nás</h2>
-        <p class="text-lg text-sand-700 leading-relaxed mb-5">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6" data-i18n="about.title">O nás</h2>
+        <p class="text-lg text-sand-700 leading-relaxed mb-5" data-i18n-html="about.p1">
           Limitless Dreams je kreativní studio. Stavíme digitální produkty i dlouhodobé projekty jako <a href="https://vyslapni.cz" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vyslapni.cz</a> a <a href="https://vandery.app" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vandery.app</a>.
         </p>
-        <p class="text-sand-500 leading-relaxed">
+        <p class="text-sand-500 leading-relaxed" data-i18n="about.p2">
           Zajímá nás funkčnost, jednoduchost a smysluplné využití technologií — bez zbytečného balastu.
         </p>
       </div>
@@ -217,17 +269,17 @@
       <div class="rounded-3xl bg-[#35483C] text-white p-8 md:p-12 shadow-card">
         <div class="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h2 class="text-3xl font-bold tracking-tight mb-3">Napište nám</h2>
-            <p class="text-white/80 leading-relaxed">
+            <h2 class="text-3xl font-bold tracking-tight mb-3" data-i18n="contact.title">Napište nám</h2>
+            <p class="text-white/80 leading-relaxed" data-i18n="contact.lead">
               Spolupráce nebo poptávka produktu — ozveme se.
             </p>
           </div>
           <div class="space-y-3 text-sm md:text-base">
             <a href="mailto:ahoj@vyslapni.cz" class="inline-flex items-center justify-center gap-3 rounded-full bg-white px-6 py-3 font-semibold text-[#35483C] hover:bg-sand-100 transition">
-              <span>E-mail</span>
+              <span data-i18n="contact.email">E-mail</span>
               <span>ahoj@vyslapni.cz</span>
             </a>
-            <p class="px-2 text-white/70">IČO 22512195</p>
+            <p class="px-2 text-white/70" data-i18n="contact.ico">IČO 22512195</p>
           </div>
         </div>
       </div>
@@ -236,10 +288,197 @@
 
   <footer class="border-t border-sand-200 bg-white">
     <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row justify-between gap-4 text-sm text-sand-500">
-      <span>© 2026 Limitless Dreams</span>
-      <span>IČO 22512195 · <a href="mailto:ahoj@vyslapni.cz" class="hover:text-[#35483C] transition">ahoj@vyslapni.cz</a></span>
+      <span data-i18n="footer.copy">© 2026 Limitless Dreams</span>
+      <span><span data-i18n="footer.ico">IČO 22512195</span> · <a href="mailto:ahoj@vyslapni.cz" class="hover:text-[#35483C] transition">ahoj@vyslapni.cz</a></span>
     </div>
   </footer>
+
+
+  <script>
+    (function () {
+      var I18N = {
+        cs: {
+          'nav.projects': 'Projekty',
+          'nav.products': 'Produkty',
+          'nav.about': 'O nás',
+          'nav.contact': 'Kontakt',
+          'menu.title': 'Menu',
+          'lang.label': 'Jazyk',
+          'badge.studio': 'Kreativní studio',
+          'hero.title': 'Vítejte v Limitless Dreams',
+          'hero.lead': 'Spojujeme technologie, obsah a podnikání do projektů a produktů, které lidi opravdu používají.',
+          'hero.ctaProjects': 'Naše projekty',
+          'hero.ctaProducts': 'Produkty',
+          'projects.title': 'Projekty',
+          'projects.lead': 'Dlouhodobé platformy, které rostou s komunitou.',
+          'projects.vyslapni.desc': 'Gamifikované turistické výzvy, medaile a motivace vyrazit ven — pro jednotlivce i rodiny.',
+          'projects.vyslapni.tag': 'Turistické výzvy · medaile · venku',
+          'projects.vandery.desc': 'Turistická aplikace pro objevování míst a výlety — plánování, záznam a motivace vyrazit ven.',
+          'projects.vandery.tag': 'Turistická app · výlety · venku',
+          'projects.cta': 'Přejít na web',
+          'products.title': 'Produkty',
+          'products.lead': 'Věci, které dávají smysl samy o sobě — s vlastní stránkou a objednávkou.',
+          'products.crash.badge': 'Desková hra',
+          'products.crash.desc': 'Dynamická taktická hra plná napětí. Ideální na večery s přáteli.',
+          'products.crash.cta': 'Více o hře',
+          'products.ebook.title': 'E-book Kondice',
+          'products.ebook.desc': 'Praktický průvodce kondicí pro turistiku — technika, tempo, krátký trénink.',
+          'products.ebook.cta': 'Více o e-booku',
+          'products.ebook.alt': 'Obálka e-booku Kondice',
+          'about.title': 'O nás',
+          'about.p1': 'Limitless Dreams je kreativní studio. Stavíme digitální produkty i dlouhodobé projekty jako <a href="https://vyslapni.cz" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vyslapni.cz</a> a <a href="https://vandery.app" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vandery.app</a>.',
+          'about.p2': 'Zajímá nás funkčnost, jednoduchost a smysluplné využití technologií — bez zbytečného balastu.',
+          'contact.title': 'Napište nám',
+          'contact.lead': 'Spolupráce nebo poptávka produktu — ozveme se.',
+          'contact.email': 'E-mail',
+          'contact.ico': 'IČO 22512195',
+          'footer.copy': '© 2026 Limitless Dreams',
+          'footer.ico': 'IČO 22512195',
+          'a11y.open': 'Otevřít menu',
+          'a11y.close': 'Zavřít menu'
+        },
+        en: {
+          'nav.projects': 'Projects',
+          'nav.products': 'Products',
+          'nav.about': 'About',
+          'nav.contact': 'Contact',
+          'menu.title': 'Menu',
+          'lang.label': 'Language',
+          'badge.studio': 'Creative studio',
+          'hero.title': 'Welcome to Limitless Dreams',
+          'hero.lead': 'We combine technology, content and business into projects and products people actually use.',
+          'hero.ctaProjects': 'Our projects',
+          'hero.ctaProducts': 'Products',
+          'projects.title': 'Projects',
+          'projects.lead': 'Long-term platforms that grow with the community.',
+          'projects.vyslapni.desc': 'Gamified hiking challenges, medals and motivation to get outside — for individuals and families.',
+          'projects.vyslapni.tag': 'Hiking challenges · medals · outdoors',
+          'projects.vandery.desc': 'A travel app for discovering places and trips — planning, logging and motivation to get outside.',
+          'projects.vandery.tag': 'Travel app · trips · outdoors',
+          'projects.cta': 'Visit site',
+          'products.title': 'Products',
+          'products.lead': 'Things that stand on their own — with their own page and ordering.',
+          'products.crash.badge': 'Board game',
+          'products.crash.desc': 'A dynamic tactical game full of tension. Perfect for nights with friends.',
+          'products.crash.cta': 'More about the game',
+          'products.ebook.title': 'Kondice e-book',
+          'products.ebook.desc': 'A practical fitness guide for hiking — technique, pacing, short training.',
+          'products.ebook.cta': 'More about the e-book',
+          'products.ebook.alt': 'Kondice e-book cover',
+          'about.title': 'About us',
+          'about.p1': 'Limitless Dreams is a creative studio. We build digital products and long-term projects like <a href="https://vyslapni.cz" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vyslapni.cz</a> and <a href="https://vandery.app" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vandery.app</a>.',
+          'about.p2': 'We care about usefulness, simplicity and meaningful technology — without the fluff.',
+          'contact.title': 'Write to us',
+          'contact.lead': 'Collaboration or a product inquiry — we will get back to you.',
+          'contact.email': 'Email',
+          'contact.ico': 'Company ID 22512195',
+          'footer.copy': '© 2026 Limitless Dreams',
+          'footer.ico': 'Company ID 22512195',
+          'a11y.open': 'Open menu',
+          'a11y.close': 'Close menu'
+        }
+      };
+
+      var drawer = document.getElementById('mobile-drawer');
+      var backdrop = document.getElementById('mobile-backdrop');
+      var toggle = document.getElementById('menu-toggle');
+      var closeBtn = document.getElementById('menu-close');
+      var iconOpen = document.getElementById('icon-open');
+      var iconClose = document.getElementById('icon-close');
+      var langDesktop = document.getElementById('lang-desktop');
+      var lastFocus = null;
+
+      function setLang(lang) {
+        if (!I18N[lang]) lang = 'cs';
+        try { localStorage.setItem('ld-lang', lang); } catch (e) {}
+        document.documentElement.lang = lang;
+        var dict = I18N[lang];
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (dict[key] != null) el.textContent = dict[key];
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-html');
+          if (dict[key] != null) el.innerHTML = dict[key];
+        });
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-alt');
+          if (dict[key] != null) el.setAttribute('alt', dict[key]);
+        });
+        if (langDesktop) langDesktop.value = lang;
+        document.querySelectorAll('.lang-btn').forEach(function (btn) {
+          var on = btn.getAttribute('data-lang') === lang;
+          btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+          btn.classList.toggle('bg-[#35483C]', on);
+          btn.classList.toggle('text-white', on);
+          btn.classList.toggle('border-[#35483C]', on);
+          btn.classList.toggle('bg-white', !on);
+          btn.classList.toggle('text-[#35483C]', !on);
+        });
+        if (toggle) toggle.setAttribute('aria-label', dict['a11y.open']);
+        if (closeBtn) closeBtn.setAttribute('aria-label', dict['a11y.close']);
+      }
+
+      function openMenu() {
+        lastFocus = document.activeElement;
+        drawer.hidden = false;
+        backdrop.hidden = false;
+        requestAnimationFrame(function () {
+          drawer.setAttribute('data-open', 'true');
+          backdrop.setAttribute('data-open', 'true');
+        });
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('menu-open');
+        iconOpen.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+        closeBtn.focus();
+      }
+
+      function closeMenu() {
+        drawer.setAttribute('data-open', 'false');
+        backdrop.setAttribute('data-open', 'false');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        setTimeout(function () {
+          if (drawer.getAttribute('data-open') === 'false') {
+            drawer.hidden = true;
+            backdrop.hidden = true;
+          }
+        }, 250);
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      if (toggle) toggle.addEventListener('click', function () {
+        if (drawer.getAttribute('data-open') === 'true') closeMenu();
+        else openMenu();
+      });
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+      document.querySelectorAll('.mobile-nav-link').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.getAttribute('data-open') === 'true') closeMenu();
+      });
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setLang(btn.getAttribute('data-lang'));
+        });
+      });
+      if (langDesktop) langDesktop.addEventListener('change', function () {
+        setLang(langDesktop.value);
+      });
+
+      var initial = 'cs';
+      try {
+        var saved = localStorage.getItem('ld-lang');
+        if (saved && I18N[saved]) initial = saved;
+      } catch (e) {}
+      setLang(initial);
+    })();
+  </script>
 
 </body>
 </html>
