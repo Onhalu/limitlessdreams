@@ -147,12 +147,12 @@
     </nav>
   </aside>
 
-  <!-- FULL-BLEED HERO IMAGE (no text overlay) -->
-  <section class="relative w-full overflow-hidden bg-[#F6F3EB]" aria-label="Limitless Dreams">
+  <!-- HERO: full-width on mobile; on desktop fit whole image in first viewport -->
+  <section class="relative w-full overflow-hidden bg-[#F6F3EB] flex justify-center" aria-label="Limitless Dreams">
     <img
       src="/hero-user-tight.jpg"
       alt="Limitless Dreams"
-      class="block w-full h-auto"
+      class="block w-full h-auto md:w-auto md:max-w-full md:max-h-[calc(100svh-4rem)] md:object-contain"
       width="1177"
       height="1045"
     />
