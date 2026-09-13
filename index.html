@@ -59,6 +59,20 @@
       opacity: 1;
       pointer-events: auto;
     }
+    .lang-btn {
+      opacity: 0.55;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      background: transparent;
+      padding: 0.35rem 0.2rem;
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+    }
+    .lang-btn[aria-pressed="true"] {
+      opacity: 1;
+      border-bottom-color: #9C9A7B;
+    }
+    .lang-btn:hover { opacity: 1; }
+    .lang-btn svg { display: block; width: 22px; height: 16px; }
   </style>
 </head>
 
@@ -75,11 +89,11 @@
         <a href="#projekty" class="hover:text-[#35483C] transition" data-i18n="nav.projects">Projekty</a>
         <a href="#produkty" class="hover:text-[#35483C] transition" data-i18n="nav.products">Produkty</a>
         <a href="#o-nas" class="hover:text-[#35483C] transition" data-i18n="nav.about">O nás</a>
-        <div class="flex items-center gap-1" role="group" aria-label="Language">
-          <button type="button" class="lang-btn inline-flex h-10 w-10 items-center justify-center rounded-full border border-sand-200 bg-white text-lg leading-none hover:border-sage focus:outline-none focus:ring-2 focus:ring-[#35483C]/40" data-lang="cs" aria-pressed="true" aria-label="Čeština" title="Čeština">🇨🇿</button>
-          <button type="button" class="lang-btn inline-flex h-10 w-10 items-center justify-center rounded-full border border-sand-200 bg-white text-lg leading-none hover:border-sage focus:outline-none focus:ring-2 focus:ring-[#35483C]/40" data-lang="en" aria-pressed="false" aria-label="English" title="English">🇬🇧</button>
+        <div class="flex items-center gap-3" role="group" aria-label="Language">
+          <button type="button" class="lang-btn inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" data-lang="cs" aria-pressed="true" aria-label="Čeština" title="Čeština"><svg viewBox="0 0 22 16" width="22" height="16" aria-hidden="true" focusable="false"><rect width="22" height="16" fill="#fff"/><rect y="8" width="22" height="8" fill="#D7141A"/><path d="M0 0 L11 8 L0 16 Z" fill="#11457E"/></svg></button>
+          <button type="button" class="lang-btn inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" data-lang="en" aria-pressed="false" aria-label="English" title="English"><svg viewBox="0 0 22 16" width="22" height="16" aria-hidden="true" focusable="false"><rect width="22" height="16" fill="#012169"/><path d="M0 0 L22 16 M22 0 L0 16" stroke="#fff" stroke-width="3"/><path d="M0 0 L22 16 M22 0 L0 16" stroke="#C8102E" stroke-width="1.5"/><path d="M11 0 V16 M0 8 H22" stroke="#fff" stroke-width="5"/><path d="M11 0 V16 M0 8 H22" stroke="#C8102E" stroke-width="2.5"/></svg></button>
         </div>
-        <a href="#kontakt" class="inline-flex items-center rounded-full bg-[#35483C] px-4 py-2 text-white hover:bg-[#2A3A30] transition" data-i18n="nav.contact">Kontakt</a>
+        <a href="#kontakt" class="inline-flex items-center rounded-full bg-[#35483C] px-4 py-2 text-white hover:opacity-90 transition" data-i18n="nav.contact">Kontakt</a>
       </nav>
       <button type="button" id="menu-toggle" class="md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sand-200 bg-white text-[#35483C] hover:border-sage transition" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Otevřít menu">
         <svg id="icon-open" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -106,9 +120,9 @@
       </ul>
       <div class="mt-8 border-t border-sand-200 pt-6">
         <p class="mb-3 px-1 text-xs font-semibold uppercase tracking-wider text-sand-500" data-i18n="lang.label">Jazyk</p>
-        <div class="flex gap-3" role="group" aria-label="Language">
-          <button type="button" class="lang-btn inline-flex h-12 w-12 items-center justify-center rounded-full border border-sand-200 bg-white text-2xl leading-none" data-lang="cs" aria-pressed="true" aria-label="Čeština" title="Čeština">🇨🇿</button>
-          <button type="button" class="lang-btn inline-flex h-12 w-12 items-center justify-center rounded-full border border-sand-200 bg-white text-2xl leading-none" data-lang="en" aria-pressed="false" aria-label="English" title="English">🇬🇧</button>
+        <div class="flex gap-4" role="group" aria-label="Language">
+          <button type="button" class="lang-btn inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" data-lang="cs" aria-pressed="true" aria-label="Čeština" title="Čeština"><svg viewBox="0 0 22 16" width="22" height="16" aria-hidden="true" focusable="false"><rect width="22" height="16" fill="#fff"/><rect y="8" width="22" height="8" fill="#D7141A"/><path d="M0 0 L11 8 L0 16 Z" fill="#11457E"/></svg></button>
+          <button type="button" class="lang-btn inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" data-lang="en" aria-pressed="false" aria-label="English" title="English"><svg viewBox="0 0 22 16" width="22" height="16" aria-hidden="true" focusable="false"><rect width="22" height="16" fill="#012169"/><path d="M0 0 L22 16 M22 0 L0 16" stroke="#fff" stroke-width="3"/><path d="M0 0 L22 16 M22 0 L0 16" stroke="#C8102E" stroke-width="1.5"/><path d="M11 0 V16 M0 8 H22" stroke="#fff" stroke-width="5"/><path d="M11 0 V16 M0 8 H22" stroke="#C8102E" stroke-width="2.5"/></svg></button>
         </div>
       </div>
     </nav>
@@ -138,10 +152,10 @@
         Spojujeme technologie, obsah a podnikání do projektů a produktů, které lidi opravdu používají.
       </p>
       <div class="flex flex-wrap gap-3">
-        <a href="#projekty" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-7 py-3.5 text-base font-semibold text-white hover:bg-[#2A3A30] transition" data-i18n="hero.ctaProjects">
+        <a href="#projekty" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-7 py-3.5 text-base font-semibold text-white hover:opacity-90 transition" data-i18n="hero.ctaProjects">
           Naše projekty
         </a>
-        <a href="#produkty" class="inline-flex items-center justify-center rounded-full border border-sand-200 bg-white px-7 py-3.5 text-base font-semibold text-[#35483C] hover:border-sage hover:text-sage transition" data-i18n="hero.ctaProducts">
+        <a href="#produkty" class="inline-flex items-center justify-center rounded-full border border-sand-200 bg-white px-7 py-3.5 text-base font-semibold text-[#35483C] hover:opacity-80 transition" data-i18n="hero.ctaProducts">
           Produkty
         </a>
       </div>
@@ -168,11 +182,11 @@
               </div>
             </div>
             <div class="p-8 md:p-12 flex flex-col justify-center order-2">
-              <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#35483C]">Vyslapni.cz</h3>
+              <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#35483C] transition group-hover:opacity-90">Vyslapni.cz</h3>
               <p class="text-sand-500 leading-relaxed mb-8">
                 <span data-i18n="projects.vyslapni.desc">Gamifikované turistické výzvy, medaile a motivace vyrazit ven — pro jednotlivce i rodiny.</span>
               </p>
-              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white hover:bg-[#2A3A30] transition" data-i18n="projects.cta">
+              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="projects.cta">
                 Přejít na web
               </span>
             </div>
@@ -188,11 +202,11 @@
               </div>
             </div>
             <div class="p-8 md:p-12 flex flex-col justify-center order-2">
-              <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#35483C]">Vandery.app</h3>
+              <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#35483C] transition group-hover:opacity-90">Vandery.app</h3>
               <p class="text-sand-500 leading-relaxed mb-8">
                 <span data-i18n="projects.vandery.desc">Turistická aplikace pro objevování míst a výlety — plánování, záznam a motivace vyrazit ven.</span>
               </p>
-              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white hover:bg-[#2A3A30] transition" data-i18n="projects.cta">
+              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="projects.cta">
                 Přejít na web
               </span>
             </div>
@@ -220,7 +234,7 @@
             <p class="text-sand-500 text-sm leading-relaxed mb-6 flex-1">
               <span data-i18n="products.crash.desc">Dynamická taktická hra plná napětí. Ideální na večery s přáteli.</span>
             </p>
-            <a href="/crash-floor/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#2A3A30] transition" data-i18n="products.crash.cta">
+            <a href="/crash-floor/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="products.crash.cta">
               Více o hře
             </a>
           </div>
@@ -235,7 +249,7 @@
             <p class="text-sand-500 text-sm leading-relaxed mb-6 flex-1">
               <span data-i18n="products.ebook.desc">Praktický průvodce kondicí pro turistiku — technika, tempo, krátký trénink.</span>
             </p>
-            <a href="/ebook-kondice/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#2A3A30] transition" data-i18n="products.ebook.cta">
+            <a href="/ebook-kondice/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="products.ebook.cta">
               Více o e-booku
             </a>
           </div>
@@ -245,7 +259,7 @@
   </section>
 
   <!-- O NÁS -->
-  <section id="o-nas" class="py-24 md:py-28 bg-sand-100 border-t border-sand-200">
+  <section id="o-nas" class="bg-[#F3EFE5] py-[72px] md:py-[96px]">
     <div class="max-w-6xl mx-auto px-6">
       <div class="max-w-3xl">
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6" data-i18n="about.title">O nás</h2>
@@ -403,12 +417,6 @@
         document.querySelectorAll('.lang-btn').forEach(function (btn) {
           var on = btn.getAttribute('data-lang') === lang;
           btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-          btn.classList.toggle('border-[#35483C]', on);
-          btn.classList.toggle('ring-2', on);
-          btn.classList.toggle('ring-[#35483C]/30', on);
-          btn.classList.toggle('bg-sand-100', on);
-          btn.classList.toggle('bg-white', !on);
-          btn.classList.toggle('border-sand-200', !on);
         });
         if (toggle) toggle.setAttribute('aria-label', dict['a11y.open']);
         if (closeBtn) closeBtn.setAttribute('aria-label', dict['a11y.close']);
