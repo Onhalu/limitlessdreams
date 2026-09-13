@@ -22,7 +22,7 @@
           fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
           colors: {
             sand: {
-              50: '#FAF8F2',
+              50: '#F6F3EB',
               100: '#F3EFE5',
               200: '#D8CDB8',
               500: '#756653',
@@ -75,14 +75,11 @@
         <a href="#projekty" class="hover:text-[#35483C] transition" data-i18n="nav.projects">Projekty</a>
         <a href="#produkty" class="hover:text-[#35483C] transition" data-i18n="nav.products">Produkty</a>
         <a href="#o-nas" class="hover:text-[#35483C] transition" data-i18n="nav.about">O nás</a>
-        <div class="relative">
-          <label class="sr-only" for="lang-desktop" data-i18n="lang.label">Jazyk</label>
-          <select id="lang-desktop" class="lang-select appearance-none rounded-full border border-sand-200 bg-white px-3 py-2 pr-8 text-sm font-medium text-[#35483C] hover:border-sage focus:outline-none focus:ring-2 focus:ring-[#35483C]/40" aria-label="Language">
-            <option value="cs">CS</option>
-            <option value="en">EN</option>
-          </select>
+        <div class="flex items-center gap-1" role="group" aria-label="Language">
+          <button type="button" class="lang-btn inline-flex h-10 w-10 items-center justify-center rounded-full border border-sand-200 bg-white text-lg leading-none hover:border-sage focus:outline-none focus:ring-2 focus:ring-[#35483C]/40" data-lang="cs" aria-pressed="true" aria-label="Čeština" title="Čeština">🇨🇿</button>
+          <button type="button" class="lang-btn inline-flex h-10 w-10 items-center justify-center rounded-full border border-sand-200 bg-white text-lg leading-none hover:border-sage focus:outline-none focus:ring-2 focus:ring-[#35483C]/40" data-lang="en" aria-pressed="false" aria-label="English" title="English">🇬🇧</button>
         </div>
-        <a href="#kontakt" class="inline-flex items-center rounded-full bg-[#35483C] px-4 py-2 text-white hover:bg-neutral-950 transition" data-i18n="nav.contact">Kontakt</a>
+        <a href="#kontakt" class="inline-flex items-center rounded-full bg-[#35483C] px-4 py-2 text-white hover:bg-[#2A3A30] transition" data-i18n="nav.contact">Kontakt</a>
       </nav>
       <button type="button" id="menu-toggle" class="md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sand-200 bg-white text-[#35483C] hover:border-sage transition" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Otevřít menu">
         <svg id="icon-open" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -109,16 +106,16 @@
       </ul>
       <div class="mt-8 border-t border-sand-200 pt-6">
         <p class="mb-3 px-1 text-xs font-semibold uppercase tracking-wider text-sand-500" data-i18n="lang.label">Jazyk</p>
-        <div class="grid grid-cols-2 gap-2" role="group" aria-label="Language">
-          <button type="button" class="lang-btn flex min-h-11 items-center justify-center rounded-full border border-sand-200 text-sm font-semibold text-[#35483C]" data-lang="cs" aria-pressed="true">Čeština</button>
-          <button type="button" class="lang-btn flex min-h-11 items-center justify-center rounded-full border border-sand-200 text-sm font-semibold text-[#35483C]" data-lang="en" aria-pressed="false">English</button>
+        <div class="flex gap-3" role="group" aria-label="Language">
+          <button type="button" class="lang-btn inline-flex h-12 w-12 items-center justify-center rounded-full border border-sand-200 bg-white text-2xl leading-none" data-lang="cs" aria-pressed="true" aria-label="Čeština" title="Čeština">🇨🇿</button>
+          <button type="button" class="lang-btn inline-flex h-12 w-12 items-center justify-center rounded-full border border-sand-200 bg-white text-2xl leading-none" data-lang="en" aria-pressed="false" aria-label="English" title="English">🇬🇧</button>
         </div>
       </div>
     </nav>
   </aside>
 
   <!-- FULL-BLEED HERO IMAGE (no text overlay) -->
-  <section class="relative w-full overflow-hidden bg-[#FAF8F2]" aria-label="Limitless Dreams">
+  <section class="relative w-full overflow-hidden bg-[#F6F3EB]" aria-label="Limitless Dreams">
     <img
       src="/hero-user-tight.jpg"
       alt="Limitless Dreams"
@@ -141,7 +138,7 @@
         Spojujeme technologie, obsah a podnikání do projektů a produktů, které lidi opravdu používají.
       </p>
       <div class="flex flex-wrap gap-3">
-        <a href="#projekty" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-7 py-3.5 text-base font-semibold text-white hover:bg-neutral-950 transition" data-i18n="hero.ctaProjects">
+        <a href="#projekty" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-7 py-3.5 text-base font-semibold text-white hover:bg-[#2A3A30] transition" data-i18n="hero.ctaProjects">
           Naše projekty
         </a>
         <a href="#produkty" class="inline-flex items-center justify-center rounded-full border border-sand-200 bg-white px-7 py-3.5 text-base font-semibold text-[#35483C] hover:border-sage hover:text-sage transition" data-i18n="hero.ctaProducts">
@@ -152,37 +149,36 @@
   </section>
 
 
-  <!-- PROJEKTY -->
+    <!-- PROJEKTY -->
   <section id="projekty" class="py-20 md:py-24 bg-white border-b border-sand-200">
     <div class="max-w-6xl mx-auto px-6">
       <div class="mb-10">
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3" data-i18n="projects.title">Projekty</h2>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-3 text-[#35483C]" data-i18n="projects.title">Projekty</h2>
         <p class="text-sand-500 max-w-xl" data-i18n="projects.lead">Dlouhodobé platformy, které rostou s komunitou.</p>
       </div>
 
       <div class="space-y-6">
-        <!-- Vyslapni: text left, visual right -->
+        <!-- Visual left / text right (mobile: visual top, text bottom) -->
         <a href="https://vyslapni.cz" target="_blank" rel="noopener noreferrer" class="group block rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
           <div class="grid lg:grid-cols-2 gap-0">
-            <div class="p-8 md:p-12 flex flex-col justify-center">
-              <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 group-hover:text-sand-700 transition">Vyslapni.cz</h3>
-              <p class="text-sand-500 leading-relaxed mb-8">
-                <span data-i18n="projects.vyslapni.desc">Gamifikované turistické výzvy, medaile a motivace vyrazit ven — pro jednotlivce i rodiny.</span>
-              </p>
-              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white group-hover:bg-neutral-950 transition" data-i18n="projects.cta">
-                Přejít na web
-              </span>
-            </div>
-            <div class="relative min-h-[240px] bg-gradient-to-br from-sand-100 to-sand-200 flex items-center justify-center p-10">
+            <div class="relative min-h-[240px] bg-gradient-to-br from-sand-100 to-sand-200 flex items-center justify-center p-10 order-1">
               <div class="text-center">
                 <p class="text-5xl md:text-6xl font-extrabold tracking-tight text-[#35483C] mb-3">Vyslapni</p>
                 <p class="text-sand-500" data-i18n="projects.vyslapni.tag">Turistické výzvy · medaile · venku</p>
               </div>
             </div>
+            <div class="p-8 md:p-12 flex flex-col justify-center order-2">
+              <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#35483C]">Vyslapni.cz</h3>
+              <p class="text-sand-500 leading-relaxed mb-8">
+                <span data-i18n="projects.vyslapni.desc">Gamifikované turistické výzvy, medaile a motivace vyrazit ven — pro jednotlivce i rodiny.</span>
+              </p>
+              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white hover:bg-[#2A3A30] transition" data-i18n="projects.cta">
+                Přejít na web
+              </span>
+            </div>
           </div>
         </a>
 
-        <!-- Vandery: visual left, text right (same design) -->
         <a href="https://vandery.app" target="_blank" rel="noopener noreferrer" class="group block rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
           <div class="grid lg:grid-cols-2 gap-0">
             <div class="relative min-h-[240px] bg-gradient-to-br from-sand-100 to-sand-200 flex items-center justify-center p-10 order-1">
@@ -192,11 +188,11 @@
               </div>
             </div>
             <div class="p-8 md:p-12 flex flex-col justify-center order-2">
-              <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 group-hover:text-sand-700 transition">Vandery.app</h3>
+              <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-[#35483C]">Vandery.app</h3>
               <p class="text-sand-500 leading-relaxed mb-8">
                 <span data-i18n="projects.vandery.desc">Turistická aplikace pro objevování míst a výlety — plánování, záznam a motivace vyrazit ven.</span>
               </p>
-              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white group-hover:bg-neutral-950 transition" data-i18n="projects.cta">
+              <span class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-6 py-3 text-sm font-semibold text-white hover:bg-[#2A3A30] transition" data-i18n="projects.cta">
                 Přejít na web
               </span>
             </div>
@@ -206,7 +202,7 @@
     </div>
   </section>
 
-  <!-- PRODUKTY -->
+<!-- PRODUKTY -->
   <section id="produkty" class="py-24 md:py-28">
     <div class="max-w-6xl mx-auto px-6">
       <div class="mb-12">
@@ -220,11 +216,11 @@
             <span class="text-sm font-semibold uppercase tracking-wider text-sand-700" data-i18n="products.crash.badge">Desková hra</span>
           </div>
           <div class="flex flex-1 flex-col p-6">
-            <h3 class="text-xl font-bold mb-2">Crash Floor</h3>
+            <h3 class="text-xl font-bold mb-2 text-[#35483C]">Crash Floor</h3>
             <p class="text-sand-500 text-sm leading-relaxed mb-6 flex-1">
               <span data-i18n="products.crash.desc">Dynamická taktická hra plná napětí. Ideální na večery s přáteli.</span>
             </p>
-            <a href="/crash-floor/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-neutral-950 transition" data-i18n="products.crash.cta">
+            <a href="/crash-floor/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#2A3A30] transition" data-i18n="products.crash.cta">
               Více o hře
             </a>
           </div>
@@ -235,11 +231,11 @@
             <img src="/ebook-kondice/Cover.jpg" alt="Obálka e-booku Kondice" data-i18n-alt="products.ebook.alt" class="h-40 w-auto rounded-t-lg shadow-card object-cover" width="114" height="160" />
           </div>
           <div class="flex flex-1 flex-col p-6">
-            <h3 class="text-xl font-bold mb-2" data-i18n="products.ebook.title">E-book Kondice</h3>
+            <h3 class="text-xl font-bold mb-2 text-[#35483C]" data-i18n="products.ebook.title">E-book Kondice</h3>
             <p class="text-sand-500 text-sm leading-relaxed mb-6 flex-1">
               <span data-i18n="products.ebook.desc">Praktický průvodce kondicí pro turistiku — technika, tempo, krátký trénink.</span>
             </p>
-            <a href="/ebook-kondice/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-neutral-950 transition" data-i18n="products.ebook.cta">
+            <a href="/ebook-kondice/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#2A3A30] transition" data-i18n="products.ebook.cta">
               Více o e-booku
             </a>
           </div>
@@ -249,7 +245,7 @@
   </section>
 
   <!-- O NÁS -->
-  <section id="o-nas" class="py-24 md:py-28">
+  <section id="o-nas" class="py-24 md:py-28 bg-sand-100 border-t border-sand-200">
     <div class="max-w-6xl mx-auto px-6">
       <div class="max-w-3xl">
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6" data-i18n="about.title">O nás</h2>
@@ -385,7 +381,6 @@
       var closeBtn = document.getElementById('menu-close');
       var iconOpen = document.getElementById('icon-open');
       var iconClose = document.getElementById('icon-close');
-      var langDesktop = document.getElementById('lang-desktop');
       var lastFocus = null;
 
       function setLang(lang) {
@@ -405,15 +400,15 @@
           var key = el.getAttribute('data-i18n-alt');
           if (dict[key] != null) el.setAttribute('alt', dict[key]);
         });
-        if (langDesktop) langDesktop.value = lang;
         document.querySelectorAll('.lang-btn').forEach(function (btn) {
           var on = btn.getAttribute('data-lang') === lang;
           btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-          btn.classList.toggle('bg-[#35483C]', on);
-          btn.classList.toggle('text-white', on);
           btn.classList.toggle('border-[#35483C]', on);
+          btn.classList.toggle('ring-2', on);
+          btn.classList.toggle('ring-[#35483C]/30', on);
+          btn.classList.toggle('bg-sand-100', on);
           btn.classList.toggle('bg-white', !on);
-          btn.classList.toggle('text-[#35483C]', !on);
+          btn.classList.toggle('border-sand-200', !on);
         });
         if (toggle) toggle.setAttribute('aria-label', dict['a11y.open']);
         if (closeBtn) closeBtn.setAttribute('aria-label', dict['a11y.close']);
@@ -466,9 +461,6 @@
         btn.addEventListener('click', function () {
           setLang(btn.getAttribute('data-lang'));
         });
-      });
-      if (langDesktop) langDesktop.addEventListener('change', function () {
-        setLang(langDesktop.value);
       });
 
       var initial = 'cs';
