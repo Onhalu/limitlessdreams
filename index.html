@@ -73,6 +73,25 @@
     }
     .lang-btn:hover { opacity: 1; }
     .lang-btn svg { display: block; width: 22px; height: 16px; }
+    #products-track {
+      display: flex;
+      transition: transform 0.35s ease;
+    }
+    #products-track > .product-slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+    }
+    .product-dot {
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: 9999px;
+      background: #D8CDB8;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .product-dot[aria-current="true"] {
+      background: #35483C;
+      transform: scale(1.15);
+    }
   </style>
 </head>
 
@@ -224,36 +243,45 @@
         <p class="text-sand-500 max-w-xl" data-i18n="products.lead">Věci, které dávají smysl samy o sobě — s vlastní stránkou a objednávkou.</p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-6">
-        <article class="group flex flex-col rounded-3xl border border-sand-200 bg-white shadow-card hover:shadow-card-hover transition overflow-hidden">
-          <div class="h-44 bg-gradient-to-br from-sand-100 to-sand-50 flex items-center justify-center px-6">
-            <span class="text-sm font-semibold uppercase tracking-wider text-sand-700" data-i18n="products.crash.badge">Desková hra</span>
-          </div>
-          <div class="flex flex-1 flex-col p-6">
-            <h3 class="text-xl font-bold mb-2 text-[#35483C]">Crash Floor</h3>
-            <p class="text-sand-500 text-sm leading-relaxed mb-6 flex-1">
-              <span data-i18n="products.crash.desc">Dynamická taktická hra plná napětí. Ideální na večery s přáteli.</span>
-            </p>
-            <a href="/crash-floor/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="products.crash.cta">
-              Více o hře
-            </a>
-          </div>
-        </article>
+      <div class="relative" id="products-carousel" aria-roledescription="carousel" aria-label="Produkty">
+        <div class="overflow-hidden">
+          <div id="products-track">
+            <article class="product-slide group flex flex-col rounded-3xl border border-sand-200 bg-white shadow-card overflow-hidden" aria-roledescription="slide" aria-label="1 / 2">
+              <div class="h-44 bg-gradient-to-br from-sand-100 to-sand-50 flex items-center justify-center px-6">
+                <span class="text-sm font-semibold uppercase tracking-wider text-sand-700" data-i18n="products.crash.badge">Desková hra</span>
+              </div>
+              <div class="flex flex-1 flex-col p-6 md:p-8">
+                <h3 class="text-xl md:text-2xl font-bold mb-2 text-[#35483C]">Crash Floor</h3>
+                <p class="text-sand-500 text-sm md:text-base leading-relaxed mb-6 flex-1">
+                  <span data-i18n="products.crash.desc">Dynamická taktická hra plná napětí. Ideální na večery s přáteli.</span>
+                </p>
+                <a href="/crash-floor/" class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="products.crash.cta">
+                  Více o hře
+                </a>
+              </div>
+            </article>
 
-        <article class="group flex flex-col rounded-3xl border border-sand-200 bg-white shadow-card hover:shadow-card-hover transition overflow-hidden">
-          <div class="h-44 bg-gradient-to-br from-sand-100 to-sand-50 flex items-end justify-center pt-6 px-6 overflow-hidden">
-            <img src="/ebook-kondice/Cover.jpg" alt="Obálka e-booku Kondice" data-i18n-alt="products.ebook.alt" class="h-40 w-auto rounded-t-lg shadow-card object-cover" width="114" height="160" />
+            <article class="product-slide group flex flex-col rounded-3xl border border-sand-200 bg-white shadow-card overflow-hidden" aria-roledescription="slide" aria-label="2 / 2">
+              <div class="h-44 bg-gradient-to-br from-sand-100 to-sand-50 flex items-end justify-center pt-6 px-6 overflow-hidden">
+                <img src="/ebook-kondice/Cover.jpg" alt="Obálka e-booku Kondice" data-i18n-alt="products.ebook.alt" class="h-40 w-auto rounded-t-lg shadow-card object-cover" width="114" height="160" />
+              </div>
+              <div class="flex flex-1 flex-col p-6 md:p-8">
+                <h3 class="text-xl md:text-2xl font-bold mb-2 text-[#35483C]" data-i18n="products.ebook.title">E-book Kondice</h3>
+                <p class="text-sand-500 text-sm md:text-base leading-relaxed mb-6 flex-1">
+                  <span data-i18n="products.ebook.desc">Praktický průvodce kondicí pro turistiku — technika, tempo, krátký trénink.</span>
+                </p>
+                <a href="/ebook-kondice/" class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="products.ebook.cta">
+                  Více o e-booku
+                </a>
+              </div>
+            </article>
           </div>
-          <div class="flex flex-1 flex-col p-6">
-            <h3 class="text-xl font-bold mb-2 text-[#35483C]" data-i18n="products.ebook.title">E-book Kondice</h3>
-            <p class="text-sand-500 text-sm leading-relaxed mb-6 flex-1">
-              <span data-i18n="products.ebook.desc">Praktický průvodce kondicí pro turistiku — technika, tempo, krátký trénink.</span>
-            </p>
-            <a href="/ebook-kondice/" class="inline-flex items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="products.ebook.cta">
-              Více o e-booku
-            </a>
-          </div>
-        </article>
+        </div>
+
+        <div class="mt-6 flex items-center justify-center gap-3" id="products-dots" role="tablist" aria-label="Výběr produktu">
+          <button type="button" class="product-dot" data-index="0" role="tab" aria-selected="true" aria-current="true" aria-label="Produkt 1"></button>
+          <button type="button" class="product-dot" data-index="1" role="tab" aria-selected="false" aria-label="Produkt 2"></button>
+        </div>
       </div>
     </div>
   </section>
@@ -477,6 +505,40 @@
         if (saved && I18N[saved]) initial = saved;
       } catch (e) {}
       setLang(initial);
+
+      // Products carousel
+      (function () {
+        var track = document.getElementById('products-track');
+        var dots = Array.prototype.slice.call(document.querySelectorAll('.product-dot'));
+        if (!track || !dots.length) return;
+        var index = 0;
+        var startX = 0;
+        function go(i) {
+          index = (i + dots.length) % dots.length;
+          track.style.transform = 'translateX(' + (-index * 100) + '%)';
+          dots.forEach(function (dot, di) {
+            var on = di === index;
+            dot.setAttribute('aria-selected', on ? 'true' : 'false');
+            if (on) dot.setAttribute('aria-current', 'true');
+            else dot.removeAttribute('aria-current');
+          });
+        }
+        dots.forEach(function (dot) {
+          dot.addEventListener('click', function () {
+            go(parseInt(dot.getAttribute('data-index'), 10));
+          });
+        });
+        var viewport = track.parentElement;
+        viewport.addEventListener('touchstart', function (e) {
+          startX = e.changedTouches[0].clientX;
+        }, { passive: true });
+        viewport.addEventListener('touchend', function (e) {
+          var dx = e.changedTouches[0].clientX - startX;
+          if (Math.abs(dx) < 40) return;
+          go(index + (dx < 0 ? 1 : -1));
+        }, { passive: true });
+        go(0);
+      })();
     })();
   </script>
 
