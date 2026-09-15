@@ -14,6 +14,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Validate FTP secrets
+        env:
+          FTP_HOST: ${{ secrets.WEDOS_FTP_HOST }}
+          FTP_USER: ${{ secrets.WEDOS_FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.WEDOS_FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          echo "FTP_HOST length=${#FTP_HOST}"
+          echo "FTP_USER length=${#FTP_USER}"
+          echo "FTP_PASSWORD length=${#FTP_PASSWORD}"
+          if [ "${#FTP_HOST}" -lt 5 ] || [ "${#FTP_USER}" -lt 3 ] || [ "${#FTP_PASSWORD}" -lt 1 ]; then
+            echo "Missing or empty WEDOS_FTP_* secrets"
+            exit 1
+          fi
+
       - name: Deploy via FTPS
         env:
           FTP_HOST: ${{ secrets.WEDOS_FTP_HOST }}
@@ -21,18 +37,26 @@ jobs:
           FTP_PASSWORD: ${{ secrets.WEDOS_FTP_PASSWORD }}
         run: |
           set -euo pipefail
-          test -n "${FTP_HOST:-}" && test -n "${FTP_USER:-}" && test -n "${FTP_PASSWORD:-}"
-          mapfile -t FILES < <(find . -type f ! -path './.git/*' ! -path './.github/*' ! -name 'preview-*.png' ! -name 'moodboard*.png' ! -name 'test-*.png' ! -name 'localtunnel*.tgz' ! -name 'CNAME' ! -name '.DS_Store' | sed 's|^./||' | sort)
-          ok=0; fail=0
+          mapfile -t FILES < <(find . -type f             ! -path './.git/*'             ! -path './.github/*'             ! -name 'preview-*.png'             ! -name 'moodboard*.png'             ! -name 'test-*.png'             ! -name 'localtunnel*.tgz'             ! -name 'CNAME'             ! -name '.DS_Store'             ! -name '.last-wedos-deploy-sha'             | sed 's|^\./||' | sort)
+          echo "Uploading ${#FILES[@]} files to host(len=${#FTP_HOST})"
+          ok=0
+          fail=0
           for rel in "${FILES[@]}"; do
             uploaded=0
+            url="ftp://${FTP_HOST}/${rel}"
             for try in $(seq 1 10); do
-              if curl --ssl-reqd --ftp-pasv --ftp-skip-pasv-ip --ftp-create-dirs --user "${FTP_USER}:${FTP_PASSWORD}" -T "$rel" "ftp://${FTP_HOST}/${rel}" -o /dev/null --silent --show-error; then
-                echo "OK $rel"; uploaded=1; ok=$((ok+1)); break
+              if curl --ssl-reqd --ftp-pasv --ftp-skip-pasv-ip --ftp-create-dirs                 --user "${FTP_USER}:${FTP_PASSWORD}"                 -T "${rel}" "${url}" -o /dev/null --silent --show-error; then
+                echo "OK ${rel} (try ${try})"
+                uploaded=1
+                ok=$((ok+1))
+                break
               fi
               sleep 2
             done
-            [ "$uploaded" = 1 ] || { echo "FAIL $rel"; fail=$((fail+1)); }
+            if [ "$uploaded" -ne 1 ]; then
+              echo "FAIL ${rel}"
+              fail=$((fail+1))
+            fi
           done
-          echo "SUMMARY ok=$ok fail=$fail"
-          [ "$fail" -eq 0 ]
+          echo "SUMMARY ok=${ok} fail=${fail}"
+          test "$fail" -eq 0
