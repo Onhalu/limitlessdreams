@@ -1,0 +1,38 @@
+name: Deploy to WEDOS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: wedos-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy via FTPS
+        env:
+          FTP_HOST: ${{ secrets.WEDOS_FTP_HOST }}
+          FTP_USER: ${{ secrets.WEDOS_FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.WEDOS_FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "${FTP_HOST:-}" && test -n "${FTP_USER:-}" && test -n "${FTP_PASSWORD:-}"
+          mapfile -t FILES < <(find . -type f ! -path './.git/*' ! -path './.github/*' ! -name 'preview-*.png' ! -name 'moodboard*.png' ! -name 'test-*.png' ! -name 'localtunnel*.tgz' ! -name 'CNAME' ! -name '.DS_Store' | sed 's|^./||' | sort)
+          ok=0; fail=0
+          for rel in "${FILES[@]}"; do
+            uploaded=0
+            for try in $(seq 1 10); do
+              if curl --ssl-reqd --ftp-pasv --ftp-skip-pasv-ip --ftp-create-dirs --user "${FTP_USER}:${FTP_PASSWORD}" -T "$rel" "ftp://${FTP_HOST}/${rel}" -o /dev/null --silent --show-error; then
+                echo "OK $rel"; uploaded=1; ok=$((ok+1)); break
+              fi
+              sleep 2
+            done
+            [ "$uploaded" = 1 ] || { echo "FAIL $rel"; fail=$((fail+1)); }
+          done
+          echo "SUMMARY ok=$ok fail=$fail"
+          [ "$fail" -eq 0 ]
