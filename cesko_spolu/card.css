@@ -61,7 +61,7 @@ body {
 }
 
 .card-circle {
-  --circle-size: min(72vw, 280px);
+  --circle-size: min(88vw, 380px);
   width: var(--circle-size);
   height: var(--circle-size);
   margin: 24px auto;
@@ -122,11 +122,6 @@ body {
   color: var(--olive);
   font-size: clamp(16px, 4.2vw, 17px);
   line-height: 1.5;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 7;
-  line-clamp: 7;
-  overflow: hidden;
 }
 
 .card-wiki {
