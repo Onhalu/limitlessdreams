@@ -1,0 +1,174 @@
+:root {
+  color-scheme: light;
+  --page-bg: #dcd5c5;
+  --box-bg: #f5f1e8;
+  --olive: #374833;
+  --olive-75: rgba(55, 72, 51, 0.75);
+  --olive-70: rgba(55, 72, 51, 0.7);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--page-bg);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--olive);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.card {
+  width: min(100%, 480px);
+  margin: 0 auto;
+  padding: 20px 20px calc(32px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.card-title {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1.5px solid var(--olive);
+  border-radius: 12px;
+  background: var(--box-bg);
+  color: var(--olive);
+  font-size: clamp(26px, 7vw, 30px);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.card-region {
+  margin: 12px 0;
+  color: var(--olive-75);
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.card-circle {
+  --circle-size: min(88vw, 380px);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  margin: 24px auto;
+  border: 2.5px solid var(--olive);
+  border-radius: 50%;
+  background: var(--page-bg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: none;
+}
+
+.card-circle img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-circle--placeholder {
+  background: var(--box-bg);
+}
+
+.card-initials {
+  color: var(--olive);
+  font-size: clamp(2.5rem, 14vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  user-select: none;
+}
+
+.card-type {
+  margin: 0 0 16px;
+  color: var(--olive-70);
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.card-type .card-id {
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.card-fact {
+  margin: 0 0 16px;
+  padding: 16px;
+  border: 1.5px solid var(--olive);
+  border-radius: 12px;
+  background: var(--box-bg);
+}
+
+.card-fact p {
+  margin: 0;
+  color: var(--olive);
+  font-size: clamp(16px, 4.2vw, 17px);
+  line-height: 1.5;
+}
+
+.card-wiki {
+  align-self: flex-start;
+  margin-top: auto;
+  color: var(--olive);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.card-wiki:focus-visible,
+.card-wiki:hover {
+  color: var(--olive);
+  opacity: 0.85;
+}
+
+/* Index listing */
+.card-list {
+  margin: 0;
+  padding: 20px 20px calc(32px + env(safe-area-inset-bottom));
+  max-width: 480px;
+}
+
+.card-list h1 {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--olive);
+  border-radius: 12px;
+  background: var(--box-bg);
+  color: var(--olive);
+  font-size: clamp(26px, 7vw, 30px);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.card-list ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-list a {
+  color: var(--olive);
+  font-weight: 650;
+  text-underline-offset: 3px;
+}
