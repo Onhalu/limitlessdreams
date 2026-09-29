@@ -92,6 +92,29 @@
       background: #35483C;
       transform: scale(1.15);
     }
+    /* Projekty cards share Vandery's logo frame (logo-vandery.png is 960×557)
+       so every project card matches that card's height. */
+    #projekty .project-logo-frame {
+      position: relative;
+      width: min(100%, 272px);
+      max-width: 100%;
+      aspect-ratio: 960 / 557;
+      margin-inline: auto;
+      margin-bottom: 1rem;
+    }
+    @media (min-width: 768px) {
+      #projekty .project-logo-frame {
+        width: 20rem;
+      }
+    }
+    #projekty .project-logo-frame img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   </style>
 </head>
 
@@ -192,11 +215,13 @@
 
       <div class="space-y-6">
         <!-- Visual left / text right (mobile: visual top, text bottom) -->
-        <a href="https://vyslapni.cz" target="_blank" rel="noopener noreferrer" class="group block rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-0">
-            <div class="relative min-h-[240px] bg-gradient-to-br from-sand-100 to-sand-200 flex items-center justify-center p-10 order-1">
-              <div class="text-center">
-                <img src="/logo-vyslapni.png" alt="Vyslapni.cz" width="1200" height="1025" class="mx-auto mb-4 h-auto w-auto max-w-[min(100%,272px)] object-contain md:max-w-xs" />
+        <a href="https://vyslapni.cz" target="_blank" rel="noopener noreferrer" class="project-card group block rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
+          <div class="grid h-full lg:grid-cols-2 lg:items-stretch gap-0">
+            <div class="relative flex h-full min-h-[240px] items-center justify-center bg-gradient-to-br from-sand-100 to-sand-200 p-10 order-1">
+              <div class="w-full text-center">
+                <div class="project-logo-frame">
+                  <img src="/logo-vyslapni.png" alt="Vyslapni.cz" width="4584" height="3917" />
+                </div>
                 <p class="text-sand-500" data-i18n="projects.vyslapni.tag">Turistické výzvy · medaile · venku</p>
               </div>
             </div>
@@ -212,11 +237,13 @@
           </div>
         </a>
 
-        <a href="https://vandery.app" target="_blank" rel="noopener noreferrer" class="group block rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-0">
-            <div class="relative min-h-[240px] bg-[#35483C] flex items-center justify-center p-10 order-1">
-              <div class="text-center">
-                <img src="/logo-vandery.png" alt="Vandery.app" width="960" height="557" class="mx-auto mb-4 h-auto w-auto max-w-[min(100%,272px)] object-contain md:max-w-xs" />
+        <a href="https://vandery.app" target="_blank" rel="noopener noreferrer" class="project-card group block rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
+          <div class="grid h-full lg:grid-cols-2 lg:items-stretch gap-0">
+            <div class="relative flex h-full min-h-[240px] items-center justify-center bg-[#35483C] p-10 order-1">
+              <div class="w-full text-center">
+                <div class="project-logo-frame">
+                  <img src="/logo-vandery.png" alt="Vandery.app" width="960" height="557" />
+                </div>
                 <p class="text-sand-100" data-i18n="projects.vandery.tag">Turistická app · výlety · venku</p>
               </div>
             </div>
