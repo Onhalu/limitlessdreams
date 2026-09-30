@@ -84,7 +84,7 @@ def render_card(card: dict) -> str:
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{name} · Česko spolu</title>
-    <link rel="stylesheet" href="../card.css?v=cta2">
+    <link rel="stylesheet" href="../card.css?v=cta3">
   </head>
   <body>
     <main class="card">
@@ -110,7 +110,7 @@ def render_index(cards: list[dict]) -> str:
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Česko spolu</title>
-    <link rel="stylesheet" href="card.css?v=cta2">
+    <link rel="stylesheet" href="card.css?v=cta3">
   </head>
   <body>
     <main class="card-list">
