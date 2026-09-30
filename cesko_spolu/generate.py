@@ -73,7 +73,7 @@ def render_card(card: dict) -> str:
 
     cta = (
         '\n      <a class="card-cta" href="https://vyslapni.cz/vylety/" '
-        'rel="noopener" target="_blank">Prohlédnout výlety</a>'
+        'rel="noopener" target="_blank">Navštiv místo</a>'
     )
 
     aria = f' role="img" aria-label="{name}"' if not has_image else ""
@@ -84,7 +84,7 @@ def render_card(card: dict) -> str:
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{name} · Česko spolu</title>
-    <link rel="stylesheet" href="../card.css">
+    <link rel="stylesheet" href="../card.css?v=cta2">
   </head>
   <body>
     <main class="card">
@@ -92,7 +92,7 @@ def render_card(card: dict) -> str:
       <p class="card-region">{region_line}</p>
       <div class="{circle_class}"{aria}>{visual}</div>
       <p class="card-type">{kind} · <span class="card-id">#{id_padded}</span></p>
-      <div class="card-fact"><p>{fact}</p></div>{cta}{wiki_link}
+      <div class="card-fact"><p>{fact}</p></div>{wiki_link}{cta}
     </main>
   </body>
 </html>
@@ -110,7 +110,7 @@ def render_index(cards: list[dict]) -> str:
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Česko spolu</title>
-    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="card.css?v=cta2">
   </head>
   <body>
     <main class="card-list">
