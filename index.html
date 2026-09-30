@@ -73,13 +73,78 @@
     }
     .lang-btn:hover { opacity: 1; }
     .lang-btn svg { display: block; width: 22px; height: 16px; }
-    #products-track {
-      display: flex;
-      transition: transform 0.35s ease;
+    /* Produkty: up to three cards in view; narrower viewports show ~1.4 with snap. */
+    .products-stage { position: relative; }
+    .products-viewport {
+      position: relative;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 70%;
+      gap: 1rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
     }
-    #products-track > .product-slide {
-      flex: 0 0 100%;
-      min-width: 100%;
+    .products-viewport::-webkit-scrollbar { display: none; }
+    .products-viewport > .product-slide {
+      scroll-snap-align: start;
+      min-width: 0;
+    }
+    @media (min-width: 640px) {
+      .products-viewport {
+        grid-auto-columns: calc((100% - 1.25rem) / 2);
+        gap: 1.25rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .products-viewport {
+        grid-auto-columns: calc((100% - 2.5rem) / 3);
+        gap: 1.25rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .products-viewport { scroll-behavior: auto; }
+    }
+    .product-arrow {
+      position: absolute;
+      /* Sit on the card media band (h-44), clear of the title and CTA. */
+      top: 5.5rem;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-top: -1.375rem;
+      border: none;
+      border-radius: 9999px;
+      background: #35483C;
+      color: #fff;
+      box-shadow: 0 0 0 3px #F6F3EB, 0 8px 20px rgba(53,72,60,0.28);
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .product-arrow svg { width: 1.25rem; height: 1.25rem; display: block; }
+    .product-arrow:hover:not(:disabled) { opacity: 0.9; }
+    .product-arrow:active:not(:disabled) { transform: scale(0.96); }
+    .product-arrow:disabled {
+      opacity: 0.55;
+      cursor: default;
+    }
+    .product-arrow:focus-visible {
+      outline: 2px solid #35483C;
+      outline-offset: 3px;
+    }
+    .product-arrow--prev { left: 0.35rem; }
+    .product-arrow--next { right: 0.35rem; }
+    @media (min-width: 768px) {
+      .product-arrow--prev { left: -1.15rem; }
+      .product-arrow--next { right: -1.15rem; }
     }
     .product-dot {
       width: 0.625rem;
@@ -270,9 +335,12 @@
         <p class="text-sand-500 max-w-xl" data-i18n="products.lead">Věci, které dávají smysl samy o sobě — s vlastní stránkou a objednávkou.</p>
       </div>
 
-      <div class="relative" id="products-carousel" aria-roledescription="carousel" aria-label="Produkty">
-        <div class="overflow-hidden">
-          <div id="products-track">
+      <div class="relative" id="products-carousel" aria-roledescription="carousel" aria-label="Produkty" data-i18n-aria="products.carousel">
+        <div class="products-stage">
+          <button type="button" class="product-arrow product-arrow--prev" id="products-prev" aria-controls="products-viewport" aria-label="Předchozí produkt" data-i18n-aria="products.prev">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" d="M15 6 9 12l6 6"/></svg>
+          </button>
+          <div class="products-viewport" id="products-viewport">
             <article class="product-slide group flex flex-col rounded-3xl border border-sand-200 bg-white shadow-card overflow-hidden" aria-roledescription="slide" aria-label="1 / 2">
               <div class="h-44 bg-gradient-to-br from-sand-100 to-sand-50 flex items-center justify-center px-6">
                 <span class="text-sm font-semibold uppercase tracking-wider text-sand-700" data-i18n="products.crash.badge">Desková hra</span>
@@ -282,7 +350,7 @@
                 <p class="text-sand-500 text-sm md:text-base leading-relaxed mb-6 flex-1">
                   <span data-i18n="products.crash.desc">Dynamická taktická hra plná napětí. Ideální na večery s přáteli.</span>
                 </p>
-                <a href="/crash-floor/" class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="products.crash.cta">
+                <a href="/crash-floor/" class="inline-flex w-fit max-w-full items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-center text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="products.crash.cta">
                   Více o hře
                 </a>
               </div>
@@ -297,17 +365,20 @@
                 <p class="text-sand-500 text-sm md:text-base leading-relaxed mb-6 flex-1">
                   <span data-i18n="products.ebook.desc">Praktický průvodce kondicí pro turistiku — technika, tempo, krátký trénink.</span>
                 </p>
-                <a href="/ebook-kondice/" class="inline-flex w-fit items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="products.ebook.cta">
+                <a href="/ebook-kondice/" class="inline-flex w-fit max-w-full items-center justify-center rounded-full bg-[#35483C] px-5 py-2.5 text-center text-sm font-semibold text-white hover:opacity-90 transition" data-i18n="products.ebook.cta">
                   Více o e-booku
                 </a>
               </div>
             </article>
           </div>
+          <button type="button" class="product-arrow product-arrow--next" id="products-next" aria-controls="products-viewport" aria-label="Další produkt" data-i18n-aria="products.next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg>
+          </button>
         </div>
 
-        <div class="mt-6 flex items-center justify-center gap-3" id="products-dots" role="tablist" aria-label="Výběr produktu">
-          <button type="button" class="product-dot" data-index="0" role="tab" aria-selected="true" aria-current="true" aria-label="Produkt 1"></button>
-          <button type="button" class="product-dot" data-index="1" role="tab" aria-selected="false" aria-label="Produkt 2"></button>
+        <div class="mt-6 flex items-center justify-center gap-3" id="products-dots" role="tablist" aria-label="Výběr produktu" data-i18n-aria="products.dots">
+          <button type="button" class="product-dot" data-index="0" role="tab" aria-selected="true" aria-current="true" aria-label="Crash Floor" data-i18n-aria="products.dot.crash"></button>
+          <button type="button" class="product-dot" data-index="1" role="tab" aria-selected="false" aria-label="E-book Kondice" data-i18n-aria="products.dot.ebook"></button>
         </div>
       </div>
     </div>
@@ -390,6 +461,12 @@
           'products.ebook.desc': 'Praktický průvodce kondicí pro turistiku — technika, tempo, krátký trénink.',
           'products.ebook.cta': 'Více o e-booku',
           'products.ebook.alt': 'Obálka e-booku Kondice',
+          'products.carousel': 'Produkty',
+          'products.prev': 'Předchozí produkt',
+          'products.next': 'Další produkt',
+          'products.dots': 'Výběr produktu',
+          'products.dot.crash': 'Crash Floor',
+          'products.dot.ebook': 'E-book Kondice',
           'about.title': 'O nás',
           'about.p1': 'Limitless Dreams je kreativní studio. Stavíme digitální produkty i dlouhodobé projekty jako <a href="https://vyslapni.cz" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vyslapni.cz</a> a <a href="https://vandery.app" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vandery.app</a>.',
           'about.p2': 'Zajímá nás funkčnost, jednoduchost a smysluplné využití technologií — bez zbytečného balastu.',
@@ -430,6 +507,12 @@
           'products.ebook.desc': 'A practical fitness guide for hiking — technique, pacing, short training.',
           'products.ebook.cta': 'More about the e-book',
           'products.ebook.alt': 'Kondice e-book cover',
+          'products.carousel': 'Products',
+          'products.prev': 'Previous product',
+          'products.next': 'Next product',
+          'products.dots': 'Choose a product',
+          'products.dot.crash': 'Crash Floor',
+          'products.dot.ebook': 'Kondice e-book',
           'about.title': 'About us',
           'about.p1': 'Limitless Dreams is a creative studio. We build digital products and long-term projects like <a href="https://vyslapni.cz" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vyslapni.cz</a> and <a href="https://vandery.app" class="font-semibold text-[#35483C] underline decoration-sand-200 hover:decoration-sand-500" target="_blank" rel="noopener noreferrer">Vandery.app</a>.',
           'about.p2': 'We care about usefulness, simplicity and meaningful technology — without the fluff.',
@@ -468,6 +551,10 @@
         document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
           var key = el.getAttribute('data-i18n-alt');
           if (dict[key] != null) el.setAttribute('alt', dict[key]);
+        });
+        document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-aria');
+          if (dict[key] != null) el.setAttribute('aria-label', dict[key]);
         });
         document.querySelectorAll('.lang-btn').forEach(function (btn) {
           var on = btn.getAttribute('data-lang') === lang;
@@ -533,38 +620,84 @@
       } catch (e) {}
       setLang(initial);
 
-      // Products carousel
+      // Products carousel: several cards share the row; arrows scroll one card.
       (function () {
-        var track = document.getElementById('products-track');
+        var viewport = document.getElementById('products-viewport');
+        var prev = document.getElementById('products-prev');
+        var next = document.getElementById('products-next');
         var dots = Array.prototype.slice.call(document.querySelectorAll('.product-dot'));
-        if (!track || !dots.length) return;
-        var index = 0;
-        var startX = 0;
-        function go(i) {
-          index = (i + dots.length) % dots.length;
-          track.style.transform = 'translateX(' + (-index * 100) + '%)';
+        if (!viewport) return;
+        var slides = Array.prototype.slice.call(viewport.querySelectorAll('.product-slide'));
+        if (!slides.length) return;
+
+        function prefersReducedMotion() {
+          return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
+
+        function nearestIndex() {
+          var left = viewport.scrollLeft;
+          var best = 0;
+          var bestDist = Infinity;
+          for (var i = 0; i < slides.length; i++) {
+            var dist = Math.abs(slides[i].offsetLeft - left);
+            if (dist < bestDist) {
+              bestDist = dist;
+              best = i;
+            }
+          }
+          return best;
+        }
+
+        function update() {
+          var left = viewport.scrollLeft;
+          var viewRight = left + viewport.clientWidth;
+          var last = slides[slides.length - 1];
+          var lastRight = last.offsetLeft + last.offsetWidth;
+          if (prev) prev.disabled = left <= 2;
+          if (next) next.disabled = lastRight <= viewRight + 2;
+          var active = nearestIndex();
           dots.forEach(function (dot, di) {
-            var on = di === index;
+            var on = di === active;
             dot.setAttribute('aria-selected', on ? 'true' : 'false');
             if (on) dot.setAttribute('aria-current', 'true');
             else dot.removeAttribute('aria-current');
           });
         }
+
+        function scrollToIndex(i) {
+          var index = Math.max(0, Math.min(slides.length - 1, i));
+          viewport.scrollTo({
+            left: slides[index].offsetLeft,
+            behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+          });
+        }
+
+        if (prev) prev.addEventListener('click', function () {
+          scrollToIndex(nearestIndex() - 1);
+        });
+        if (next) next.addEventListener('click', function () {
+          scrollToIndex(nearestIndex() + 1);
+        });
         dots.forEach(function (dot) {
           dot.addEventListener('click', function () {
-            go(parseInt(dot.getAttribute('data-index'), 10));
+            scrollToIndex(parseInt(dot.getAttribute('data-index'), 10) || 0);
           });
         });
-        var viewport = track.parentElement;
-        viewport.addEventListener('touchstart', function (e) {
-          startX = e.changedTouches[0].clientX;
+        viewport.addEventListener('scroll', function () {
+          window.requestAnimationFrame(update);
         }, { passive: true });
-        viewport.addEventListener('touchend', function (e) {
-          var dx = e.changedTouches[0].clientX - startX;
-          if (Math.abs(dx) < 40) return;
-          go(index + (dx < 0 ? 1 : -1));
-        }, { passive: true });
-        go(0);
+        window.addEventListener('resize', update);
+        window.addEventListener('load', update);
+        if (window.ResizeObserver) new ResizeObserver(update).observe(viewport);
+        var carousel = document.getElementById('products-carousel');
+        if (carousel) {
+          carousel.addEventListener('keydown', function (e) {
+            if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+            e.preventDefault();
+            scrollToIndex(nearestIndex() + (e.key === 'ArrowRight' ? 1 : -1));
+          });
+        }
+        update();
       })();
     })();
   </script>
