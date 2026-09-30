@@ -71,6 +71,11 @@ def render_card(card: dict) -> str:
             'rel="noopener" target="_blank">Wikipedie</a>'
         )
 
+    cta = (
+        '\n      <a class="card-cta" href="https://vyslapni.cz/vylety/" '
+        'rel="noopener" target="_blank">Prohlédnout výlety</a>'
+    )
+
     aria = f' role="img" aria-label="{name}"' if not has_image else ""
 
     return f'''<!doctype html>
@@ -87,7 +92,7 @@ def render_card(card: dict) -> str:
       <p class="card-region">{region_line}</p>
       <div class="{circle_class}"{aria}>{visual}</div>
       <p class="card-type">{kind} · <span class="card-id">#{id_padded}</span></p>
-      <div class="card-fact"><p>{fact}</p></div>{wiki_link}
+      <div class="card-fact"><p>{fact}</p></div>{cta}{wiki_link}
     </main>
   </body>
 </html>
