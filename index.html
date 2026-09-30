@@ -180,6 +180,12 @@
       object-fit: contain;
       object-position: center;
     }
+    /* Stacked cards: let a shared min-height flow into the text column. */
+    @media (max-width: 1023px) {
+      #projekty .project-card > .grid {
+        grid-template-rows: auto 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -187,11 +193,8 @@
 
   <!-- NAV -->
   <header class="sticky top-0 z-40 border-b border-sand-200/80 bg-white/90 backdrop-blur">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-3">
-      <a href="/" class="flex min-w-0 items-center gap-2 sm:gap-3 font-semibold tracking-tight text-[#35483C]">
-        <img src="/logo-viateria.png" alt="" class="h-8 w-auto shrink-0" width="32" height="32" />
-        <span class="truncate text-sm sm:text-base">Limitless Dreams</span>
-      </a>
+    <div class="max-w-6xl mx-auto px-6 h-14 sm:h-16 flex items-center justify-between gap-3">
+      <a href="/" class="min-w-0 truncate text-sm font-semibold tracking-tight text-[#35483C] sm:text-base">Limitless Dreams</a>
       <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-sand-700" aria-label="Hlavní navigace">
         <a href="#projekty" class="hover:text-[#35483C] transition" data-i18n="nav.projects">Projekty</a>
         <a href="#produkty" class="hover:text-[#35483C] transition" data-i18n="nav.products">Produkty</a>
@@ -280,8 +283,8 @@
 
       <div class="space-y-6">
         <!-- Visual left / text right (mobile: visual top, text bottom) -->
-        <a href="https://vyslapni.cz" target="_blank" rel="noopener noreferrer" class="project-card group block rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
-          <div class="grid h-full lg:grid-cols-2 lg:items-stretch gap-0">
+        <a href="https://vyslapni.cz" target="_blank" rel="noopener noreferrer" class="project-card group flex flex-col rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
+          <div class="grid h-full min-h-full flex-1 lg:grid-cols-2 lg:items-stretch gap-0">
             <div class="relative flex h-full min-h-[240px] items-center justify-center bg-gradient-to-br from-sand-100 to-sand-200 p-10 order-1">
               <div class="w-full text-center">
                 <div class="project-logo-frame">
@@ -302,8 +305,8 @@
           </div>
         </a>
 
-        <a href="https://vandery.app" target="_blank" rel="noopener noreferrer" class="project-card group block rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
-          <div class="grid h-full lg:grid-cols-2 lg:items-stretch gap-0">
+        <a href="https://vandery.app" target="_blank" rel="noopener noreferrer" class="project-card group flex flex-col rounded-[2rem] border border-sand-200 bg-sand-50 shadow-card hover:shadow-card-hover transition overflow-hidden">
+          <div class="grid h-full min-h-full flex-1 lg:grid-cols-2 lg:items-stretch gap-0">
             <div class="relative flex h-full min-h-[240px] items-center justify-center bg-[#35483C] p-10 order-1">
               <div class="w-full text-center">
                 <div class="project-logo-frame">
@@ -562,6 +565,33 @@
         });
         if (toggle) toggle.setAttribute('aria-label', dict['a11y.open']);
         if (closeBtn) closeBtn.setAttribute('aria-label', dict['a11y.close']);
+        equalizeProjectCards();
+      }
+
+      function equalizeProjectCards() {
+        var cards = Array.prototype.slice.call(document.querySelectorAll('#projekty .project-card'));
+        if (cards.length < 2) return;
+        var tags = cards.map(function (card) {
+          return card.querySelector('.project-logo-frame + p');
+        });
+        cards.forEach(function (card, i) {
+          card.style.minHeight = '';
+          if (tags[i]) tags[i].style.minHeight = '';
+        });
+        var maxTag = 0;
+        tags.forEach(function (tag) {
+          if (tag) maxTag = Math.max(maxTag, tag.getBoundingClientRect().height);
+        });
+        tags.forEach(function (tag) {
+          if (tag) tag.style.minHeight = maxTag + 'px';
+        });
+        var maxCard = 0;
+        cards.forEach(function (card) {
+          maxCard = Math.max(maxCard, card.getBoundingClientRect().height);
+        });
+        cards.forEach(function (card) {
+          card.style.minHeight = maxCard + 'px';
+        });
       }
 
       function openMenu() {
@@ -619,6 +649,11 @@
         if (saved && I18N[saved]) initial = saved;
       } catch (e) {}
       setLang(initial);
+      window.addEventListener('resize', equalizeProjectCards);
+      window.addEventListener('load', equalizeProjectCards);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(equalizeProjectCards);
+      }
 
       // Products carousel: several cards share the row; arrows scroll one card.
       (function () {
