@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://www.limitlessdreams.cz/ebook-kondice/" />
   <meta property="og:image" content="https://www.limitlessdreams.cz/ebook-kondice/Cover.jpg" />
   <meta property="og:locale" content="cs_CZ" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -20,27 +20,32 @@
   <script src="/assets/ld-theme.js?v=20261008"></script>
   <link rel="stylesheet" href="/assets/ld.css?v=20261008" />
   <style>
-    /* Cover.jpg is 227×320. Keep CSS size ≤ source ÷ device pixel ratio so it is not upscaled. */
+    /* Cover.jpg is 227×320. Caps are CSS pixels, not device pixels.
+       Replace these limits and the img width/height attributes when a hi-res file lands. */
     .cover-hero {
       width: auto;
       height: auto;
-      max-width: min(156px, calc(227px / var(--cover-dpr, 1)));
-      max-height: min(220px, calc(320px / var(--cover-dpr, 1)));
+      max-width: 156px;
+      max-height: 220px;
     }
     @media (min-width: 1024px) {
       .cover-hero {
-        max-width: min(227px, calc(227px / var(--cover-dpr, 1)));
-        max-height: min(320px, calc(320px / var(--cover-dpr, 1)));
+        max-width: 227px;
+        max-height: 320px;
       }
     }
     .cover-thumb {
       width: auto;
       height: auto;
-      max-width: min(68px, calc(227px / var(--cover-dpr, 1)));
-      max-height: min(96px, calc(320px / var(--cover-dpr, 1)));
+      max-width: 68px;
+      max-height: 96px;
     }
-    @media (min-resolution: 1.5dppx) { :root { --cover-dpr: 2; } }
-    @media (min-resolution: 2.5dppx) { :root { --cover-dpr: 3; } }
+    .cover-sample {
+      width: auto;
+      height: auto;
+      max-width: 113px;
+      max-height: 160px;
+    }
   </style>
 </head>
 
@@ -75,7 +80,7 @@
         <li><a href="/#projekty" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Projekty</a></li>
         <li><a href="/#produkty" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Produkty</a></li>
         <li><a href="/#o-nas" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">O nás</a></li>
-        <li><a href="/#kontakt" class="mobile-nav-link mt-2 flex min-h-11 items-center justify-center rounded-full bg-[#35483C] px-4 text-base font-semibold text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70">Kontakt</a></li>
+        <li><a href="/#kontakt" class="mobile-nav-link mt-2 flex min-h-11 items-center justify-center rounded-full bg-[#35483C] px-4 text-base font-semibold text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 focus-visible:ring-offset-2">Kontakt</a></li>
       </ul>
     </nav>
   </aside>
@@ -164,22 +169,24 @@
         <p class="mb-10 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">
           Prohlédněte si prvních 20 stran e-booku přímo v prohlížeči.
         </p>
-        <div class="overflow-hidden rounded-3xl border border-sand-200 bg-white shadow-card">
+        <div class="relative overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-card">
+          <div class="pointer-events-none absolute inset-0 z-0 flex flex-col items-center justify-center gap-4 bg-sand-50 px-6 text-center" aria-hidden="true">
+            <img src="Cover.jpg" alt="" width="227" height="320" class="cover-sample rounded-lg object-contain shadow-card" />
+            <p class="text-sm font-medium text-sand-700">Načítám ukázku…</p>
+          </div>
           <iframe
             src="https://heyzine.com/flip-book/049ea071cb.html"
             title="Ukázka e-booku Kondice"
-            class="h-[420px] w-full md:h-[600px]"
-            loading="lazy"
+            class="relative z-10 h-[420px] w-full bg-transparent opacity-0 md:h-[600px]"
             allowfullscreen
             allow="clipboard-write"
+            onload="this.classList.remove('opacity-0')"
           ></iframe>
         </div>
-        <p class="mt-4">
-          <a href="https://heyzine.com/flip-book/049ea071cb.html" target="_blank" rel="noopener" class="inline-flex min-h-11 items-center text-sm font-semibold text-[#35483C] underline decoration-sand-200 underline-offset-2 hover:decoration-sand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Otevřít ukázku v novém okně</a>
-        </p>
-        <p class="mt-2">
-          <a href="#form-section" class="inline-flex min-h-11 items-center font-semibold text-[#35483C] underline decoration-sand-200 underline-offset-2 hover:decoration-sand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Pokračovat k objednávce →</a>
-        </p>
+        <div class="mt-6 flex flex-col gap-6 md:flex-row md:items-center">
+          <a href="https://heyzine.com/flip-book/049ea071cb.html" target="_blank" rel="noopener" class="inline-flex min-h-11 items-center text-sm font-semibold text-[#35483C] underline underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Otevřít ukázku v novém okně</a>
+          <a href="#form-section" class="inline-flex min-h-11 items-center text-sm font-semibold text-[#35483C] underline underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Pokračovat k objednávce →</a>
+        </div>
       </div>
     </section>
 
@@ -224,16 +231,16 @@
         <h2 class="mb-3 text-3xl font-bold tracking-tight md:text-4xl">Objednat e-book</h2>
         <p class="mb-10 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">Po zaplacení vám přijde odkaz ke stažení na e-mail.</p>
         <div class="grid items-start gap-6 lg:grid-cols-[2fr_3fr]">
-          <aside class="rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8">
+          <aside class="self-start rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:sticky md:top-24 md:p-8">
             <div class="flex items-center gap-4">
               <img src="Cover.jpg" alt="" width="227" height="320" loading="lazy" class="cover-thumb rounded-lg object-contain shadow-card" />
               <div class="min-w-0">
                 <p class="text-lg font-bold leading-snug">Kondice, která tě posune dál</p>
-                <p class="mt-2 text-sm text-sand-500">Kartou nebo převodem</p>
+                <p class="mt-2 text-sm text-sand-500">E-book ke stažení · kartou nebo převodem</p>
               </div>
             </div>
           </aside>
-          <div class="rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8">
+          <div class="rounded-3xl border border-sand-200 bg-white p-3 shadow-card sm:p-6 md:p-8">
             <script type="text/javascript" src="https://form.fapi.cz/script.php?id=797a6615-41c0-4323-8ded-875a4f84d412"></script>
           </div>
         </div>
