@@ -15,178 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
-          colors: {
-            sand: {
-              50: '#F6F3EB',
-              100: '#F3EFE5',
-              200: '#D8CDB8',
-              500: '#756653',
-              700: '#756653',
-              900: '#35483C',
-            },
-            sage: {
-              DEFAULT: '#9C9A7B',
-              soft: '#B5B39A',
-            }
-          },
-          boxShadow: {
-            card: '0 1px 2px rgba(28,25,23,0.04), 0 8px 24px rgba(28,25,23,0.06)',
-            'card-hover': '0 1px 2px rgba(28,25,23,0.04), 0 16px 40px rgba(28,25,23,0.10)',
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    body.menu-open { overflow: hidden; }
-    #mobile-drawer {
-      transform: translateX(100%);
-      transition: transform 0.25s ease;
-    }
-    #mobile-drawer[data-open="true"] { transform: translateX(0); }
-    #mobile-backdrop {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-    #mobile-backdrop[data-open="true"] {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .lang-btn {
-      opacity: 0.55;
-      border-bottom: 2px solid transparent;
-      border-radius: 0;
-      background: transparent;
-      padding: 0.35rem 0.2rem;
-      transition: opacity 0.2s ease, border-color 0.2s ease;
-    }
-    .lang-btn[aria-pressed="true"] {
-      opacity: 1;
-      border-bottom-color: #9C9A7B;
-    }
-    .lang-btn:hover { opacity: 1; }
-    .lang-btn svg { display: block; width: 22px; height: 16px; }
-    /* Produkty: up to three cards in view; narrower viewports show ~1.4 with snap. */
-    .products-stage { position: relative; }
-    .products-viewport {
-      position: relative;
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 70%;
-      gap: 1rem;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      overscroll-behavior-x: contain;
-      -webkit-overflow-scrolling: touch;
-    }
-    .products-viewport::-webkit-scrollbar { display: none; }
-    .products-viewport > .product-slide {
-      scroll-snap-align: start;
-      min-width: 0;
-    }
-    @media (min-width: 640px) {
-      .products-viewport {
-        grid-auto-columns: calc((100% - 1.25rem) / 2);
-        gap: 1.25rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .products-viewport {
-        grid-auto-columns: calc((100% - 2.5rem) / 3);
-        gap: 1.25rem;
-      }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .products-viewport { scroll-behavior: auto; }
-    }
-    .product-arrow {
-      position: absolute;
-      /* Sit on the card media band (h-44), clear of the title and CTA. */
-      top: 5.5rem;
-      z-index: 2;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2.75rem;
-      height: 2.75rem;
-      margin-top: -1.375rem;
-      border: none;
-      border-radius: 9999px;
-      background: #35483C;
-      color: #fff;
-      box-shadow: 0 0 0 3px #F6F3EB, 0 8px 20px rgba(53,72,60,0.28);
-      cursor: pointer;
-      touch-action: manipulation;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-    .product-arrow svg { width: 1.25rem; height: 1.25rem; display: block; }
-    .product-arrow:hover:not(:disabled) { opacity: 0.9; }
-    .product-arrow:active:not(:disabled) { transform: scale(0.96); }
-    .product-arrow:disabled {
-      opacity: 0.55;
-      cursor: default;
-    }
-    .product-arrow:focus-visible {
-      outline: 2px solid #35483C;
-      outline-offset: 3px;
-    }
-    .product-arrow--prev { left: 0.35rem; }
-    .product-arrow--next { right: 0.35rem; }
-    @media (min-width: 768px) {
-      .product-arrow--prev { left: -1.15rem; }
-      .product-arrow--next { right: -1.15rem; }
-    }
-    .product-dot {
-      width: 0.625rem;
-      height: 0.625rem;
-      border-radius: 9999px;
-      background: #D8CDB8;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-    .product-dot[aria-current="true"] {
-      background: #35483C;
-      transform: scale(1.15);
-    }
-    /* Projekty cards share Vandery's logo frame (logo-vandery.png is 960×557)
-       so every project card matches that card's height. */
-    #projekty .project-logo-frame {
-      position: relative;
-      width: min(100%, 272px);
-      max-width: 100%;
-      aspect-ratio: 960 / 557;
-      margin-inline: auto;
-      margin-bottom: 1rem;
-    }
-    @media (min-width: 768px) {
-      #projekty .project-logo-frame {
-        width: 20rem;
-      }
-    }
-    #projekty .project-logo-frame img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-    /* Stacked cards: let a shared min-height flow into the text column. */
-    @media (max-width: 1023px) {
-      #projekty .project-card > .grid {
-        grid-template-rows: auto 1fr;
-      }
-    }
-  </style>
+  <script src="/assets/ld-theme.js?v=20261008"></script>
+  <link rel="stylesheet" href="/assets/ld.css?v=20261008" />
 </head>
 
 <body class="bg-sand-50 text-[#35483C] antialiased font-sans">
@@ -433,6 +263,7 @@
   </footer>
 
 
+  <script src="/assets/ld-header.js?v=20261008"></script>
   <script>
     (function () {
       var I18N = {
@@ -530,13 +361,8 @@
         }
       };
 
-      var drawer = document.getElementById('mobile-drawer');
-      var backdrop = document.getElementById('mobile-backdrop');
       var toggle = document.getElementById('menu-toggle');
       var closeBtn = document.getElementById('menu-close');
-      var iconOpen = document.getElementById('icon-open');
-      var iconClose = document.getElementById('icon-close');
-      var lastFocus = null;
 
       function setLang(lang) {
         if (!I18N[lang]) lang = 'cs';
@@ -594,49 +420,6 @@
         });
       }
 
-      function openMenu() {
-        lastFocus = document.activeElement;
-        drawer.hidden = false;
-        backdrop.hidden = false;
-        requestAnimationFrame(function () {
-          drawer.setAttribute('data-open', 'true');
-          backdrop.setAttribute('data-open', 'true');
-        });
-        toggle.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('menu-open');
-        iconOpen.classList.add('hidden');
-        iconClose.classList.remove('hidden');
-        closeBtn.focus();
-      }
-
-      function closeMenu() {
-        drawer.setAttribute('data-open', 'false');
-        backdrop.setAttribute('data-open', 'false');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('menu-open');
-        iconOpen.classList.remove('hidden');
-        iconClose.classList.add('hidden');
-        setTimeout(function () {
-          if (drawer.getAttribute('data-open') === 'false') {
-            drawer.hidden = true;
-            backdrop.hidden = true;
-          }
-        }, 250);
-        if (lastFocus && lastFocus.focus) lastFocus.focus();
-      }
-
-      if (toggle) toggle.addEventListener('click', function () {
-        if (drawer.getAttribute('data-open') === 'true') closeMenu();
-        else openMenu();
-      });
-      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-      if (backdrop) backdrop.addEventListener('click', closeMenu);
-      document.querySelectorAll('.mobile-nav-link').forEach(function (a) {
-        a.addEventListener('click', closeMenu);
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && drawer.getAttribute('data-open') === 'true') closeMenu();
-      });
       document.querySelectorAll('.lang-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
           setLang(btn.getAttribute('data-lang'));

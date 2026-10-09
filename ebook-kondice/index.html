@@ -2,160 +2,260 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
-  <title>E-book Kondice — Limitless Dreams</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kondice, která tě posune dál – e-book | Limitless Dreams</title>
+  <meta name="description" content="Praktický průvodce kondičním tréninkem pro zaneprázdněné a motivované. Návody, tréninkové plány a ukázky technik." />
+  <link rel="canonical" href="https://www.limitlessdreams.cz/ebook-kondice/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kondice, která tě posune dál – e-book | Limitless Dreams" />
+  <meta property="og:description" content="Praktický průvodce kondičním tréninkem pro zaneprázdněné a motivované. Návody, tréninkové plány a ukázky technik." />
+  <meta property="og:url" content="https://www.limitlessdreams.cz/ebook-kondice/" />
+  <meta property="og:image" content="https://www.limitlessdreams.cz/ebook-kondice/Cover.jpg" />
+  <meta property="og:locale" content="cs_CZ" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/assets/ld-theme.js?v=20261008"></script>
+  <link rel="stylesheet" href="/assets/ld.css?v=20261008" />
+  <noscript><style>#ukazka iframe{opacity:1!important}</style></noscript>
+  <style>
+    /* Cover.jpg is 227×320. Caps are CSS pixels, not device pixels.
+       Replace these limits and the img width/height attributes when a hi-res file lands. */
+    .cover-hero {
+      width: auto;
+      height: auto;
+      max-width: 156px;
+      max-height: 220px;
+    }
+    @media (min-width: 1024px) {
+      .cover-hero {
+        max-width: 227px;
+        max-height: 320px;
+      }
+    }
+    .cover-thumb {
+      width: auto;
+      height: auto;
+      max-width: 68px;
+      max-height: 96px;
+    }
+    .cover-sample {
+      width: auto;
+      height: auto;
+      max-width: 113px;
+      max-height: 160px;
+    }
+  </style>
 </head>
 
-<body class="bg-white text-gray-900 antialiased">
+<body class="bg-sand-50 text-[#35483C] antialiased font-sans">
 
-  <!-- HERO -->
-  <section class="relative bg-gradient-to-b from-white to-gray-50">
-    <div class="max-w-6xl mx-auto px-6 py-24 text-center">
-
-      <div class="flex justify-center mb-8">
-        <img src="Cover.jpg" alt="E-book Kondice" width="227" height="320" class="w-[227px] h-[320px] max-w-full object-contain" />
-      </div>
-
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Kondice, která tě posune dál</h1>
-      <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
-        Praktický průvodce kondičním tréninkem pro zaneprázdněné a motivované. Návody, tréninkové plány a ukázky technik.
-      </p>
-
-      <div class="flex justify-center gap-4">
-        <button id="scrollToForm" class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white hover:bg-blue-500 transition">
-          Chci e-book
-        </button>
-        <a href="#ukazka" class="inline-flex items-center justify-center rounded-lg px-8 py-4 text-lg font-semibold text-gray-900 hover:text-gray-600 transition">
-          Ukázka
-        </a>
-      </div>
-
+  <header class="sticky top-0 z-40 border-b border-sand-200/80 bg-white/90 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-6 h-14 sm:h-16 flex items-center justify-between gap-3">
+      <a href="/" class="min-w-0 truncate text-sm font-semibold tracking-tight text-[#35483C] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 sm:text-base">Limitless Dreams</a>
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-sand-700" aria-label="Hlavní navigace">
+        <a href="/#projekty" class="rounded-sm hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Projekty</a>
+        <a href="/#produkty" class="rounded-sm hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Produkty</a>
+        <a href="/#o-nas" class="rounded-sm hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">O nás</a>
+        <a href="/#kontakt" class="inline-flex items-center rounded-full bg-[#35483C] px-4 py-2 text-white hover:opacity-90 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Kontakt</a>
+      </nav>
+      <button type="button" id="menu-toggle" class="md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sand-200 bg-white text-[#35483C] hover:border-sage transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Otevřít menu">
+        <svg id="icon-open" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
-  </section>
+  </header>
 
-  <!-- O KNIZE -->
-  <section id="o-knize" class="py-20">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-
-      <h2 class="text-3xl font-semibold mb-6">Jak zlepšit kondici a začít si výlety konečně užívat?</h2>
-      
-      <p class="text-gray-700 mb-4 leading-relaxed mx-auto max-w-3xl">
-        Zadýcháváte se do kopce? Bolí vás po túře kolena? Nebo náročnější trasy raději předem vzdáváte, abyste ostatní nezdržovali? Co když vám ale nechybí kondice, jen neznáte tu správnou techniku?
-      </p>
-
-      <p class="text-gray-700 mb-6 leading-relaxed mx-auto max-w-3xl">
-        Praktický e-book od Vyšlápni.cz vám ukáže, že turistika nemá bolet. Skutečná kondice totiž není o tom, co zvládnete jednou, ale o tom, co si dokážete užít opakovaně.
-      </p>
-
-      <h3 class="text-xl font-semibold mb-4">Co se uvnitř dozvíte v kostce?</h3>
-
-      <ul class="text-gray-700 space-y-3 mb-6 mx-auto max-w-3xl text-center">
-        <li class="flex justify-center items-center">
-          <span>Jak najít rychlost, kterou udržíte celý den, a jak dýchat, abyste do kopce nemuseli každých 10 metrů zastavovat.</span>
-        </li>
-        <li class="flex justify-center items-center">
-          <span>Jak upravit krok, aby sestupy neodnesla vaše kolena.</span>
-        </li>
-        <li class="flex justify-center items-center">
-          <span>Krátký domácí trénink (bez fitka a činek), který vám v terénu dodá obrovskou jistotu.</span>
-        </li>
-        <li class="flex justify-center items-center">
-          <span>Co jíst před a po výletu, abyste nedošli o energii a druhý den se mohli hýbat.</span>
-        </li>
-        <li class="flex justify-center items-center">
-          <span>Jak sladit tempo s partnerem a jak namotivovat děti, aby je chůze bavila.</span>
-        </li>
+  <div id="mobile-backdrop" class="fixed inset-0 z-40 bg-[#35483C]/40 md:hidden" data-open="false" hidden></div>
+  <aside id="mobile-drawer" class="fixed inset-y-0 right-0 z-50 flex w-[min(100%,20rem)] flex-col bg-white shadow-card-hover md:hidden" data-open="false" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title" hidden>
+    <div class="flex h-14 shrink-0 items-center justify-between border-b border-sand-200 px-4">
+      <p id="mobile-menu-title" class="font-semibold text-[#35483C]">Menu</p>
+      <button type="button" id="menu-close" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sand-200 text-[#35483C] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" aria-label="Zavřít menu">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto overscroll-contain px-4 py-4" aria-label="Mobilní navigace">
+      <ul class="space-y-1">
+        <li><a href="/#projekty" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Projekty</a></li>
+        <li><a href="/#produkty" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Produkty</a></li>
+        <li><a href="/#o-nas" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">O nás</a></li>
+        <li><a href="/#kontakt" class="mobile-nav-link mt-2 flex min-h-11 items-center justify-center rounded-full bg-[#35483C] px-4 text-base font-semibold text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 focus-visible:ring-offset-2">Kontakt</a></li>
       </ul>
+    </nav>
+  </aside>
 
-      <p class="text-gray-600 leading-relaxed mx-auto max-w-3xl">
-        Napsáno pro běžné lidi, ne pro vrcholové sportovce. Autoři Ondřej Haluza a trenér Lukáš Kadaňka pro vás připravili návod bez extrémů, stresu a složitých tabulek.
-      </p>
+  <main>
+    <section class="bg-sand-50" aria-labelledby="hero-title">
+      <div class="max-w-6xl mx-auto px-6 pb-16 pt-6 md:py-24">
+        <p class="mb-5 md:mb-8">
+          <a href="/#produkty" class="inline-flex min-h-11 items-center text-sm text-sand-700 hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">← Zpět na produkty</a>
+        </p>
 
-      <p class="text-gray-600 mt-4 italic mx-auto max-w-3xl">
-        Vaše tělo zvládne mnohem víc, než si myslíte. Kondice je jen vstupenka k zážitkům, které by jinak zůstaly na fotkách ostatních.
-      </p>
+        <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <div class="order-1 lg:order-2">
+            <div class="flex w-full items-center justify-center rounded-3xl border border-sand-200 bg-gradient-to-br from-sand-100 to-sand-50 p-5 sm:p-8 lg:max-h-[420px]">
+              <img
+                src="Cover.jpg"
+                alt="Obálka e-booku Kondice"
+                width="227"
+                height="320"
+                class="cover-hero rounded-lg object-contain shadow-card"
+              />
+            </div>
+          </div>
 
-    </div>
-  </section>
-
-  <!-- UKÁZKA -->
-  <section id="ukazka" class="bg-gray-50 py-20">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-semibold mb-8">Ukázka z knihy</h2>
-
-      <p class="text-gray-700 mb-6 max-w-3xl mx-auto leading-relaxed">
-        Prohlédněte si prvních 20 stran e-booku přímo v prohlížeči.
-      </p>
-
-      <div class="w-full overflow-hidden rounded-3xl border border-gray-200 shadow-sm bg-white">
-        <iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" style="border: 1px solid lightgray; width: 100%; height: 400px;" src="https://heyzine.com/flip-book/049ea071cb.html"></iframe>
-      </div>
-
-      <p class="text-sm text-gray-500 mt-4">
-        Doporučení: Pokud se náhled nezobrazí, otevřete ukázku přímo v novém okně.
-      </p>
-
-    </div>
-  </section>
-
-  <!-- AUTOŘI -->
-  <section id="autoři" class="py-20 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-semibold mb-10 text-center">Autoři</h2>
-
-      <div class="grid gap-10 lg:grid-cols-2">
-        <div class="flex flex-col items-center text-center bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-          <img src="lukas.jpg" alt="Lukáš Kadaňka" class="w-40 h-40 rounded-full object-cover shadow mb-6" />
-          <h3 class="text-2xl font-semibold mb-3">Lukáš Kadaňka | Osobní Trenér</h3>
-          <p class="text-gray-700 leading-relaxed">
-            Pomáhá lidem zesílit pro běžný život. Nečekejte žádné rychlé triky, ale krátké a efektivní tréninky, které vás zbaví bolestí z nedostatku pohybu.
-            Lukáš vám ukáže jednoduchý systém, jak si vybudovat pevný střed těla a silné nohy, aby vás tělo na výletech podrželo.
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center text-center bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-          <img src="ondrej.jpg" alt="Ondřej Haluza" class="w-40 h-40 rounded-full object-cover shadow mb-6" />
-          <h3 class="text-2xl font-semibold mb-3">Ondřej Haluza | Autor Vyšlápni.cz</h3>
-          <p class="text-gray-700 leading-relaxed">
-            Nadšený turista, který sám tráví dny u počítače. Neukazuje extrémní výkony, ale učí lidi, jak utéct od rutiny do přírody.
-            Motivuje vás zvednout se od stolu, vyčistit si hlavu a užívat si výlety pro radost, bez stresu a bez honby za kilometry.
-          </p>
+          <div class="order-2 lg:order-1">
+            <p class="mb-5 inline-flex rounded-full border border-sage/40 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sand-700">E-book · Vyšlápni.cz</p>
+            <h1 id="hero-title" class="mb-5 max-w-3xl text-4xl font-extrabold tracking-tight leading-[1.05] text-[#35483C] sm:text-5xl md:text-6xl">Kondice, která tě posune dál</h1>
+            <p class="mb-8 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">
+              Praktický průvodce kondičním tréninkem pro zaneprázdněné a motivované. Návody, tréninkové plány a ukázky technik.
+            </p>
+            <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a id="scrollToForm" href="#form-section" class="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#35483C] px-7 py-3.5 text-base font-semibold text-white transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 sm:w-auto">Koupit e-book</a>
+              <a href="#ukazka" class="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-sand-200 bg-white px-7 py-3.5 text-base font-semibold text-[#35483C] transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 sm:w-auto">Prohlédnout ukázku</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FORM / CTA TARGET -->
-  <section id="form-section" class="bg-white py-20 border-t">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-semibold mb-6">Získejte e-book</h2>
+    <section id="o-knize" class="scroll-mt-20 border-y border-sand-200 bg-white py-20 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="mb-3 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">Jak zlepšit kondici a začít si výlety konečně užívat?</h2>
+        <p class="mb-5 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">
+          Zadýcháváte se do kopce? Bolí vás po túře kolena? Nebo náročnější trasy raději předem vzdáváte, abyste ostatní nezdržovali? Co když vám ale nechybí kondice, jen neznáte tu správnou techniku?
+        </p>
+        <p class="mb-10 max-w-3xl leading-relaxed text-sand-500">
+          Praktický e-book od Vyšlápni.cz vám ukáže, že turistika nemá bolet. Skutečná kondice totiž není o tom, co zvládnete jednou, ale o tom, co si dokážete užít opakovaně.
+        </p>
 
-      <p class="text-gray-600 mb-6">Vyplňte formulář a obdržíte e-book přímo na e-mail.</p>
+        <h3 class="mb-4 text-xl font-bold">Co se uvnitř dozvíte v kostce?</h3>
+        <ul class="grid max-w-3xl gap-4 md:grid-cols-2">
+          <li class="flex items-start gap-3 leading-relaxed text-sand-500">
+            <svg class="mt-0.5 h-5 w-5 shrink-0 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.2 7.2a1 1 0 0 1-1.4 0L3.3 9.1a1 1 0 1 1 1.4-1.4l4.1 4.1 6.5-6.5a1 1 0 0 1 1.4 0z" clip-rule="evenodd"/></svg>
+            <span>Jak najít rychlost, kterou udržíte celý den, a jak dýchat, abyste do kopce nemuseli každých 10 metrů zastavovat.</span>
+          </li>
+          <li class="flex items-start gap-3 leading-relaxed text-sand-500">
+            <svg class="mt-0.5 h-5 w-5 shrink-0 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.2 7.2a1 1 0 0 1-1.4 0L3.3 9.1a1 1 0 1 1 1.4-1.4l4.1 4.1 6.5-6.5a1 1 0 0 1 1.4 0z" clip-rule="evenodd"/></svg>
+            <span>Jak upravit krok, aby sestupy neodnesla vaše kolena.</span>
+          </li>
+          <li class="flex items-start gap-3 leading-relaxed text-sand-500">
+            <svg class="mt-0.5 h-5 w-5 shrink-0 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.2 7.2a1 1 0 0 1-1.4 0L3.3 9.1a1 1 0 1 1 1.4-1.4l4.1 4.1 6.5-6.5a1 1 0 0 1 1.4 0z" clip-rule="evenodd"/></svg>
+            <span>Krátký domácí trénink (bez fitka a činek), který vám v terénu dodá obrovskou jistotu.</span>
+          </li>
+          <li class="flex items-start gap-3 leading-relaxed text-sand-500">
+            <svg class="mt-0.5 h-5 w-5 shrink-0 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.2 7.2a1 1 0 0 1-1.4 0L3.3 9.1a1 1 0 1 1 1.4-1.4l4.1 4.1 6.5-6.5a1 1 0 0 1 1.4 0z" clip-rule="evenodd"/></svg>
+            <span>Co jíst před a po výletu, abyste nedošli o energii a druhý den se mohli hýbat.</span>
+          </li>
+          <li class="flex items-start gap-3 leading-relaxed text-sand-500">
+            <svg class="mt-0.5 h-5 w-5 shrink-0 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.2 7.2a1 1 0 0 1-1.4 0L3.3 9.1a1 1 0 1 1 1.4-1.4l4.1 4.1 6.5-6.5a1 1 0 0 1 1.4 0z" clip-rule="evenodd"/></svg>
+            <span>Jak sladit tempo s partnerem a jak namotivovat děti, aby je chůze bavila.</span>
+          </li>
+        </ul>
 
-      <!-- FAPI FORM SCRIPT -->
-      <div class="prose mx-auto">
-        <script type="text/javascript" src="https://form.fapi.cz/script.php?id=797a6615-41c0-4323-8ded-875a4f84d412"></script>
+        <p class="mt-8 max-w-3xl leading-relaxed text-sand-500">
+          E-book připravil Ondřej Haluza z Vyšlápni.cz s osobním trenérem Lukášem Kadaňkou, <a href="#autoři" class="font-semibold text-[#35483C] underline decoration-sand-200 underline-offset-2 hover:decoration-sand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">více o autorech</a>.
+        </p>
+        <blockquote class="mt-6 max-w-3xl border-l-2 border-sage pl-4 italic leading-relaxed text-sand-500">
+          Vaše tělo zvládne mnohem víc, než si myslíte. Kondice je jen vstupenka k zážitkům, které by jinak zůstaly na fotkách ostatních.
+        </blockquote>
       </div>
+    </section>
 
-      <p class="text-sm text-gray-500 mt-6">Po odeslání formuláře vám přijde odkaz ke stažení e-booku.</p>
-    </div>
-  </section>
+    <section id="ukazka" class="scroll-mt-20 bg-sand-50 py-20 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="mb-3 text-3xl font-bold tracking-tight md:text-4xl">Ukázka z knihy</h2>
+        <p class="mb-10 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">
+          Prohlédněte si prvních 20 stran e-booku přímo v prohlížeči.
+        </p>
+        <div class="relative overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-card">
+          <div class="pointer-events-none absolute inset-0 z-0 flex flex-col items-center justify-center gap-4 bg-sand-50 px-6 text-center" aria-hidden="true">
+            <img src="Cover.jpg" alt="" width="227" height="320" class="cover-sample rounded-lg object-contain shadow-card" />
+            <p class="text-sm font-medium text-sand-700">Načítám ukázku…</p>
+          </div>
+          <iframe
+            src="https://heyzine.com/flip-book/049ea071cb.html"
+            title="Ukázka e-booku Kondice"
+            class="relative z-10 h-[420px] w-full bg-transparent opacity-0 md:h-[600px]"
+            allowfullscreen
+            allow="clipboard-write"
+            onload="(function(f){fetch(f.src,{mode:'no-cors',cache:'force-cache'}).then(function(){f.classList.remove('opacity-0');f.style.backgroundColor='#fff';var n=f.previousElementSibling;if(n)n.hidden=true;}).catch(function(){});})(this)"
+          ></iframe>
+        </div>
+        <div class="mt-6 flex flex-col gap-6 md:flex-row md:items-center">
+          <a href="https://heyzine.com/flip-book/049ea071cb.html" target="_blank" rel="noopener" class="inline-flex min-h-11 items-center text-sm font-semibold text-[#35483C] underline underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Otevřít ukázku v novém okně</a>
+          <a href="#form-section" class="inline-flex min-h-11 items-center text-sm font-semibold text-[#35483C] underline underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Pokračovat k objednávce →</a>
+        </div>
+      </div>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-gray-100">
-    <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
-      <span>© 2025 Limitless Dreams</span>
-      <span>IČO 22512195 · ahoj@vyslapni.cz</span>
+    <section id="autoři" class="scroll-mt-20 border-y border-sand-200 bg-white py-20 md:py-24">
+      <span id="autori" class="block scroll-mt-20"></span>
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="mb-10 text-3xl font-bold tracking-tight md:text-4xl">Autoři</h2>
+        <div class="grid gap-6 lg:grid-cols-2">
+          <article class="rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8">
+            <div class="flex items-center gap-4 md:gap-5">
+              <img src="lukas.jpg" alt="Lukáš Kadaňka" width="389" height="528" loading="lazy" class="h-24 w-24 shrink-0 rounded-full object-cover md:h-[120px] md:w-[120px]" />
+              <div class="min-w-0">
+                <h3 class="text-xl font-bold">Lukáš Kadaňka</h3>
+                <p class="mt-2 inline-flex rounded-full border border-sage/40 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sand-700">Osobní trenér</p>
+              </div>
+            </div>
+            <p class="mt-5 leading-relaxed text-sand-500">
+              Pomáhá lidem zesílit pro běžný život. Nečekejte žádné rychlé triky, ale krátké a efektivní tréninky, které vás zbaví bolestí z nedostatku pohybu.
+              Lukáš vám ukáže jednoduchý systém, jak si vybudovat pevný střed těla a silné nohy, aby vás tělo na výletech podrželo.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8">
+            <div class="flex items-center gap-4 md:gap-5">
+              <img src="ondrej.jpg" alt="Ondřej Haluza" width="394" height="387" loading="lazy" class="h-24 w-24 shrink-0 rounded-full object-cover md:h-[120px] md:w-[120px]" />
+              <div class="min-w-0">
+                <h3 class="text-xl font-bold">Ondřej Haluza</h3>
+                <p class="mt-2 inline-flex rounded-full border border-sage/40 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sand-700">Autor Vyšlápni.cz</p>
+              </div>
+            </div>
+            <p class="mt-5 leading-relaxed text-sand-500">
+              Nadšený turista, který sám tráví dny u počítače. Neukazuje extrémní výkony, ale učí lidi, jak utéct od rutiny do přírody.
+              Motivuje vás zvednout se od stolu, vyčistit si hlavu a užívat si výlety pro radost, bez stresu a bez honby za kilometry.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="form-section" class="scroll-mt-20 bg-sand-50 py-20 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="mb-3 text-3xl font-bold tracking-tight md:text-4xl">Objednat e-book</h2>
+        <p class="mb-10 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">Po zaplacení vám přijde odkaz ke stažení na e-mail.</p>
+        <div class="grid items-start gap-6 lg:grid-cols-[2fr_3fr]">
+          <aside class="self-start rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8 lg:sticky lg:top-24">
+            <div class="flex items-center gap-4">
+              <img src="Cover.jpg" alt="" width="227" height="320" loading="lazy" class="cover-thumb rounded-lg object-contain shadow-card" />
+              <div class="min-w-0">
+                <p class="text-lg font-bold leading-snug">Kondice, která tě posune dál</p>
+                <p class="mt-2 text-sm text-sand-500">E-book ke stažení · kartou nebo převodem</p>
+              </div>
+            </div>
+          </aside>
+          <div class="rounded-3xl border border-sand-200 bg-white p-3 shadow-card sm:p-6 md:p-8">
+            <script type="text/javascript" src="https://form.fapi.cz/script.php?id=797a6615-41c0-4323-8ded-875a4f84d412"></script>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-sand-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row justify-between gap-4 text-sm text-sand-500">
+      <span>© 2026 Limitless Dreams</span>
+      <span>IČO 22512195 · <a href="mailto:ahoj@vyslapni.cz" class="hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">ahoj@vyslapni.cz</a></span>
     </div>
   </footer>
 
-  <script>
-    document.getElementById('scrollToForm').addEventListener('click', function () {
-      var el = document.getElementById('form-section');
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  </script>
-
+  <script src="/assets/ld-header.js?v=20261008"></script>
 </body>
 </html>
