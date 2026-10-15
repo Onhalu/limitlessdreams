@@ -13,13 +13,10 @@
   <meta property="og:image" content="https://www.limitlessdreams.cz/ebook-kondice/Cover.jpg" />
   <meta property="og:locale" content="cs_CZ" />
   <meta name="twitter:card" content="summary" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/cookieconsent.css?v=consent1" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/assets/ld-theme.js?v=20261008"></script>
-  <link rel="stylesheet" href="/assets/ld.css?v=20261008" />
-  <noscript><style>#ukazka iframe{opacity:1!important}</style></noscript>
+  <link rel="stylesheet" href="/assets/ld.css?v=consent1" />
   <style>
     /* Cover.jpg is 227×320. Caps are CSS pixels, not device pixels.
        Replace these limits and the img width/height attributes when a hi-res file lands. */
@@ -170,19 +167,18 @@
         <p class="mb-10 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">
           Prohlédněte si prvních 20 stran e-booku přímo v prohlížeči.
         </p>
-        <div class="relative overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-card">
-          <div class="pointer-events-none absolute inset-0 z-0 flex flex-col items-center justify-center gap-4 bg-sand-50 px-6 text-center" aria-hidden="true">
+        <div
+          class="ld-media ld-media--heyzine shadow-card"
+          data-ld-media="heyzine"
+          data-ld-src="https://heyzine.com/flip-book/049ea071cb.html"
+          data-ld-title="Ukázka e-booku Kondice"
+        >
+          <div class="ld-media-placeholder">
             <img src="Cover.jpg" alt="" width="227" height="320" class="cover-sample rounded-lg object-contain shadow-card" />
-            <p class="text-sm font-medium text-sand-700">Načítám ukázku…</p>
+            <p class="ld-media-kicker">Ukázka je vypnutá</p>
+            <p class="ld-media-note">Heyzine načte náhled až po souhlasu s médii. Objednávka funguje i bez něj.</p>
+            <button type="button" class="ld-media-load">Načíst ukázku</button>
           </div>
-          <iframe
-            src="https://heyzine.com/flip-book/049ea071cb.html"
-            title="Ukázka e-booku Kondice"
-            class="relative z-10 h-[420px] w-full bg-transparent opacity-0 md:h-[600px]"
-            allowfullscreen
-            allow="clipboard-write"
-            onload="(function(f){fetch(f.src,{mode:'no-cors',cache:'force-cache'}).then(function(){f.classList.remove('opacity-0');f.style.backgroundColor='#fff';var n=f.previousElementSibling;if(n)n.hidden=true;}).catch(function(){});})(this)"
-          ></iframe>
         </div>
         <div class="mt-6 flex flex-col gap-6 md:flex-row md:items-center">
           <a href="https://heyzine.com/flip-book/049ea071cb.html" target="_blank" rel="noopener" class="inline-flex min-h-11 items-center text-sm font-semibold text-[#35483C] underline underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Otevřít ukázku v novém okně</a>
@@ -250,12 +246,17 @@
   </main>
 
   <footer class="border-t border-sand-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row justify-between gap-4 text-sm text-sand-500">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm text-sand-500">
       <span>© 2026 Limitless Dreams</span>
-      <span>IČO 22512195 · <a href="mailto:ahoj@vyslapni.cz" class="hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">ahoj@vyslapni.cz</a></span>
+      <span class="flex flex-col gap-2 sm:items-end">
+        <a href="/cookies/" data-cc="show-preferencesModal" class="font-semibold text-[#35483C] underline underline-offset-4 hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Nastavení cookies</a>
+        <span>IČO 22512195 · <a href="mailto:ahoj@vyslapni.cz" class="hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">ahoj@vyslapni.cz</a></span>
+      </span>
     </div>
   </footer>
 
+  <script src="/assets/cookieconsent.umd.js?v=consent1"></script>
+  <script src="/assets/ld-consent.js?v=consent1"></script>
   <script src="/assets/ld-header.js?v=20261008"></script>
 </body>
 </html>
