@@ -212,6 +212,17 @@ body.menu-open { overflow: hidden; }
 #cc-main a {
   background-size: 100% 1px;
 }
+/* Desktop uses the box layout at bottom right. Below the library's 640px
+   breakpoint, stretch that box across the viewport so phones stay a
+   full-width bar along the bottom. */
+@media screen and (max-width: 640px) {
+  #cc-main .cm.cm--box.cm--right {
+    left: var(--cc-modal-margin);
+    right: var(--cc-modal-margin);
+    margin-left: 0;
+    width: auto;
+  }
+}
 #cc-main .cm__desc,
 #cc-main .pm__section-desc {
   line-height: 1.5;

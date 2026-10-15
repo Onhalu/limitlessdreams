@@ -309,7 +309,7 @@
     guiOptions: {
       consentModal: {
         layout: 'box',
-        position: 'bottom center',
+        position: 'bottom right',
         equalWeightButtons: true,
         flipButtons: false
       },
