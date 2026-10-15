@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <title>Crash Floor — Limitless Dreams</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/cookieconsent.css?v=consent1" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/ld.css?v=consent1" />
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
@@ -61,8 +63,20 @@
     <div class="max-w-4xl mx-auto px-6">
       <h2 class="text-3xl font-semibold mb-8">Video z hry</h2>
 
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe class="w-full h-[420px] rounded shadow" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Crash Floor — gameplay" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div
+        class="ld-media ld-media--youtube"
+        data-ld-media="youtube"
+        data-ld-src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0"
+        data-ld-title="Crash Floor — gameplay"
+      >
+        <div class="ld-media-placeholder">
+          <div class="ld-media-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" focusable="false"><path d="M9 7.5v9l8-4.5-8-4.5z" fill="currentColor"/></svg>
+          </div>
+          <p class="ld-media-kicker">Video je vypnuté</p>
+          <p class="ld-media-note">YouTube (youtube-nocookie.com) se spustí až po souhlasu s médii.</p>
+          <button type="button" class="ld-media-load">Načíst video</button>
+        </div>
       </div>
     </div>
   </section>
@@ -102,10 +116,13 @@
   <footer class="border-t border-gray-100">
     <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
       <span>© 2025 Limitless Dreams</span>
+      <a href="/cookies/" data-cc="show-preferencesModal" class="font-semibold text-gray-800 underline underline-offset-4">Nastavení cookies</a>
       <span>IČO · info@email.cz</span>
     </div>
   </footer>
 
+  <script src="/assets/cookieconsent.umd.js?v=consent1"></script>
+  <script src="/assets/ld-consent.js?v=consent1"></script>
   <script>
     document.getElementById('scrollToForm').addEventListener('click', function () {
       var el = document.getElementById('form-section');

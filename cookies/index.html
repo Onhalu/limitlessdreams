@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cookies | Limitless Dreams</title>
+  <meta name="description" content="Jaké cookies používá web Limitless Dreams, k čemu slouží a jak souhlas změnit." />
+  <link rel="canonical" href="https://www.limitlessdreams.cz/cookies/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Cookies | Limitless Dreams" />
+  <meta property="og:description" content="Jaké cookies používá web Limitless Dreams, k čemu slouží a jak souhlas změnit." />
+  <meta property="og:url" content="https://www.limitlessdreams.cz/cookies/" />
+  <meta property="og:locale" content="cs_CZ" />
+  <link rel="stylesheet" href="/assets/cookieconsent.css?v=consent1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/assets/ld-theme.js?v=20261008"></script>
+  <link rel="stylesheet" href="/assets/ld.css?v=consent1" />
+</head>
+
+<body class="bg-sand-50 text-[#35483C] antialiased font-sans">
+
+  <header class="sticky top-0 z-40 border-b border-sand-200/80 bg-white/90 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-6 h-14 sm:h-16 flex items-center justify-between gap-3">
+      <a href="/" class="min-w-0 truncate text-sm font-semibold tracking-tight text-[#35483C] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 sm:text-base">Limitless Dreams</a>
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-sand-700" aria-label="Hlavní navigace">
+        <a href="/#projekty" class="rounded-sm hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Projekty</a>
+        <a href="/#produkty" class="rounded-sm hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Produkty</a>
+        <a href="/#o-nas" class="rounded-sm hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">O nás</a>
+        <a href="/#kontakt" class="inline-flex items-center rounded-full bg-[#35483C] px-4 py-2 text-white hover:opacity-90 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Kontakt</a>
+      </nav>
+      <button type="button" id="menu-toggle" class="md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sand-200 bg-white text-[#35483C] hover:border-sage transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Otevřít menu">
+        <svg id="icon-open" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="mobile-backdrop" class="fixed inset-0 z-40 bg-[#35483C]/40 md:hidden" data-open="false" hidden></div>
+  <aside id="mobile-drawer" class="fixed inset-y-0 right-0 z-50 flex w-[min(100%,20rem)] flex-col bg-white shadow-card-hover md:hidden" data-open="false" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title" hidden>
+    <div class="flex h-14 shrink-0 items-center justify-between border-b border-sand-200 px-4">
+      <p id="mobile-menu-title" class="font-semibold text-[#35483C]">Menu</p>
+      <button type="button" id="menu-close" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sand-200 text-[#35483C] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" aria-label="Zavřít menu">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto overscroll-contain px-4 py-4" aria-label="Mobilní navigace">
+      <ul class="space-y-1">
+        <li><a href="/#projekty" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Projekty</a></li>
+        <li><a href="/#produkty" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Produkty</a></li>
+        <li><a href="/#o-nas" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">O nás</a></li>
+        <li><a href="/#kontakt" class="mobile-nav-link mt-2 flex min-h-11 items-center justify-center rounded-full bg-[#35483C] px-4 text-base font-semibold text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 focus-visible:ring-offset-2">Kontakt</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="bg-sand-50" aria-labelledby="cookies-title">
+      <div class="max-w-6xl mx-auto px-6 pb-12 pt-6 md:pb-16 md:pt-16">
+        <p class="mb-5 md:mb-8">
+          <a href="/" class="inline-flex min-h-11 items-center text-sm text-sand-700 hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">← Limitless Dreams</a>
+        </p>
+        <p class="mb-5 inline-flex rounded-full border border-sage/40 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sand-700">Cookies</p>
+        <h1 id="cookies-title" class="mb-5 max-w-3xl text-4xl font-extrabold tracking-tight leading-[1.05] sm:text-5xl">Jak na tomto webu používáme cookies</h1>
+        <p class="max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">
+          Cookies jsou malé soubory, které si prohlížeč uloží, aby web poznal vaše nastavení a mohl přijmout objednávku. Volbu máte vy. Nezbytné cookies jsou vždy zapnuté, média a analytiku zapneme jen se souhlasem.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-y border-sand-200 bg-white py-16 md:py-20" aria-labelledby="necessary-title">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 id="necessary-title" class="mb-3 text-3xl font-bold tracking-tight">Nezbytné</h2>
+        <p class="mb-8 max-w-3xl leading-relaxed text-sand-500">
+          Tyto cookies web potřebuje, aby se stránky načetly a šla odeslat objednávka. Jsou zapnuté pořád a v liště je nejde vypnout. Odmítnutí ostatních kategorií na ně nemá vliv.
+        </p>
+        <div class="overflow-hidden rounded-3xl border border-sand-200 bg-sand-50">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-white text-[#35483C]">
+              <tr>
+                <th class="px-4 py-3 font-semibold sm:px-6" scope="col">Název</th>
+                <th class="px-4 py-3 font-semibold sm:px-6" scope="col">Kdo ji nastavuje</th>
+                <th class="hidden px-4 py-3 font-semibold md:table-cell sm:px-6" scope="col">Platnost</th>
+                <th class="px-4 py-3 font-semibold sm:px-6" scope="col">Účel</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-sand-200 text-sand-500">
+              <tr>
+                <td class="px-4 py-4 font-semibold text-[#35483C] sm:px-6">cc_cookie</td>
+                <td class="px-4 py-4 sm:px-6">Limitless Dreams</td>
+                <td class="hidden px-4 py-4 md:table-cell sm:px-6">182 dní</td>
+                <td class="px-4 py-4 sm:px-6">Uloží, jestli jste přijali, odmítli nebo upravili souhlas.</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-4 font-semibold text-[#35483C] sm:px-6">_nss</td>
+                <td class="px-4 py-4 sm:px-6">WEDOS (hosting)</td>
+                <td class="hidden px-4 py-4 md:table-cell sm:px-6">dle hostingu</td>
+                <td class="px-4 py-4 sm:px-6">Technická cookie hostingu. Potřebná pro provoz webu, neslouží k reklamě ani měření.</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-4 font-semibold text-[#35483C] sm:px-6">FAPI</td>
+                <td class="px-4 py-4 sm:px-6">form.fapi.cz</td>
+                <td class="hidden px-4 py-4 md:table-cell sm:px-6">dle FAPI</td>
+                <td class="px-4 py-4 sm:px-6">Technické cookies objednávkového formuláře u e-booku a Crash Floor. Formulář se načte i bez souhlasu s médii a analytikou.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-sand-50 py-16 md:py-20" aria-labelledby="media-title">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 id="media-title" class="mb-3 text-3xl font-bold tracking-tight">Média</h2>
+        <p class="mb-8 max-w-3xl leading-relaxed text-sand-500">
+          Vložená videa a náhled e-booku se načtou až potom, co kategorii povolíte. Do té doby je na stránce jen zástupný rámeček. Tlačítko Načíst video nebo Načíst ukázku souhlas s médii zapne a obsah potom stáhne.
+        </p>
+        <div class="grid gap-6 md:grid-cols-2">
+          <article class="rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8">
+            <h3 class="mb-2 text-xl font-bold">YouTube</h3>
+            <p class="leading-relaxed text-sand-500">Přehrávač na stránce Crash Floor jde z domény youtube-nocookie.com. Bez souhlasu se na YouTube nic neodesílá.</p>
+          </article>
+          <article class="rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8">
+            <h3 class="mb-2 text-xl font-bold">Heyzine</h3>
+            <p class="leading-relaxed text-sand-500">Náhled e-booku Kondice je listovačka na heyzine.com. Bez souhlasu se nenačte. Odkaz „otevřít v novém okně“ otevře Heyzine až ve chvíli, kdy na něj kliknete.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-sand-200 bg-white py-16 md:py-20" aria-labelledby="analytics-title">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 id="analytics-title" class="mb-3 text-3xl font-bold tracking-tight">Analytika</h2>
+        <p class="max-w-3xl leading-relaxed text-sand-500">
+          Analytické cookies teď nepoužíváme. Kategorie je ve výchozím stavu vypnutá a je připravená pro pozdější Google Analytics v režimu Consent Mode v2. Měřicí kód na webu není, takže ani zapnutí kategorie dnes nic neodesílá. Až měření přidáme, signál <span class="font-semibold text-[#35483C]">analytics_storage</span> zůstane odmítnutý, dokud analytiku sami nepovolíte.
+        </p>
+      </div>
+    </section>
+
+    <section class="bg-sand-50 py-16 md:py-20" aria-labelledby="change-title">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-10">
+          <h2 id="change-title" class="mb-3 text-3xl font-bold tracking-tight">Jak souhlas změnit</h2>
+          <p class="mb-6 max-w-3xl leading-relaxed text-sand-500">
+            Volba se ukládá do cookie <span class="font-semibold text-[#35483C]">cc_cookie</span> na 182 dní. Změnit ji můžete kdykoli:
+          </p>
+          <ul class="mb-8 grid max-w-3xl gap-3 text-sand-500">
+            <li class="leading-relaxed">Tlačítkem na této stránce.</li>
+            <li class="leading-relaxed">Odkazem <span class="font-semibold text-[#35483C]">Nastavení cookies</span> v patičce každé stránky.</li>
+            <li class="leading-relaxed">Smazáním cookies v prohlížeči. Lišta se zobrazí znovu.</li>
+          </ul>
+          <button type="button" data-cc="show-preferencesModal" class="inline-flex min-h-11 items-center justify-center rounded-full bg-[#35483C] px-7 py-3.5 text-base font-semibold text-white transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Nastavení cookies</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-sand-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm text-sand-500">
+      <span>© 2026 Limitless Dreams</span>
+      <span class="flex flex-col gap-2 sm:items-end">
+        <a href="/cookies/" data-cc="show-preferencesModal" class="font-semibold text-[#35483C] underline underline-offset-4 hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Nastavení cookies</a>
+        <span>IČO 22512195 · <a href="mailto:ahoj@vyslapni.cz" class="hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">ahoj@vyslapni.cz</a></span>
+      </span>
+    </div>
+  </footer>
+
+  <script src="/assets/cookieconsent.umd.js?v=consent1"></script>
+  <script src="/assets/ld-consent.js?v=consent1"></script>
+  <script src="/assets/ld-header.js?v=20261008"></script>
+</body>
+</html>

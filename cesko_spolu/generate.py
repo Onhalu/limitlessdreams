@@ -84,7 +84,9 @@ def render_card(card: dict) -> str:
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{name} · Česko spolu</title>
-    <link rel="stylesheet" href="../card.css?v=cta3">
+    <link rel="stylesheet" href="../card.css?v=consent1">
+    <link rel="stylesheet" href="/assets/cookieconsent.css?v=consent1">
+    <link rel="stylesheet" href="/assets/ld.css?v=consent1">
   </head>
   <body>
     <main class="card">
@@ -94,6 +96,11 @@ def render_card(card: dict) -> str:
       <p class="card-type">{kind} · <span class="card-id">#{id_padded}</span></p>
       <div class="card-fact"><p>{fact}</p></div>{wiki_link}{cta}
     </main>
+    <footer class="card-footer">
+      <a href="/cookies/" data-cc="show-preferencesModal">Nastavení cookies</a>
+    </footer>
+    <script src="/assets/cookieconsent.umd.js?v=consent1"></script>
+    <script src="/assets/ld-consent.js?v=consent1"></script>
   </body>
 </html>
 '''
@@ -110,7 +117,9 @@ def render_index(cards: list[dict]) -> str:
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Česko spolu</title>
-    <link rel="stylesheet" href="card.css?v=cta3">
+    <link rel="stylesheet" href="card.css?v=consent1">
+    <link rel="stylesheet" href="/assets/cookieconsent.css?v=consent1">
+    <link rel="stylesheet" href="/assets/ld.css?v=consent1">
   </head>
   <body>
     <main class="card-list">
@@ -119,6 +128,11 @@ def render_index(cards: list[dict]) -> str:
 {links}
       </ul>
     </main>
+    <footer class="card-footer">
+      <a href="/cookies/" data-cc="show-preferencesModal">Nastavení cookies</a>
+    </footer>
+    <script src="/assets/cookieconsent.umd.js?v=consent1"></script>
+    <script src="/assets/ld-consent.js?v=consent1"></script>
   </body>
 </html>
 '''
