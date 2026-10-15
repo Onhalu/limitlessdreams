@@ -236,3 +236,28 @@ body {
   font-weight: 650;
   text-underline-offset: 3px;
 }
+
+.card-footer {
+  width: min(100%, 480px);
+  margin: 0 auto;
+  padding: 8px 20px calc(28px + env(safe-area-inset-bottom));
+  text-align: center;
+}
+
+.card-footer a {
+  color: var(--olive);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.card-footer a:hover,
+.card-footer a:focus-visible {
+  opacity: 0.85;
+}
+
+.card-footer a:focus-visible {
+  outline: 2px solid #9c9a7b;
+  outline-offset: 3px;
+}

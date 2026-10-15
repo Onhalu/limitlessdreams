@@ -11,12 +11,10 @@
   <meta property="og:url" content="https://www.limitlessdreams.cz/" />
   <meta property="og:image" content="https://www.limitlessdreams.cz/hero-user-tight.jpg" />
   <link rel="canonical" href="https://www.limitlessdreams.cz/" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/cookieconsent.css?v=consent1" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/assets/ld-theme.js?v=20261008"></script>
-  <link rel="stylesheet" href="/assets/ld.css?v=20261008" />
+  <link rel="stylesheet" href="/assets/ld.css?v=consent1" />
 </head>
 
 <body class="bg-sand-50 text-[#35483C] antialiased font-sans">
@@ -290,13 +288,18 @@
   </section>
 
   <footer class="border-t border-sand-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row justify-between gap-4 text-sm text-sand-500">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm text-sand-500">
       <span data-i18n="footer.copy">© 2026 Limitless Dreams</span>
-      <span><span data-i18n="footer.ico">IČO 22512195</span> · <a href="mailto:ahoj@vyslapni.cz" class="hover:text-[#35483C] transition">ahoj@vyslapni.cz</a></span>
+      <span class="flex flex-col gap-2 sm:items-end">
+        <a href="/cookies/" data-cc="show-preferencesModal" data-i18n="footer.cookies" class="font-semibold text-[#35483C] underline underline-offset-4 hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Nastavení cookies</a>
+        <span><span data-i18n="footer.ico">IČO 22512195</span> · <a href="mailto:ahoj@vyslapni.cz" class="hover:text-[#35483C] transition">ahoj@vyslapni.cz</a></span>
+      </span>
     </div>
   </footer>
 
 
+  <script src="/assets/cookieconsent.umd.js?v=consent1"></script>
+  <script src="/assets/ld-consent.js?v=consent1"></script>
   <script src="/assets/ld-header.js?v=20261008"></script>
   <script>
     (function () {
@@ -355,6 +358,7 @@
           'contact.ico': 'IČO 22512195',
           'footer.copy': '© 2026 Limitless Dreams',
           'footer.ico': 'IČO 22512195',
+          'footer.cookies': 'Nastavení cookies',
           'a11y.open': 'Otevřít menu',
           'a11y.close': 'Zavřít menu'
         },
@@ -412,6 +416,7 @@
           'contact.ico': 'Company ID 22512195',
           'footer.copy': '© 2026 Limitless Dreams',
           'footer.ico': 'Company ID 22512195',
+          'footer.cookies': 'Cookie settings',
           'a11y.open': 'Open menu',
           'a11y.close': 'Close menu'
         }
@@ -424,6 +429,7 @@
         if (!I18N[lang]) lang = 'cs';
         try { localStorage.setItem('ld-lang', lang); } catch (e) {}
         document.documentElement.lang = lang;
+        if (window.ldSetConsentLang) window.ldSetConsentLang(lang);
         var dict = I18N[lang];
         document.querySelectorAll('[data-i18n]').forEach(function (el) {
           var key = el.getAttribute('data-i18n');
