@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kompas turistiky | Limitless Dreams</title>
+  <meta name="description" content="Vzdělávací turistický profil pro rodiny: jak chodit, chystat se a poznávat přírodu. Není to profil tipy na výlety." />
+  <link rel="canonical" href="https://www.limitlessdreams.cz/kompas-turistiky/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kompas turistiky | Limitless Dreams" />
+  <meta property="og:description" content="Vzdělávací turistický profil pro rodiny: jak chodit, chystat se a poznávat přírodu." />
+  <meta property="og:url" content="https://www.limitlessdreams.cz/kompas-turistiky/" />
+  <meta property="og:image" content="https://www.limitlessdreams.cz/kompas-turistiky/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="cs_CZ" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kompas turistiky | Limitless Dreams" />
+  <meta name="twitter:description" content="Vzdělávací turistický profil pro rodiny: jak chodit, chystat se a poznávat přírodu." />
+  <meta name="twitter:image" content="https://www.limitlessdreams.cz/kompas-turistiky/og.jpg" />
+  <link rel="stylesheet" href="/assets/cookieconsent.css?v=consent1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/assets/ld-theme.js?v=20261008"></script>
+  <link rel="stylesheet" href="/assets/ld.css?v=consent1" />
+</head>
+
+<body class="bg-sand-50 text-[#35483C] antialiased font-sans">
+
+  <header class="sticky top-0 z-40 border-b border-sand-200/80 bg-white/90 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-6 h-14 sm:h-16 flex items-center justify-between gap-3">
+      <a href="/" class="min-w-0 truncate text-sm font-semibold tracking-tight text-[#35483C] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 sm:text-base">Limitless Dreams</a>
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-sand-700" aria-label="Hlavní navigace">
+        <a href="/#projekty" class="rounded-sm hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Projekty</a>
+        <a href="/#produkty" class="rounded-sm hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Produkty</a>
+        <a href="/#o-nas" class="rounded-sm hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">O nás</a>
+        <a href="/#kontakt" class="inline-flex items-center rounded-full bg-[#35483C] px-4 py-2 text-white hover:opacity-90 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Kontakt</a>
+      </nav>
+      <button type="button" id="menu-toggle" class="md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sand-200 bg-white text-[#35483C] hover:border-sage transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Otevřít menu">
+        <svg id="icon-open" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="icon-close" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="mobile-backdrop" class="fixed inset-0 z-40 bg-[#35483C]/40 md:hidden" data-open="false" hidden></div>
+  <aside id="mobile-drawer" class="fixed inset-y-0 right-0 z-50 flex w-[min(100%,20rem)] flex-col bg-white shadow-card-hover md:hidden" data-open="false" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title" hidden>
+    <div class="flex h-14 shrink-0 items-center justify-between border-b border-sand-200 px-4">
+      <p id="mobile-menu-title" class="font-semibold text-[#35483C]">Menu</p>
+      <button type="button" id="menu-close" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sand-200 text-[#35483C] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" aria-label="Zavřít menu">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto overscroll-contain px-4 py-4" aria-label="Mobilní navigace">
+      <ul class="space-y-1">
+        <li><a href="/#projekty" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Projekty</a></li>
+        <li><a href="/#produkty" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Produkty</a></li>
+        <li><a href="/#o-nas" class="mobile-nav-link flex min-h-11 items-center rounded-2xl px-4 text-base font-medium text-[#35483C] hover:bg-sand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">O nás</a></li>
+        <li><a href="/#kontakt" class="mobile-nav-link mt-2 flex min-h-11 items-center justify-center rounded-full bg-[#35483C] px-4 text-base font-semibold text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 focus-visible:ring-offset-2">Kontakt</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="bg-sand-50" aria-labelledby="hero-title">
+      <div class="max-w-6xl mx-auto px-6 pb-16 pt-6 md:py-24">
+        <p class="mb-5 md:mb-8">
+          <a href="/#produkty" class="inline-flex min-h-11 items-center text-sm text-sand-700 hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">← Zpět na produkty</a>
+        </p>
+
+        <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <div class="order-1 lg:order-2">
+            <div class="flex w-full items-center justify-center rounded-3xl border border-sand-200 bg-gradient-to-br from-sand-100 to-sand-50 p-8 sm:p-12">
+              <img
+                src="logo.svg"
+                alt="Logo Kompas turistiky"
+                width="1080"
+                height="1080"
+                class="h-auto w-full max-w-[220px] lg:max-w-[280px]"
+              />
+            </div>
+          </div>
+
+          <div class="order-2 lg:order-1">
+            <p class="mb-5 inline-flex rounded-full border border-sage/40 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sand-700">Instagram</p>
+            <h1 id="hero-title" class="mb-5 max-w-3xl text-4xl font-extrabold tracking-tight leading-[1.05] text-[#35483C] sm:text-5xl md:text-6xl">Kompas turistiky</h1>
+            <p class="mb-8 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">
+              Vzdělávací turistický profil pro rodiny: jak chodit, chystat se a poznávat přírodu.
+            </p>
+            <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a href="https://www.instagram.com/kompas.turistiky/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#35483C] px-7 py-3.5 text-center text-base font-semibold text-white transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 sm:w-auto">Sledovat na Instagramu</a>
+              <a href="https://vyslapni.cz/vylety/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-sand-200 bg-white px-7 py-3.5 text-center text-base font-semibold text-[#35483C] transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40 sm:w-auto">Zapoj se do výzev Vyšlápni.cz</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proc-vznikl" class="scroll-mt-20 border-y border-sand-200 bg-white py-20 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="mb-3 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">Proč profil vznikl</h2>
+        <p class="mb-5 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">
+          Vzdělávací profil o turistice pro rodiny. Učí, jak chodit, jak se na výlet chystat a jak poznávat přírodu a česká místa.
+        </p>
+        <p class="mb-5 max-w-3xl leading-relaxed text-sand-500">
+          Zve sledující k turistickým výzvám <a href="https://vyslapni.cz/vylety/" class="font-semibold text-[#35483C] underline decoration-sand-200 underline-offset-2 hover:decoration-sand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" target="_blank" rel="noopener noreferrer">Vyšlápni.cz</a>.
+        </p>
+        <p class="max-w-3xl leading-relaxed text-sand-500">
+          Není to profil „tipy na výlety“. Je to vzdělávací stránka o turistice.
+        </p>
+      </div>
+    </section>
+
+    <section id="kdo" class="scroll-mt-20 bg-sand-50 py-20 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="mb-10 text-3xl font-bold tracking-tight md:text-4xl">Kdo za ním stojí</h2>
+        <article class="max-w-3xl rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8">
+          <h3 class="text-xl font-bold">Ondřej Haluza</h3>
+          <p class="mt-5 leading-relaxed text-sand-500">
+            Profil podporuje projekt <a href="https://vyslapni.cz" class="font-semibold text-[#35483C] underline decoration-sand-200 underline-offset-2 hover:decoration-sand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40" target="_blank" rel="noopener noreferrer">Vyšlápni.cz</a> — gamifikované turistické výzvy.
+          </p>
+          <p class="mt-4 leading-relaxed text-sand-500">
+            E-booky vycházejí pod Vyšlápni.cz a Limitless Dreams.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="co-najdes" class="scroll-mt-20 border-y border-sand-200 bg-white py-20 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="mb-3 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">Co tam najdeš</h2>
+        <p class="mb-10 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">
+          Vzdělávací karusely v jednotném stylu.
+        </p>
+
+        <div class="mb-12 grid gap-6 md:grid-cols-3">
+          <article class="rounded-3xl border border-sand-200 bg-sand-50 p-6 shadow-card md:p-8">
+            <h3 class="mb-4 text-xl font-bold">Praktické rady</h3>
+            <p class="mb-4 text-sm text-sand-500">Například:</p>
+            <ul class="space-y-3 text-sand-500">
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 shrink-0 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.2 7.2a1 1 0 0 1-1.4 0L3.3 9.1a1 1 0 1 1 1.4-1.4l4.1 4.1 6.5-6.5a1 1 0 0 1 1.4 0z" clip-rule="evenodd"/></svg>
+                <span>5 věcí, na které se zapomíná</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 shrink-0 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.2 7.2a1 1 0 0 1-1.4 0L3.3 9.1a1 1 0 1 1 1.4-1.4l4.1 4.1 6.5-6.5a1 1 0 0 1 1.4 0z" clip-rule="evenodd"/></svg>
+                <span>Jak vybrat trasu pro malé nožičky</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="rounded-3xl border border-sand-200 bg-sand-50 p-6 shadow-card md:p-8">
+            <h3 class="mb-4 text-xl font-bold">Hry na stezku</h3>
+            <p class="mb-4 text-sm text-sand-500">Například:</p>
+            <ul class="space-y-3 text-sand-500">
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 shrink-0 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.2 7.2a1 1 0 0 1-1.4 0L3.3 9.1a1 1 0 1 1 1.4-1.4l4.1 4.1 6.5-6.5a1 1 0 0 1 1.4 0z" clip-rule="evenodd"/></svg>
+                <span>Hry na výlet s dětmi</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 shrink-0 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.2 7.2a1 1 0 0 1-1.4 0L3.3 9.1a1 1 0 1 1 1.4-1.4l4.1 4.1 6.5-6.5a1 1 0 0 1 1.4 0z" clip-rule="evenodd"/></svg>
+                <span>Hry, které rozmluví partu</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 shrink-0 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.2 7.2a1 1 0 0 1-1.4 0L3.3 9.1a1 1 0 1 1 1.4-1.4l4.1 4.1 6.5-6.5a1 1 0 0 1 1.4 0z" clip-rule="evenodd"/></svg>
+                <span>Hry pro dva na stezce</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="rounded-3xl border border-sand-200 bg-sand-50 p-6 shadow-card md:p-8">
+            <h3 class="mb-4 text-xl font-bold">Česko spolu</h3>
+            <p class="leading-relaxed text-sand-500">
+              Série „Česko spolu“: v jednom karuselu tři související místa z <a href="/cesko_spolu/" class="font-semibold text-[#35483C] underline decoration-sand-200 underline-offset-2 hover:decoration-sand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Česko spolu</a>.
+            </p>
+          </article>
+        </div>
+
+        <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          <li>
+            <figure class="overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-card">
+              <img src="5-veci-na-ktere-se-zapomina.webp" alt="Titulní slide karuselu „5 věcí, na které se zapomíná“" width="720" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+              <figcaption class="px-3 py-3 text-sm font-medium leading-snug">5 věcí, na které se zapomíná</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-card">
+              <img src="jak-vybrat-trasu-pro-male-nozicky.webp" alt="Titulní slide karuselu „Jak vybrat trasu pro malé nožičky“. Podtitul: 4 pravidla pro rodinný výlet." width="720" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+              <figcaption class="px-3 py-3 text-sm font-medium leading-snug">Jak vybrat trasu pro malé nožičky</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-card">
+              <img src="hry-na-vylet-s-detmi.webp" alt="Titulní slide karuselu „Hry na výlet s dětmi“. Podtitul: 3 nápady z e-booku 9 her do batohu." width="720" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+              <figcaption class="px-3 py-3 text-sm font-medium leading-snug">Hry na výlet s dětmi</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-card">
+              <img src="hry-ktere-rozmluvi-partu.webp" alt="Titulní slide karuselu „Hry, které rozmluví partu“. Podtitul: 3 nápady z e-booku 9 her do batohu." width="720" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+              <figcaption class="px-3 py-3 text-sm font-medium leading-snug">Hry, které rozmluví partu</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-card">
+              <img src="hry-pro-dva-na-stezce.webp" alt="Titulní slide karuselu „Hry pro dva na stezce“. Podtitul: 3 nápady z e-booku 9 her do batohu." width="720" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+              <figcaption class="px-3 py-3 text-sm font-medium leading-snug">Hry pro dva na stezce</figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="ebooky" class="scroll-mt-20 bg-sand-50 py-20 md:py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="mb-3 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">Vazba na e-booky</h2>
+        <p class="mb-10 max-w-3xl text-lg leading-relaxed text-sand-500 md:text-xl">
+          Obsah vychází z e-booků.
+        </p>
+        <ul class="grid gap-6 md:grid-cols-3">
+          <li class="rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8">
+            <h3 class="text-xl font-bold leading-snug">
+              <a href="/ebook-kondice/" class="underline decoration-sand-200 underline-offset-4 hover:decoration-sand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Kondice, která tě posune dál</a>
+            </h3>
+          </li>
+          <li class="rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8">
+            <p class="mb-3 inline-flex rounded-full border border-sage/40 bg-sand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#35483C]">Zdarma</p>
+            <h3 class="text-xl font-bold leading-snug">
+              <a href="/ebook-kdyz-stezky-ztichnou/" class="underline decoration-sand-200 underline-offset-4 hover:decoration-sand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Když stezky ztichnou</a>
+            </h3>
+          </li>
+          <li class="rounded-3xl border border-sand-200 bg-white p-6 shadow-card md:p-8">
+            <p class="mb-3 inline-flex rounded-full border border-sage/40 bg-sand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#35483C]">Zdarma</p>
+            <h3 class="text-xl font-bold leading-snug">
+              <a href="/ebook-9-her-do-batohu/" class="underline decoration-sand-200 underline-offset-4 hover:decoration-sand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">9 her do batohu</a>
+            </h3>
+            <p class="mt-4 leading-relaxed text-sand-500">Herní karusely vycházejí z tohoto e-booku.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bg-[#35483C] py-16 text-white md:py-20" aria-labelledby="sledovat-title">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 id="sledovat-title" class="mb-4 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">Sledovat na Instagramu</h2>
+        <p class="mb-8 max-w-xl text-lg leading-relaxed text-white/80">
+          Vzdělávací turistický profil pro rodiny: jak chodit, chystat se a poznávat přírodu.
+        </p>
+        <a href="https://www.instagram.com/kompas.turistiky/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-white px-7 py-3.5 text-center text-base font-semibold text-[#35483C] transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:w-auto">Sledovat na Instagramu</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-sand-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm text-sand-500">
+      <span>© 2026 Limitless Dreams</span>
+      <span class="flex flex-col gap-2 sm:items-end">
+        <a href="/cookies/" data-cc="show-preferencesModal" class="font-semibold text-[#35483C] underline underline-offset-4 hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Nastavení cookies</a>
+        <span>IČO 22512195 · <a href="mailto:ahoj@limitlessdreams.cz" class="hover:text-[#35483C] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">ahoj@limitlessdreams.cz</a></span>
+      </span>
+    </div>
+  </footer>
+
+  <script src="/assets/cookieconsent.umd.js?v=consent1"></script>
+  <script src="/assets/ld-consent.js?v=consent1"></script>
+  <script src="/assets/ld-header.js?v=20261008"></script>
+</body>
+</html>
