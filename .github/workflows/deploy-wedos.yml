@@ -60,3 +60,37 @@ jobs:
           done
           echo "SUMMARY ok=${ok} fail=${fail}"
           test "$fail" -eq 0
+
+      # Subdomain document root on this WEDOS account. The step above still
+      # uploads repo paths (including vandery/) onto the main-site login root.
+      - name: Deploy Vandery subdomain via FTPS
+        env:
+          FTP_HOST: ${{ secrets.WEDOS_FTP_HOST }}
+          FTP_USER: ${{ secrets.WEDOS_FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.WEDOS_FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -f vandery/index.html
+          mapfile -t FILES < <(find vandery -type f ! -name '.DS_Store' | sed 's|^vandery/||' | sort)
+          echo "Uploading ${#FILES[@]} files to domains/vandery.limitlessdreams.cz/ on host(len=${#FTP_HOST})"
+          ok=0
+          fail=0
+          for rel in "${FILES[@]}"; do
+            uploaded=0
+            url="ftp://${FTP_HOST}/domains/vandery.limitlessdreams.cz/${rel}"
+            for try in $(seq 1 10); do
+              if curl --ssl-reqd --ftp-pasv --ftp-skip-pasv-ip --ftp-create-dirs                 --user "${FTP_USER}:${FTP_PASSWORD}"                 -T "vandery/${rel}" "${url}" -o /dev/null --silent --show-error; then
+                echo "OK ${rel} (try ${try})"
+                uploaded=1
+                ok=$((ok+1))
+                break
+              fi
+              sleep 2
+            done
+            if [ "$uploaded" -ne 1 ]; then
+              echo "FAIL ${rel}"
+              fail=$((fail+1))
+            fi
+          done
+          echo "SUMMARY ok=${ok} fail=${fail}"
+          test "$fail" -eq 0

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vandery — turistická aplikace</title>
+  <meta name="description" content="Turistická aplikace Vandery se připravuje a bude k dispozici v roce 2027." />
+  <link rel="canonical" href="https://vandery.limitlessdreams.cz/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="cs_CZ" />
+  <meta property="og:site_name" content="Vandery" />
+  <meta property="og:title" content="Vandery — turistická aplikace" />
+  <meta property="og:description" content="Turistická aplikace Vandery se připravuje a bude k dispozici v roce 2027." />
+  <meta property="og:url" content="https://vandery.limitlessdreams.cz/" />
+  <meta property="og:image" content="https://vandery.limitlessdreams.cz/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Vandery — turistická aplikace" />
+  <meta name="twitter:description" content="Turistická aplikace Vandery se připravuje a bude k dispozici v roce 2027." />
+  <meta name="twitter:image" content="https://vandery.limitlessdreams.cz/og.png" />
+  <meta name="theme-color" content="#F6F3EB" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+          colors: {
+            sand: {
+              50: '#F6F3EB',
+              100: '#F3EFE5',
+              200: '#D8CDB8',
+              500: '#756653',
+              700: '#756653',
+              900: '#35483C',
+            },
+            sage: {
+              DEFAULT: '#9C9A7B',
+              soft: '#B5B39A',
+            }
+          },
+          boxShadow: {
+            card: '0 1px 2px rgba(28,25,23,0.04), 0 8px 24px rgba(28,25,23,0.06)',
+            'card-hover': '0 1px 2px rgba(28,25,23,0.04), 0 16px 40px rgba(28,25,23,0.10)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="flex min-h-svh flex-col bg-sand-50 font-sans text-[#35483C] antialiased">
+  <main class="flex flex-1 flex-col items-center justify-center px-6 py-12 text-center sm:py-16">
+    <div class="w-full max-w-sm rounded-[2rem] bg-[#35483C] px-8 py-10 shadow-card sm:px-10">
+      <img src="logo-vandery.png" alt="Vandery" width="960" height="557" class="mx-auto h-auto w-full" />
+    </div>
+    <h1 class="mt-10 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl">Vandery</h1>
+    <p class="mt-4 max-w-sm text-lg leading-relaxed text-sand-500">
+      Turistická aplikace se připravuje a bude k dispozici v roce 2027.
+    </p>
+  </main>
+
+  <footer class="border-t border-sand-200 bg-[#F3EFE5]">
+    <div class="mx-auto flex w-full max-w-lg flex-col items-center gap-1 px-6 py-3 text-sm sm:flex-row sm:justify-center sm:gap-4">
+      <a href="https://www.limitlessdreams.cz/" class="inline-flex min-h-11 items-center rounded-sm font-semibold text-[#35483C] underline decoration-sage underline-offset-4 hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">Limitless Dreams</a>
+      <a href="mailto:ahoj@limitlessdreams.cz" class="inline-flex min-h-11 items-center rounded-sm text-sand-500 hover:text-[#35483C] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#35483C]/40">ahoj@limitlessdreams.cz</a>
+    </div>
+  </footer>
+</body>
+</html>
