@@ -9,6 +9,10 @@ cd "$root"
 missing=0
 count=0
 
+# vandery/ is a separate document root (vandery.limitlessdreams.cz) with no
+# tracking, embeds, or forms. Root-relative /assets/ld-consent.js would 404
+# there, and the live font files do not send CORS, so the page ships its own
+# type and skips the banner.
 while IFS= read -r -d '' file; do
   count=$((count + 1))
   if ! grep -q '/assets/ld-consent.js' "$file"; then
@@ -27,7 +31,7 @@ while IFS= read -r -d '' file; do
     echo "MISSING Nastavení cookies link: $file"
     missing=1
   fi
-done < <(find . -name '*.html' -not -path './.git/*' -print0)
+done < <(find . -name '*.html' -not -path './.git/*' -not -path './vandery/*' -print0)
 
 if grep -R -n -E 'fonts\.(googleapis|gstatic)\.com' --include='*.html' --include='*.css' --include='*.js' .; then
   echo "Google Fonts host is still referenced"
@@ -86,4 +90,5 @@ if [[ "$missing" -ne 0 ]]; then
   exit 1
 fi
 
+echo "Note: vandery/ is excluded (standalone subdomain, no tracking)."
 echo "OK: $count HTML pages include cookieconsent 3.1.0, ld-consent.js, and Nastavení cookies"
