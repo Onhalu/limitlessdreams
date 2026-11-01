@@ -29,7 +29,7 @@ jobs:
           ADVENT_ALLOWLIST: ${{ secrets.ADVENT26TEST_ALLOWLIST }}
         run: |
           set -euo pipefail
-          CFG="$RUNNER_TEMP/config.php"
+          export CFG="$RUNNER_TEMP/config.php"
           echo "FTP_HOST length=${#FTP_HOST}"
           echo "FTP_USER length=${#FTP_USER}"
           echo "FTP_PASSWORD length=${#FTP_PASSWORD}"
@@ -91,7 +91,10 @@ jobs:
               'TICKER_API_KEY' => '',
           ];
           """
-          path = Path(os.environ["CFG"])
+          path = Path(os.environ.get("RUNNER_TEMP", "/tmp")) / "config.php"
+          cfg = os.environ.get("CFG")
+          if cfg and Path(cfg) != path:
+              raise SystemExit("CFG does not match RUNNER_TEMP/config.php")
           path.write_text(body)
           path.chmod(0o600)
           text = path.read_text()
@@ -116,7 +119,7 @@ jobs:
           FTP_PASSWORD: ${{ secrets.WEDOS_FTP_PASSWORD }}
         run: |
           set -euo pipefail
-          CFG="$RUNNER_TEMP/config.php"
+          export CFG="$RUNNER_TEMP/config.php"
           test -f "$CFG"
           grep -q "http_response_code(404)" "$CFG"
           grep -q "'ADVENT_MODE' => 'test'" "$CFG"
@@ -143,7 +146,7 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          CFG="$RUNNER_TEMP/config.php"
+          export CFG="$RUNNER_TEMP/config.php"
           rm -f "$CFG"
           if [ -e "$CFG" ]; then
             echo "config.php still present after delete"
