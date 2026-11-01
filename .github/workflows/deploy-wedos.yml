@@ -94,3 +94,40 @@ jobs:
           done
           echo "SUMMARY ok=${ok} fail=${fail}"
           test "$fail" -eq 0
+
+      # Test vhost document root on this WEDOS account. The main-site step
+      # above still uploads repo paths (including advent26test/) onto the
+      # login root. api/config.php is not in git; it is uploaded separately.
+      - name: Deploy advent26test subdomain via FTPS
+        env:
+          FTP_HOST: ${{ secrets.WEDOS_FTP_HOST }}
+          FTP_USER: ${{ secrets.WEDOS_FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.WEDOS_FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -f advent26test/index.html
+          test -f advent26test/api/config.example.php
+          test ! -f advent26test/api/config.php
+          mapfile -t FILES < <(find advent26test -type f ! -name '.DS_Store' ! -name 'config.php' | sed 's|^advent26test/||' | sort)
+          echo "Uploading ${#FILES[@]} files to domains/advent26test.limitlessdreams.cz/ on host(len=${#FTP_HOST})"
+          ok=0
+          fail=0
+          for rel in "${FILES[@]}"; do
+            uploaded=0
+            url="ftp://${FTP_HOST}/domains/advent26test.limitlessdreams.cz/${rel}"
+            for try in $(seq 1 10); do
+              if curl --ssl-reqd --ftp-pasv --ftp-skip-pasv-ip --ftp-create-dirs                 --user "${FTP_USER}:${FTP_PASSWORD}"                 -T "advent26test/${rel}" "${url}" -o /dev/null --silent --show-error; then
+                echo "OK ${rel} (try ${try})"
+                uploaded=1
+                ok=$((ok+1))
+                break
+              fi
+              sleep 2
+            done
+            if [ "$uploaded" -ne 1 ]; then
+              echo "FAIL ${rel}"
+              fail=$((fail+1))
+            fi
+          done
+          echo "SUMMARY ok=${ok} fail=${fail}"
+          test "$fail" -eq 0
