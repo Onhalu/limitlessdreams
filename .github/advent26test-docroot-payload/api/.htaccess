@@ -1,0 +1,13 @@
+# The loader and config files are not endpoints.
+<FilesMatch "^(bootstrap\.php|config\.php|config\.example\.php)$">
+  Require all denied
+</FilesMatch>
+
+# lib/ and checks/ are not endpoints. Authorization is dropped by some Apache
+# CGI setups unless it is copied into the request environment.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(lib|checks)/ - [F,L]
+  RewriteCond %{HTTP:Authorization} .
+  RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>

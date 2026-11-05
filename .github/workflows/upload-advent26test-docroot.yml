@@ -1,0 +1,437 @@
+# Manual upload of the reviewed advent26test document root.
+# workflow_dispatch only. Does not run on push. Does not deploy the hub,
+# /odkazy/, vandery, or domains/advent26.limitlessdreams.cz.
+# PHP stays on the server until upload_php is true AND confirm_migration matches.
+# api/config.php is never downloaded, uploaded, or deleted.
+
+name: Upload advent26test document root
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_root:
+        description: Type advent26test.limitlessdreams.cz to confirm the only target
+        required: true
+        type: string
+      upload_php:
+        description: Upload PHP. Leave false until the Supabase migration is applied.
+        required: true
+        type: boolean
+        default: false
+      confirm_migration:
+        description: When upload_php is true, type supabase-migration-applied
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: advent26test-docroot-upload
+  cancel-in-progress: false
+
+jobs:
+  upload-docroot:
+    runs-on: ubuntu-latest
+    env:
+      CONFIRM_ROOT: ${{ inputs.confirm_root }}
+      UPLOAD_PHP: ${{ inputs.upload_php && 'true' || 'false' }}
+      CONFIRM_MIGRATION: ${{ inputs.confirm_migration }}
+      PAYLOAD: .github/advent26test-docroot-payload
+      DEST: domains/advent26test.limitlessdreams.cz
+      BACKUP_PREFIX: domains/_private/advent26test-backups
+      EXPECTED_PAYLOAD_SHA256: 05ec645641ee529d168dfcfb935b3b346041649bf66f0102ae6309a97917fc1d
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Guard payload, target, and PHP
+        run: |
+          set -euo pipefail
+          python3 << 'PY'
+          import hashlib
+          import os
+          import sys
+          from pathlib import Path
+
+          confirm = os.environ.get("CONFIRM_ROOT", "")
+          upload_php = os.environ.get("UPLOAD_PHP", "")
+          migration = os.environ.get("CONFIRM_MIGRATION", "")
+          dest = os.environ["DEST"]
+          backup_prefix = os.environ["BACKUP_PREFIX"]
+          payload = Path(os.environ["PAYLOAD"])
+          expected = os.environ["EXPECTED_PAYLOAD_SHA256"]
+
+          if confirm != "advent26test.limitlessdreams.cz":
+              sys.exit("Refusing: confirm_root must be advent26test.limitlessdreams.cz")
+          if dest != "domains/advent26test.limitlessdreams.cz":
+              sys.exit("Refusing: destination is not the test vhost")
+          if dest == "domains/advent26.limitlessdreams.cz" or dest.startswith("domains/advent26.limitlessdreams.cz/"):
+              sys.exit("Refusing: production vhost")
+          if "advent26.limitlessdreams.cz" in backup_prefix:
+              sys.exit("Refusing: backup prefix names production")
+          if backup_prefix == dest or backup_prefix.startswith(dest + "/"):
+              sys.exit("Refusing: backup path is inside the document root")
+          if upload_php not in ("true", "false"):
+              sys.exit("Refusing: upload_php must be true or false")
+          if upload_php == "true" and migration != "supabase-migration-applied":
+              sys.exit("Refusing: PHP upload requires confirm_migration=supabase-migration-applied")
+
+          if not (payload / "index.html").is_file():
+              sys.exit("Refusing: payload index.html missing")
+          if not (payload / ".htaccess").is_file():
+              sys.exit("Refusing: payload .htaccess missing")
+
+          h = hashlib.sha256()
+          files = []
+          for path in sorted(payload.rglob("*"), key=lambda item: item.relative_to(payload).as_posix()):
+              if not path.is_file():
+                  continue
+              rel = path.relative_to(payload).as_posix()
+              if rel.startswith("../") or "/../" in f"/{rel}/" or rel.startswith("/") or rel == "api/config.php" or rel.endswith("/config.php"):
+                  sys.exit(f"Refusing payload path {rel}")
+              h.update(rel.encode())
+              h.update(b"\0")
+              h.update(path.read_bytes())
+              h.update(b"\0")
+              files.append(rel)
+          digest = h.hexdigest()
+          if digest != expected:
+              sys.exit("Refusing: payload hash mismatch")
+
+          selected = []
+          skipped_php = []
+          for rel in files:
+              if rel == "api/config.php" or rel.endswith("/config.php"):
+                  sys.exit(f"Refusing to select {rel}")
+              if rel.endswith(".php"):
+                  if upload_php != "true":
+                      skipped_php.append(rel)
+                      continue
+              selected.append(rel)
+          if any(rel.endswith(".php") for rel in selected) and upload_php != "true":
+              sys.exit("Refusing: PHP remains selected")
+          if not selected:
+              sys.exit("Refusing: upload list empty")
+          selected.sort(key=lambda rel: (0 if rel == ".htaccess" or rel.endswith("/.htaccess") else 1, rel))
+
+          list_path = Path(os.environ["RUNNER_TEMP"]) / "advent26test-upload-list"
+          list_path.write_text("".join(rel + "\n" for rel in selected))
+          print(f"payload_sha256={digest}")
+          print(f"upload_php={upload_php}")
+          print(f"selected={len(selected)} skipped_php={len(skipped_php)}")
+          for rel in skipped_php:
+              print(f"SKIP php {rel}")
+          PY
+
+      - name: Back up test vhost, then upload payload
+        env:
+          FTP_HOST: ${{ secrets.WEDOS_FTP_HOST }}
+          FTP_USER: ${{ secrets.WEDOS_FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.WEDOS_FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ "$CONFIRM_ROOT" != "advent26test.limitlessdreams.cz" ]; then
+            echo "Refusing: confirm_root mismatch"
+            exit 2
+          fi
+          if [ "$DEST" != "domains/advent26test.limitlessdreams.cz" ]; then
+            echo "Refusing: destination mismatch"
+            exit 3
+          fi
+          case "$DEST" in
+            domains/advent26.limitlessdreams.cz|domains/advent26.limitlessdreams.cz/*)
+              echo "Refusing: production destination"
+              exit 4
+              ;;
+          esac
+          case "$BACKUP_PREFIX" in
+            *advent26.limitlessdreams.cz*)
+              echo "Refusing: backup prefix names production"
+              exit 5
+              ;;
+          esac
+          if [ "$UPLOAD_PHP" = "true" ] && [ "$CONFIRM_MIGRATION" != "supabase-migration-applied" ]; then
+            echo "Refusing: PHP upload without migration confirmation"
+            exit 6
+          fi
+          if [ "${#FTP_HOST}" -lt 5 ] || [ "${#FTP_USER}" -lt 3 ] || [ "${#FTP_PASSWORD}" -lt 1 ]; then
+            echo "Missing or empty WEDOS_FTP_* secrets"
+            exit 1
+          fi
+          echo "FTP_HOST length=${#FTP_HOST}"
+          echo "FTP_USER length=${#FTP_USER}"
+          echo "FTP_PASSWORD length=${#FTP_PASSWORD}"
+
+          LIST="${RUNNER_TEMP}/advent26test-upload-list"
+          LOCAL="${RUNNER_TEMP}/advent26test-backup"
+          test -s "$LIST"
+          if grep -E '(^|/)config\.php$' "$LIST"; then
+            echo "Refusing: config.php is in the upload list"
+            exit 7
+          fi
+          if [ "$UPLOAD_PHP" != "true" ] && grep -E '\.php$' "$LIST"; then
+            echo "Refusing: PHP is in the upload list"
+            exit 8
+          fi
+          rm -rf -- "$LOCAL"
+          mkdir -p -- "$LOCAL"
+
+          ftp_listing() {
+            local remote="$1"
+            local dest="$2"
+            local try
+            for try in $(seq 1 10); do
+              if curl --ssl-reqd --ftp-pasv --ftp-skip-pasv-ip --fail --silent --show-error \
+                --user "${FTP_USER}:${FTP_PASSWORD}" \
+                -o "$dest" "ftp://${FTP_HOST}/${remote}/"; then
+                return 0
+              fi
+              rm -f -- "$dest"
+              sleep 2
+            done
+            return 1
+          }
+
+          parse_listing() {
+            python3 -c '
+          import sys
+          text = sys.stdin.read().replace("\r\n", "\n").replace("\r", "\n")
+          lines = [line for line in text.split("\n") if line.strip() and not line.startswith("total ")]
+          mlsd = any("type=" in line and ";" in line for line in lines[:20])
+          rows = []
+          if mlsd:
+              for line in lines:
+                  if "; " not in line:
+                      continue
+                  meta, name = line.split("; ", 1)
+                  name = name.strip()
+                  if name in ("", ".", "..") or "/" in name or name.startswith(".."):
+                      continue
+                  if "type=dir" in meta:
+                      rows.append(("D", name))
+                  elif "type=file" in meta:
+                      rows.append(("F", name))
+          else:
+              for line in lines:
+                  parts = line.split(None, 8)
+                  if len(parts) < 9 or not parts[0] or parts[0][0] not in "d-":
+                      continue
+                  name = parts[8].strip()
+                  if name in ("", ".", "..") or "/" in name or name.startswith(".."):
+                      continue
+                  rows.append(("D" if parts[0][0] == "d" else "F", name))
+          if lines and not rows:
+              sys.exit("unrecognized FTP listing")
+          for kind, name in rows:
+              print(f"{kind}\t{name}")
+          '
+          }
+
+          assert_exact_root() {
+            local root_list api_list
+            root_list="$(mktemp)"
+            api_list="$(mktemp)"
+            ftp_listing "$DEST" "$root_list"
+            mapfile -t root_rows < <(parse_listing < "$root_list")
+            rm -f -- "$root_list"
+            local has_index=0 has_api=0 has_odkazy=0 row kind name
+            for row in "${root_rows[@]}"; do
+              kind="${row%%$'\t'*}"
+              name="${row#*$'\t'}"
+              if [ "$name" = "index.html" ] && [ "$kind" = "F" ]; then
+                has_index=1
+              fi
+              if [ "$name" = "api" ] && [ "$kind" = "D" ]; then
+                has_api=1
+              fi
+              if [ "$name" = "odkazy" ] || [ "$name" = "vandery" ] || [ "$name" = "cesko_spolu" ]; then
+                has_odkazy=1
+              fi
+            done
+            if [ "$has_index" -ne 1 ] || [ "$has_api" -ne 1 ] || [ "$has_odkazy" -ne 0 ]; then
+              echo "Refusing: remote root is not the advent26test document root"
+              exit 9
+            fi
+            ftp_listing "$DEST/api" "$api_list"
+            mapfile -t api_rows < <(parse_listing < "$api_list")
+            rm -f -- "$api_list"
+            local has_config=0
+            for row in "${api_rows[@]}"; do
+              kind="${row%%$'\t'*}"
+              name="${row#*$'\t'}"
+              if [ "$name" = "config.php" ] && [ "$kind" = "F" ]; then
+                has_config=1
+              fi
+            done
+            if [ "$has_config" -ne 1 ]; then
+              echo "Refusing: remote api/config.php is not present; not replacing this root"
+              exit 10
+            fi
+            echo "remote root ok: index.html, api/, api/config.php present; hub dirs absent"
+          }
+
+          download_tree() {
+            local remote="$1"
+            local local_dir="$2"
+            local list row kind name child rel
+            list="$(mktemp)"
+            mkdir -p -- "$local_dir"
+            ftp_listing "$remote" "$list"
+            mapfile -t rows < <(parse_listing < "$list")
+            rm -f -- "$list"
+            for row in "${rows[@]}"; do
+              kind="${row%%$'\t'*}"
+              name="${row#*$'\t'}"
+              child="${remote}/${name}"
+              case "$name" in
+                config.php|.env|*.env)
+                  echo "SKIP backup ${child} (left on server, not copied)"
+                  continue
+                  ;;
+              esac
+              if [ "$kind" = "D" ]; then
+                download_tree "$child" "$local_dir/$name"
+              else
+                rel="${child#"$DEST"/}"
+                mkdir -p -- "$(dirname -- "$local_dir/$name")"
+                local try=0 ok=0
+                for try in $(seq 1 10); do
+                  if curl --ssl-reqd --ftp-pasv --ftp-skip-pasv-ip --fail --silent --show-error \
+                    --user "${FTP_USER}:${FTP_PASSWORD}" \
+                    -o "$local_dir/$name" "ftp://${FTP_HOST}/${child}"; then
+                    echo "BACKUP ${rel} (try ${try})"
+                    ok=1
+                    break
+                  fi
+                  rm -f -- "$local_dir/$name"
+                  sleep 2
+                done
+                if [ "$ok" -ne 1 ]; then
+                  echo "BACKUP FAIL ${rel}"
+                  exit 11
+                fi
+              fi
+            done
+          }
+
+          scan_backup() {
+            python3 - "$LOCAL" << 'PY'
+          import base64
+          import json
+          import re
+          import sys
+          from pathlib import Path
+
+          root = Path(sys.argv[1])
+          jwt_re = re.compile(rb"eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}")
+          secret_name = re.compile(r"(^|/)config\.php$|(^|/)\.env$|\.pem$")
+          for path in root.rglob("*"):
+              if not path.is_file():
+                  continue
+              rel = path.relative_to(root).as_posix()
+              if secret_name.search(rel):
+                  sys.exit(f"secret-named file in backup: {rel}")
+              data = path.read_bytes()
+              if b"BEGIN PRIVATE KEY" in data or b"BEGIN RSA PRIVATE KEY" in data or b"BEGIN OPENSSH PRIVATE KEY" in data:
+                  sys.exit(f"private key in backup: {rel}")
+              for match in jwt_re.finditer(data):
+                  payload = match.group(0).split(b".")[1]
+                  pad = b"=" * ((4 - len(payload) % 4) % 4)
+                  try:
+                      decoded = json.loads(base64.urlsafe_b64decode(payload + pad))
+                  except Exception:
+                      continue
+                  if isinstance(decoded, dict) and decoded.get("role") == "service_role":
+                      sys.exit(f"service_role token in backup: {rel}")
+          print("backup secret scan ok")
+          PY
+          }
+
+          upload_file() {
+            local src="$1"
+            local remote="$2"
+            local label="$3"
+            local try=0
+            for try in $(seq 1 10); do
+              if curl --ssl-reqd --ftp-pasv --ftp-skip-pasv-ip --ftp-create-dirs \
+                --user "${FTP_USER}:${FTP_PASSWORD}" \
+                -T "$src" "ftp://${FTP_HOST}/${remote}" -o /dev/null --silent --show-error; then
+                echo "OK ${label} (try ${try})"
+                return 0
+              fi
+              sleep 2
+            done
+            echo "FAIL ${label}"
+            return 1
+          }
+
+          assert_exact_root
+          download_tree "$DEST" "$LOCAL"
+          if find "$LOCAL" -type f \( -name 'config.php' -o -name '.env' -o -name '*.pem' \) | grep -q .; then
+            echo "Refusing: secret file was copied into the local backup"
+            exit 12
+          fi
+          test -f "$LOCAL/index.html"
+          scan_backup
+          STAMP="$(date -u +%Y%m%dT%H%M%SZ)-${GITHUB_RUN_ID:-local}"
+          BACKUP_ROOT="${BACKUP_PREFIX}/${STAMP}"
+          case "$BACKUP_ROOT" in
+            "$DEST"|"$DEST"/*|*advent26.limitlessdreams.cz*)
+              echo "Refusing: backup destination is not private"
+              exit 13
+              ;;
+          esac
+          echo "private backup path=${BACKUP_ROOT} host(len=${#FTP_HOST})"
+          while IFS= read -r -d '' file; do
+            rel="${file#"$LOCAL"/}"
+            case "$rel" in
+              config.php|*/config.php|*.env|*/.env|*.pem|*/*.pem)
+                echo "Refusing backup upload ${rel}"
+                exit 14
+                ;;
+            esac
+            upload_file "$file" "${BACKUP_ROOT}/${rel}" "backup ${rel}"
+          done < <(find "$LOCAL" -type f -print0)
+
+          echo "Uploading payload to ${DEST}/ (php=${UPLOAD_PHP}) host(len=${#FTP_HOST})"
+          while IFS= read -r rel; do
+            [ -n "$rel" ] || continue
+            case "$rel" in
+              config.php|*/config.php|*..*)
+                echo "Refusing payload ${rel}"
+                exit 15
+                ;;
+              *.php)
+                if [ "$UPLOAD_PHP" != "true" ]; then
+                  echo "Refusing payload php ${rel}"
+                  exit 16
+                fi
+                ;;
+            esac
+            test -f "$PAYLOAD/$rel"
+            upload_file "$PAYLOAD/$rel" "${DEST}/${rel}" "$rel"
+          done < "$LIST"
+          echo "SUMMARY upload complete php=${UPLOAD_PHP}"
+
+      - name: Delete local backup
+        if: always()
+        run: |
+          set -euo pipefail
+          LOCAL="${RUNNER_TEMP:?}/advent26test-backup"
+          case "$LOCAL" in
+            "$RUNNER_TEMP"/advent26test-backup) ;;
+            *)
+              echo "Refusing to delete unexpected path"
+              exit 1
+              ;;
+          esac
+          rm -rf -- "$LOCAL"
+          rm -f -- "${RUNNER_TEMP}/advent26test-upload-list"
+          if [ -e "$LOCAL" ]; then
+            echo "local backup still present"
+            exit 1
+          fi
+          echo "local backup deleted"

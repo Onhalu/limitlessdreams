@@ -1,0 +1,9 @@
+# SPA fallback for the WEDOS Apache vhost.
+# /api/*.php stays on disk next to this file. Do not rewrite it to index.html.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^api/ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
